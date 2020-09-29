@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  resume:
+    networks:
+    - traefik
+    dns:
+      - consul-server
+      - 8.8.8.8
+      - 8.8.4.4
+    container_name: resume
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace/resume:cached
+    command: sleep infinity
+    ports:
+      - "3000:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.resume.rule=Host(`ae-resume.service.consul`)"
+      - "traefik.http.routers.resume.entrypoints=web"
+      - 'SERVICE_3000_NAME=resume'
+      - 'SERVICE_3000_TAGS=3000,http'
+
+networks:
+  traefik:
+    external: true

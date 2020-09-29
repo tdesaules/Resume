@@ -1,0 +1,24 @@
+{
+  "name": "Alpine 3.12 Node 12.18.3-r0",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "resume",
+  "workspaceFolder": "/workspace/resume",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/ash"
+  },
+  "extensions": [
+    "octref.vetur",
+    "syler.sass-indented",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "formulahendry.code-runner",
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "msjsdiag.debugger-for-chrome",
+    "ms-edgedevtools.vscode-edge-devtools",
+    "eamodio.gitlens",
+    "idleberg.icon-fonts",
+    "pkief.material-icon-theme",
+    "ms-vsts.team"
+  ]
+}

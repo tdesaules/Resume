@@ -1,0 +1,145 @@
+{
+  "categories" : [
+    { "name" : "RESUME" },
+    { "name" : "CV" },
+    { "name" : "PROJECTS" }
+  ],
+  "languages" : [
+    { "name" : "FR" },
+    { "name" : "EN" }
+  ],
+  "resume" : {
+    "name" : "Thibault Desaules",
+    "fr" : {
+      "title" : "Salut, moi c'est Thibault,",
+      "subtitle" : "Comment ça va ?",
+      "job" : "ingénieur système & devops",
+      "summary" : [
+        { "p" : "J'aime l'informatique depuis... toujours. <i class='far fa-grin-hearts'></i>" },
+        { "p" : "Assembler son ordinateur, écouter le son gracieux d'un échec suite à une mise jour de bios, défragmentation son disque dur, ruiner son premier processeur avec un delid, mais surtout réussir la compilation de son kernel, illumer une led sur un Arduino, lancer son premier conteneur... <i class='far fa-grin-squint-tears'></i>"},
+        { "p" : "Entre nous... je suis un geek." },
+        { "p" : "Ma filmographie, Star Wars, Jurassic Park, Matrix, Retour vers le futur, Star Trek, Alien. Ma bibliothèque, 1984, Asimov, Harry Potter, Esperanza 64. La Mega Drive, une vraie console ! Une maison qui ne repond pas au son de ma voix (#jarvis) n'est pas ma maison." },
+        { "p" : "Bon, et l'aspect pro dans tout ça ?" },
+        { "p" : "Après un passage éclair dans le monde du développement au début de mes études (Assembleur, C, C++, HTML, CSS, JavaScript, PHP), je me suis réorienté sur l'infrastructure." },
+        { "p" : "J'ai travaillé dans plusieurs sociétés, débutant sur des systèmes Linux et des applicatifs libres, pour finalement me diriger vers des technologies Microsoft, sans pour autant m'écarter de l'Open Source et des technologies Web." },
+        { "p" : "Mon mantra pour le futur ?" },
+        { "p" : "Accompagner les développeurs dans leurs problématiques infra et leurs donner les outils pour faire évoluer leurs applications efficacement. Combattre cette idée reçu \"Microsoft vs Open Source\". Promouvoir le Cloud car il ouvre des possibilités incroyables." }
+      ]
+    },
+    "en" : {
+      "title" : "Hi, I'm Thibault,",
+      "subtitle" : "How are you ?",
+      "job" : "system engineer & devops",
+      "summary" : [
+        { "p" : "" },
+        { "p" : "" }
+      ]
+    },
+    "citation" : {
+      "author" : "Seymour Papert",
+      "text" : "What the gears cannot do, the computer might. The computer is the Proteus of machines. Its essence is its universality, its power to simulate. Because it can take on a thousand forms and can serve a thousand functions, it can appeal to a thousand tastes." 
+    },
+    "hashtag" : [
+      { "tag" : "SysAdmin" },
+      { "tag" : "DevOps" }
+    ]
+  },
+  "cv" : {
+    "card" : {
+      "name" : "Thibault Desaules",
+      "mail" : "tdesaules@outlook.com",
+      "phone" : "+33 6 99 38 40 55",
+      "address" : "3 rue Baudin, Levallois-Perret, France"
+    },
+    "experience" : {
+      "title" : {
+        "fr" : {
+          "value" : "Expérience"
+        },
+        "en" : {
+          "value" : "Experience"
+        }
+      },
+      "jobs" : [
+        {
+          "name" : "Sodexo Pass France",
+          "fr" : {
+            "startdate" : "mars 2019",
+            "enddate" : "maintenant",
+            "summary" : "Ingénieur système et devops Microsoft au sein de la DSI en environnement agile, j'accompagne les équipes scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure.",
+            "certifications" : [ "Azure AZ-900" ],
+            "details" : [
+              { 
+                "p" : "gestion des jobs de déploiement et d'intégration continue",
+                "hashtag" : [ "jenkins" , "gitlab" , "sonarqube" ]
+              },
+              { 
+                "p" : "supervision des systèmes et des applications",
+                "hashtag" : [ "centreon" , "graylog" , "beats" ]
+              },
+              { 
+                "p" : "automatisation et gestion des déploiements",
+                "hashtag" : [ "puppet" , "puppet-bolt" , "foreman" ]
+              },
+              { 
+                "p" : "création de scripts",
+                "hashtag" : [ "powershell" ]
+              },
+              { 
+                "p" : "suivi des projets et des tickets",
+                "hashtag" : [ "redmine" , "jira" ]
+              },
+              { 
+                "p" : "documentation et procédures",
+                "hashtag" : [ "confluence" ]
+              },
+              { 
+                "p" : "administration systèmes",
+                "hashtag" : [ "windows" , "linux" ]
+              }
+            ]
+          },
+          "en" : {
+            "startdate" : "march 2019",
+            "enddate" : "now",
+            "summary" : "",
+            "certifications" : [ "Azure AZ-900" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [  ]
+              }
+            ]
+          }
+        },
+        {
+          "name" : "Engie Ineo",
+          "fr" : {
+            "startdate" : "mars 2014",
+            "enddate" : "mars 2019",
+            "summary" : "Ingénieur système et chef de projet infrastructure auprès de la direction des systèmes d'information en environnement ITIL, j'ai étroitement travaille avec le département études (principalement avec les développeurs) et avec la direction métier afin de les accompagner dans la mise en place de nouvelles applications.",
+            "certifications" : [ "ITIL 4 Foundation" , "Agile Scrum Foundation" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [ "" ]
+              }
+            ]
+          },
+          "en" : {
+            "startdate" : "march 2014",
+            "enddate" : "march 2019",
+            "summary" : "",
+            "certifications" : [ "ITIL 4 Foundation" , "Agile Scrum Foundation" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [  ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
