@@ -140,6 +140,145 @@
           }
         }
       ]
+    },
+    "study" : {
+      "title" : {
+        "fr" : {
+          "value" : "Etudes"
+        },
+        "en" : {
+          "value" : "Studies"
+        }
+      },
+      "studies" : [
+        {
+          "fr" : {
+            "name" : "Ingénieur système IRS (Ingénierie Réseaux et Systèmes)",
+            "degree" : "Master, DEA, DESS, diplôme d'ingénieur",
+            "school" : "Université Paris-Saclay"
+          },
+          "en" : {
+            "name" : "",
+            "degree" : "",
+            "school" : "University of Paris-Saclay"
+          },
+          "year" : "2013"
+        },
+        {
+          "fr" : {
+            "name" : "Administrateur ERE (Réseaux, Systèmes et Sécurité)",
+            "degree" : "RNCP II",
+            "school" : "Centre Formation AFTI"
+          },
+          "en" : {
+            "name" : "",
+            "degree" : "",
+            "school" : "AFTI Formation Center"
+          },
+          "year" : "2012"
+        },
+        {
+          "fr" : {
+            "name" : "Administrateur ASR (Réseaux, Systèmes et Sécurité)",
+            "degree" : "Licence, Licence LMD, licence professionnelle",
+            "school" : "Université Paris-Est Créteil"
+          },
+          "en" : {
+            "name" : "",
+            "degree" : "",
+            "school" : "Paris Val de Marne University"
+          },
+          "year" : "2010"
+        },
+        {
+          "fr" : {
+            "name" : "Technicien Supérieur SNIR (Systèmes Numériques Informatique Réseaux)",
+            "degree" : "DEUG, BTS, DUT, DEUST",
+            "school" : "Lycée Robert Doisneau"
+          },
+          "en" : {
+            "name" : "",
+            "degree" : "",
+            "school" : ""
+          },
+          "year" : "2008"
+        },
+        {
+          "fr" : {
+            "name" : "Baccalauréat STI (sciences et technologies industrielles)",
+            "degree" : "Baccalauréat",
+            "school" : "Lycée Notre Dame de Sion"
+          },
+          "en" : {
+            "name" : "",
+            "degree" : "",
+            "school" : "Notre Dame de Sion high school"
+          },
+          "year" : "2006"
+        }
+      ]
+    },
+    "tongue" : {
+      "title" : {
+        "fr" : {
+          "value" : "Langues"
+        },
+        "en" : {
+          "value" : "Languages"
+        }
+      },
+      "tongues" : [
+        {
+          "fr" : { "value" : "Français (langue maternelle)" },
+          "en" : { "value" : "French (mother tongue)" }
+        },
+        {
+          "fr" : { "value" : "Anglais (professionnel)" },
+          "en" : { "value" : "English (professional)" }
+        }
+      ]
+    },
+    "conference" : {
+      "title" : {
+        "fr" : {
+          "value" : "Conférences"
+        },
+        "en" : {
+          "value" : "Conférences"
+        }
+      }
+    },
+    "hobbie" : {
+      "title" : {
+        "fr" : {
+          "value" : "Intérêts"
+        },
+        "en" : {
+          "value" : "Hobbies"
+        }
+      },
+      "hobbies" : [
+        {
+          "fr" : { "value" : "Sport (Volley, Tennis, Yoga)" },
+          "en" : { "value" : "" }
+        },
+        {
+          "fr" : { "value" : "Jeux video (League of Legend)" },
+          "en" : { "value" : "" }
+        },
+        {
+          "fr" : { "value" : "Domotique (RaspberryPi, Arduino, Electronique)" },
+          "en" : { "value" : "" }
+        },
+        {
+          "fr" : { "value" : "Bricolage (DIY, Hacking, Renovation, Vélo)" },
+          "en" : { "value" : "" }
+        },
+        {
+          "fr" : { "value" : "Science fiction (films, séries, livres et livres audio)" },
+          "en" : { "value" : "" }
+        }
+      ]
     }
   }
 }

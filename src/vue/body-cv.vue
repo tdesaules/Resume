@@ -45,6 +45,24 @@
           button.button.is-light.is-fullwidth.modal-button(v-if="language === 'fr'" v-on:click='openModal(job, "fr")') plus
           button.button.is-light.is-fullwidth.modal-button(v-if="language === 'en'" v-on:click='openModal(job, "en")') more
       .tile.is-child.box
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.study.title.fr.value }}
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.study.title.en.value }}
+        .container.has-sepatator(v-for="study in cv.study.studies")
+          .level.is-marginless.has-mid-top-padding
+            .level-left
+              .level-item
+                p.subtitle.is-5(v-if="language === 'fr'") {{ study.fr.name }}
+                p.subtitle.is-5(v-if="language === 'en'") {{ study.en.name }}
+            .level-right
+              .level-item
+                p.subtitle.is-6
+                  i {{ study.year }}
+          p.has-small-margin.has-text-justified(v-if="language === 'fr'")
+            i.fas.fa-angle-right.has-right-margin
+            | {{ study.fr.school }} [ {{ study.fr.degree }} ]
+          p.has-small-margin.has-text-justified(v-if="language === 'en'")
+            i.fas.fa-angle-right.has-right-margin
+            | {{ study.en.school }} [ {{ study.en.degree }} ]
     .tile.is-vertical.is-parent.is-4
       .card.tile.is-child.box.has-no-padding
         .card-image
@@ -62,7 +80,20 @@
           p.has-text-info {{ cv.card.phone }}
           p.has-text-info {{ cv.card.address }}
       .tile.is-child.box
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.tongue.title.fr.value }}
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.tongue.title.en.value }}
+        .container(v-for="tongue in cv.tongue.tongues")
+          p.has-small-margin.has-text-justified(v-if="language === 'fr'") {{ tongue.fr.value }}
+          p.has-small-margin.has-text-justified(v-if="language === 'en'") {{ tongue.en.value }}
       .tile.is-child.box
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.conference.title.fr.value }}
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.conference.title.en.value }}
+      .tile.is-child.box
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.hobbie.title.fr.value }}
+        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.hobbie.title.en.value }}
+        .container(v-for="hobbie in cv.hobbie.hobbies")
+          p.has-small-margin.has-text-justified(v-if="language === 'fr'") {{ hobbie.fr.value }}
+          p.has-small-margin.has-text-justified(v-if="language === 'en'") {{ hobbie.en.value }}
 
 </template>
 
