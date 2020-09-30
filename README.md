@@ -38,7 +38,7 @@ Framework HTML / CSS / JavaScript
 
 ```shell
 npm install --save-dev pug pug-plain-loader
-npm install --save-dev vue-loader vue-template-compiler vue vue-router
+npm install --save-dev vue-loader vue-template-compiler vue vue-router vue-horizontal-list
 npm install --save-dev html-loader
 npm install --save-dev node-sass sass-loader css-loader style-loader mini-css-extract-plugin
 npm install --save-dev babel-loader @babel/core @babel/preset-env

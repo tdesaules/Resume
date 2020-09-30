@@ -246,7 +246,18 @@
         "en" : {
           "value" : "Conférences"
         }
-      }
+      },
+      "items" : [
+        {
+          "title" : "#7 Site Reliability Engineering",
+          "hosted" : "Pablo Seminario",
+          "content" : "News and Infrastructure as code",
+          "image" : "https://secure.meetupstatic.com/photos/event/5/e/5/2/highres_471564146.jpeg",
+          "link" : "https://www.meetup.com/fr-FR/Site-Reliability-Engineering-Paris/events/273364359/",
+          "date" : "2020-09-30",
+          "icon" : "fab fa-2x fa-meetup"
+        }
+      ]
     },
     "hobbie" : {
       "title" : {

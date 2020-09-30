@@ -64,7 +64,7 @@
             i.fas.fa-angle-right.has-right-margin
             | {{ study.en.school }} [ {{ study.en.degree }} ]
     .tile.is-vertical.is-parent.is-4
-      .card.tile.is-child.box.has-no-padding
+      .card.tile.is-child.box.has-no-padding.is-hidden-touch
         .card-image
           figure.image.is-4by3
             img.has-img-radius(src='https://bulma.io/images/placeholders/1280x960.png' alt='Placeholder image')
@@ -88,6 +88,29 @@
       .tile.is-child.box
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.conference.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.conference.title.en.value }}
+        vue-horizontal-list(:items='conferences' :options='{responsive: [{size: 1}]}')
+          template(v-slot:default='{item}')
+            .card
+              .card-image
+                figure.image.is-4by3
+                  img(:src='item.image')
+              .card-content
+                .media
+                  .media-left
+                    span.icon.is-medium.has-text-info
+                      i(:class='item.icon')
+                  .media-content
+                    p.title.is-5
+                      a(@click='openNewTab(item.link)').has-text-info {{item.title}}
+                    p.subtitle.is-6.has-text-primary {{item.hosted}}
+                .content
+                  .level.is-marginless
+                    .level-left
+                      .level-item
+                        p.has-small-margin.has-text-justified {{item.content}}
+                    .level-right
+                      .level-item
+                        time(:datetime='item.date').has-small-margin.has-text-justified.is-italic {{item.date}}
       .tile.is-child.box
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.hobbie.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.hobbie.title.en.value }}
@@ -100,9 +123,11 @@
 <!-- SCRIPT -->
 <script>
 
+import VueHorizontalList from "vue-horizontal-list";
 import config from "../config/config.json";
 import avatar from '../img/avatar.jpg';
 export default { 
+  components: {VueHorizontalList},
   data () {
     var language = "fr"
     this.$root.$on('FR', () => { this.language = "fr" })
@@ -114,7 +139,8 @@ export default {
       showModal: false,
       jobName: undefined,
       jobDetails: undefined,
-      jobCertifications: undefined,
+      jobCertifications: undefined, 
+      conferences: config.cv.conference.items
     }
   },
   methods: {
@@ -135,6 +161,9 @@ export default {
       this.jobName = undefined
       this.jobDetails = undefined
       this.jobCertifications = undefined
+    },
+    openNewTab: function (link) {   
+      window.open(link, "_blank");    
     }
   }
 }
