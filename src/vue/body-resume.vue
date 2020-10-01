@@ -26,7 +26,7 @@
           button.button.is-medium.my-card(onclick="window.location.href = 'skype:tdesaules@outlook.com?add';")
             i.fab.fa-skype.has-text-primary
       .tile.is-child.box.has-no-padding.is-hidden-touch
-        figure.image.is-2by3
+        figure.image.is-3by4
           img.has-img-radius(v-bind:src="column")
     .tile.is-parent
       .tile.is-child.box
