@@ -15,12 +15,12 @@
       "subtitle" : "Comment ça va ?",
       "job" : "ingénieur système & devops",
       "summary" : [
-        { "p" : "J'aime l'informatique depuis... toujours. <i class='far fa-grin-hearts'></i>" },
+        { "p" : "J'aime l'informatique depuis que je suis petit (merci Windows 95). <i class='far fa-grin-hearts'></i>" },
         { "p" : "Assembler son ordinateur, écouter le son gracieux d'un échec suite à une mise jour de bios, défragmentation son disque dur, ruiner son premier processeur avec un delid, mais surtout réussir la compilation de son kernel, illumer une led sur un Arduino, lancer son premier conteneur... <i class='far fa-grin-squint-tears'></i>"},
         { "p" : "Entre nous... je suis un geek." },
         { "p" : "Ma filmographie, Star Wars, Jurassic Park, Matrix, Retour vers le futur, Star Trek, Alien. Ma bibliothèque, 1984, Asimov, Harry Potter, Esperanza 64. La Mega Drive, une vraie console ! Une maison qui ne repond pas au son de ma voix (#jarvis) n'est pas ma maison." },
         { "p" : "Bon, et l'aspect pro dans tout ça ?" },
-        { "p" : "Après un passage éclair dans le monde du développement au début de mes études (Assembleur, C, C++, HTML, CSS, JavaScript, PHP), je me suis réorienté sur l'infrastructure." },
+        { "p" : "Après un passage éclair dans le monde du développement au début de mes études (Assembleur, C, C++, HTML, CSS, JavaScript, PHP, Java C#), je me suis réorienté sur l'infrastructure." },
         { "p" : "J'ai travaillé dans plusieurs sociétés, débutant sur des systèmes Linux et des applicatifs libres, pour finalement me diriger vers des technologies Microsoft, sans pour autant m'écarter de l'Open Source et des technologies Web." },
         { "p" : "Mon mantra pour le futur ?" },
         { "p" : "Accompagner les développeurs dans leurs problématiques infra et leurs donner les outils pour faire évoluer leurs applications efficacement. Combattre cette idée reçu \"Microsoft vs Open Source\". Promouvoir le Cloud car il ouvre des possibilités incroyables." }
@@ -29,9 +29,8 @@
     "en" : {
       "title" : "Hi, I'm Thibault,",
       "subtitle" : "How are you ?",
-      "job" : "system engineer & devops",
+      "job" : "system & devops engineer ",
       "summary" : [
-        { "p" : "" },
         { "p" : "" }
       ]
     },
@@ -78,11 +77,15 @@
                 "hashtag" : [ "centreon" , "graylog" , "beats" ]
               },
               { 
-                "p" : "automatisation et gestion des déploiements",
+                "p" : "automatisation et gestion des déploiements d'application web",
                 "hashtag" : [ "puppet" , "puppet-bolt" , "foreman" ]
               },
               { 
-                "p" : "création de scripts",
+                "p" : "gestion et mise en place du laod-balancing pour les sites internes",
+                "hashtag" : [ "haproxy" ]
+              },
+              { 
+                "p" : "création de scripts d'automatisation",
                 "hashtag" : [ "powershell" ]
               },
               { 
@@ -94,7 +97,7 @@
                 "hashtag" : [ "confluence" ]
               },
               { 
-                "p" : "administration systèmes",
+                "p" : "administration des systèmes",
                 "hashtag" : [ "windows" , "linux" ]
               }
             ]
@@ -118,7 +121,62 @@
             "startdate" : "mars 2014",
             "enddate" : "mars 2019",
             "summary" : "Ingénieur système et chef de projet infrastructure auprès de la direction des systèmes d'information en environnement ITIL, j'ai étroitement travaille avec le département études (principalement avec les développeurs) et avec la direction métier afin de les accompagner dans la mise en place de nouvelles applications.",
-            "certifications" : [ "ITIL 4 Foundation" , "Agile Scrum Foundation" ],
+            "certifications" : [ "ITIL V4 Foundation" , "Agile Scrum Foundation" ],
+            "details" : [
+              { 
+                "p" : "chef de projet sur la mise en place d'un outils de récupération des statistiques d'utilisation dans un datalake pour obtenir des indicateurs BI",
+                "hashtag" : [ "interact-software" , "azure-data-factory" , "sqlserver" , "tableau" , "sqlserver-polybase" ]
+              },
+              { 
+                "p" : "livraison des applications web en production",
+                "hashtag" : [ "dotnet" , "aspnet" , "c#" , "static" , "php" ]
+              },
+              { 
+                "p" : "réalisation d'applications web pour la gestion des infrastructures (génération certificats, génération configurations réseaux...)",
+                "hashtag" : [ "static" , "vuejs" , "bulma" , "nodejs" , "expressjs" , "koajs" ]
+              },
+              { 
+                "p" : "gestion et mise en place du laod-balancing, reverse-proxy et terminaison ssl pour 300 sites",
+                "hashtag" : [ "citrix-adc" , "netscaler" ]
+              },
+              { 
+                "p" : "création de scripts d'automatisation pour l'infrastructure",
+                "hashtag" : [ "powershell" , "python" ]
+              },
+              { 
+                "p" : "gestion et mise en place des serveurs web",
+                "hashtag" : [ "iis" , "apache" , "nginx" ]
+              },
+              { 
+                "p" : "chef de projet infrastructure et gestion de la mobilité (EMM)",
+                "hashtag" : [ "xenmobile" , "intune" ]
+              },
+              { 
+                "p" : "administration des systèmes",
+                "hashtag" : [ "windows" , "linux" ]
+              }
+            ]
+          },
+          "en" : {
+            "startdate" : "march 2014",
+            "enddate" : "march 2019",
+            "summary" : "",
+            "certifications" : [ "ITIL V4 Foundation" , "Agile Scrum Foundation" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [  ]
+              }
+            ]
+          }
+        },
+        {
+          "name" : "Omnitech SA",
+          "fr" : {
+            "startdate" : "septembre 2012",
+            "enddate" : "mars 2014",
+            "summary" : "",
+            "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
             "details" : [
               { 
                 "p" : "",
@@ -127,14 +185,14 @@
             ]
           },
           "en" : {
-            "startdate" : "march 2014",
-            "enddate" : "march 2019",
+            "startdate" : "september 2012",
+            "enddate" : "march 2014",
             "summary" : "",
-            "certifications" : [ "ITIL 4 Foundation" , "Agile Scrum Foundation" ],
+            "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
             "details" : [
               { 
                 "p" : "",
-                "hashtag" : [  ]
+                "hashtag" : [ "" ]
               }
             ]
           }

@@ -1,4 +1,4 @@
-<!-- TEMPLATE -->
+<!-- HTML PUG -->
 <template lang="pug">
 
 .container
@@ -9,10 +9,13 @@
         p.modal-card-title.has-text-centered.has-text-primary {{ jobName }}
         button.delete(aria-label='close' v-on:click='closeModal()')
       section.modal-card-body
-        p(v-for='details in jobDetails') 
-          i.fas.fa-angle-right.has-right-margin
-          | {{ details.p }} | 
-          span.tag.is-rounded.is-link.has-text-weight-medium.has-ext-margin(v-for='hashtag in details.hashtag') # {{ hashtag }} 
+        div(v-for='details in jobDetails')
+          p
+            i.fas.fa-angle-right.has-right-margin
+            | {{ details.p }}
+            br
+            .has-ext-small-bottom-margin
+              span.tag.is-rounded.is-link.has-text-weight-medium.has-ext-margin(v-for='hashtag in details.hashtag') # {{ hashtag }}
       footer.modal-card-foot
         p.has-right-margin certifications :
         p.subtitle.tag.is-rounded.is-info.has-text-weight-medium.has-ext-margin.no-margin-bottom(v-for='certification in jobCertifications') {{ certification }} 
@@ -120,7 +123,7 @@
 
 </template>
 
-<!-- SCRIPT -->
+<!-- JAVASCRIPT -->
 <script>
 
 import VueHorizontalList from "vue-horizontal-list";
@@ -170,7 +173,7 @@ export default {
 
 </script>
 
-<!-- STYLE -->
+<!-- SASS -->
 <style lang="sass" scoped>
 
 .is-vertical-center
@@ -189,6 +192,8 @@ export default {
   margin: 10px
 .has-mid-top-padding
   padding-top: 20px
+.has-ext-small-bottom-margin
+  margin-bottom: 5px
 .has-img-radius
   border-radius: 1%
 .has-ext-margin
