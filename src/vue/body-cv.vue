@@ -24,7 +24,7 @@
       .tile.is-child.box
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.experience.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.experience.title.en.value }}
-        .container.has-sepatator(v-for="job in cv.experience.jobs")
+        .container.has-separator(v-for="job in cv.experience.jobs")
           .level.is-marginless.has-mid-top-padding
             .level-left
               .level-item
@@ -50,7 +50,7 @@
       .tile.is-child.box
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.study.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.study.title.en.value }}
-        .container.has-sepatator(v-for="study in cv.study.studies")
+        .container.has-separator(v-for="study in cv.study.studies")
           .level.is-marginless.has-mid-top-padding
             .level-left
               .level-item
@@ -183,7 +183,7 @@ export default {
   padding: 0
 .has-small-bottom-padding
   padding-bottom: 10px
-.has-sepatator:not(:last-child)
+.has-separator:not(:last-child)
   border-bottom: 1px dashed
   padding-bottom: 20px
 .has-small-padding

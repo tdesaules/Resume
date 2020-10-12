@@ -88,6 +88,6 @@ button.my-card
 .has-no-padding
   padding: 0
 .has-img-radius
-  border-radius: 1%
+  border-radius: 6px
 
 </style>

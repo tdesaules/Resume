@@ -307,6 +307,15 @@
       },
       "items" : [
         {
+          "title" : "Multi-cluster & multi-cloud service mesh",
+          "hosted" : "Marco Palladino, CTO & Co-Founder @Kong",
+          "content" : "With CNCF’s Kuma and Envoy",
+          "image" : "https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/09/diagram-02-1536x779.jpg",
+          "link" : "https://www.cncf.io/webinars/multi-cluster-multi-cloud-service-mesh-with-cncfs-kuma-and-envoy/",
+          "date" : "2020-10-06",
+          "icon" : "fas fa-2x fa-video"
+        },
+        {
           "title" : "#7 Site Reliability Engineering",
           "hosted" : "Pablo Seminario",
           "content" : "News and Infrastructure as code",
@@ -349,5 +358,40 @@
         }
       ]
     }
-  }
+  },
+  "projects" : [
+    {
+      "fr" : {
+        "title" : "testfr",
+        "summary" : [
+          { "p" : "mdewkofneowfnoew fenwiofnewoifneow fenwiofnewoifnewofndweqjid fniewonfeowifnwe fnewofneowifnoewfwe fneiwofnewoifnoew fjeiowfnoew" },
+          { "p" : "fngreiuwgbtniiutr gtrniugnrt gtriugtnr" },
+          { "p" : "frenfjirneidenwiuer denwiubvrtgjiotrbor dnewiufbewiudoqwppver vntuibntriobvper cewovnreiufnewiq cwiufvberiw cewoiuncbiuewvnore vreovbreb vreo" }
+        ]
+      },
+      "en" : {
+        "title" : "testen",
+        "summary" : [
+          { "p" : "mdewkofneowfnoew fenwiofnewoifneow fenwiofnewoifnewofndweqjid fniewonfeowifnwe fnewofneowifnoewfwe fneiwofnewoifnoew fjeiowfnoew" },
+          { "p" : "fngreiuwgbtniiutr gtrniugnrt gtriugtnr" },
+          { "p" : "frenfjirneidenwiuer denwiubvrtgjiotrbor dnewiufbewiudoqwppver vntuibntriobvper cewovnreiufnewiq cwiufvberiw cewoiuncbiuewvnore vreovbreb vreo" }
+        ]
+      },
+      "icon" : "fab fa-2x fa-meetup",
+      "images" : [
+        { "url" : "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" },
+        { "url" : "https://cdn.pixabay.com/photo/2013/10/02/23/03/dawn-190055_1280.jpg" },
+        { "url" : "https://cdn.pixabay.com/photo/2015/11/04/20/59/milky-way-1023340_1280.jpg" }
+      ],
+      "author" : "Thibault DESAULES",
+      "github" : {
+        "name" : "tdesaules/resume",
+        "url" : "https://github.com/tdesaules/resume"
+      },
+      "sources" : [
+        { "url" : "https://bulma.io/" },
+        { "url" : "https://vuejs.org/"}
+      ]
+    }
+  ]
 }
