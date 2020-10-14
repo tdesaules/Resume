@@ -5,7 +5,7 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
+  build-deploy:
     if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
@@ -15,3 +15,7 @@ jobs:
           node-version: '12'
       - run: npm install
       - run: npm run build:dev
+      - run: npm install --global vercel
+      - run: mkdir .vercel
+      - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmbBDxnqzjsRWmYcgxG4UBzF2HRx1GdzYxEN45aFjcnnXU"}' > .vercel/project.json
+      - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
