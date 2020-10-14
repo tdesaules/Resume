@@ -13,5 +13,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
       - run: npm install
-      - run: npm run build:dev
+      - run: npm run build:prod
+      - uses: actions/upload-artifact@v2
+        with:
+          name: resume-artifact
+          path: dist/
