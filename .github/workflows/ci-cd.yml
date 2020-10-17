@@ -1,11 +1,33 @@
-name: CD
+name: CI / CD
 
 on:
   push:
     branches: [ develop, master ]
+  pull_request:
+    branches: [master]
+    types: [opened]
 
 jobs:
-  cd-develop:
+  continuous-integration :
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tdesaules'
+      - run: npm install
+      - run: npm run build:prod
+      - uses: actions/upload-artifact@v2
+        with:
+          path: dist/
+          if-no-files-found: error
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  continuous-delivery-develop:
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +42,7 @@ jobs:
       - run: mkdir .vercel
       - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmbBDxnqzjsRWmYcgxG4UBzF2HRx1GdzYxEN45aFjcnnXU"}' > .vercel/project.json
       - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
-  cd-master:
+  continuous-delivery-master:
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
@@ -32,4 +54,4 @@ jobs:
       - run: npm install @tdesaules/resume
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: ls -l
+      - run: ls -l node_modules/@tdesaules/resume/dist/
