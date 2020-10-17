@@ -2,7 +2,7 @@ name: CD Pipeline
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, master ]
 
 jobs:
   build-deploy:
@@ -19,3 +19,8 @@ jobs:
       - run: mkdir .vercel
       - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmbBDxnqzjsRWmYcgxG4UBzF2HRx1GdzYxEN45aFjcnnXU"}' > .vercel/project.json
       - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+      - run: ls -l
