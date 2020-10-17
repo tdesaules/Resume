@@ -1,5 +1,5 @@
 {
-  "name": "resume",
+  "name": "@tdesaules/resume",
   "version": "1.0.0",
   "description": "Resume webapp integration with vue.js webpack based and bulma.io",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdesaules/resume.git"
+    "url": "git://github.com/tdesaules/resume.git"
   },
   "keywords": [],
   "author": "",
