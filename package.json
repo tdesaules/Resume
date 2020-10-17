@@ -1,6 +1,6 @@
 {
-  "name": "resume",
-  "version": "1.0.0",
+  "name": "@tdesaules/resume",
+  "version": "1.0.1",
   "description": "Resume webapp integration with vue.js webpack based and bulma.io",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdesaules/resume.git"
+    "url": "git://github.com/tdesaules/resume.git"
   },
+  "files": ["dist/**/*"],
   "keywords": [],
   "author": "",
   "license": "ISC",
