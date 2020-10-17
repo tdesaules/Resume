@@ -1,0 +1,27 @@
+name: CD
+
+on:
+  push:
+    branches: [ develop, master ]
+
+jobs:
+  cd-develop:
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm install
+      - run: npm run build:dev
+      - run: npm install --global vercel
+      - run: mkdir .vercel
+      - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmbBDxnqzjsRWmYcgxG4UBzF2HRx1GdzYxEN45aFjcnnXU"}' > .vercel/project.json
+      - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
+  cd-master:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls -l
