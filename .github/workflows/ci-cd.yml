@@ -9,6 +9,7 @@ on:
 
 jobs:
   continuous-integration :
+    name: Continuous Integration
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
     runs-on: ubuntu-latest
     steps:
@@ -28,6 +29,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   continuous-delivery-develop:
+    name: Continuous Delivery Develop
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
@@ -43,6 +45,7 @@ jobs:
       - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmbBDxnqzjsRWmYcgxG4UBzF2HRx1GdzYxEN45aFjcnnXU"}' > .vercel/project.json
       - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
   continuous-delivery-master:
+    name: Continuous Delivery Master
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
@@ -54,4 +57,8 @@ jobs:
       - run: npm install @tdesaules/resume
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: ls -l node_modules/@tdesaules/resume/dist/
+      - run: mv node_modules/@tdesaules/resume/dist .
+      - run: npm install --global vercel
+      - run: mkdir .vercel
+      - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmPuUbvg2iyXAk4MTbm5bLxrx96j9ui7HvSk74x9Ds2Dr7"}' > .vercel/project.json
+      - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
