@@ -58,7 +58,7 @@ npm run start:prod
 
 ## Pipeline CI/CD
 
-tbd
+tbd with github action
 
 ## Contribute
 
