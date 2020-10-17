@@ -8,7 +8,7 @@ on:
     types: [opened]
 
 jobs:
-  Continuous Integration :
+  continuous-integration :
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
     runs-on: ubuntu-latest
     steps:
@@ -27,7 +27,7 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Continuous Delivery Develop:
+  continuous-delivery-develop:
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
@@ -42,7 +42,7 @@ jobs:
       - run: mkdir .vercel
       - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmbBDxnqzjsRWmYcgxG4UBzF2HRx1GdzYxEN45aFjcnnXU"}' > .vercel/project.json
       - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
-  Continuous Delivery Master:
+  continuous-delivery-master:
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
