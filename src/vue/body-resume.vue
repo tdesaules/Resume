@@ -4,27 +4,33 @@
 .container
   .tile.is-ancestor
     .tile.is-4.is-vertical.is-parent
-      .tile.is-child.box.has-text-centered
-        p.title.is-4.has-text-primary {{ resume.name }}
-        p.subtitle.is-6.has-text-info(v-if="language === 'fr'") {{ resume.fr.job }}
-        p.subtitle.is-6.has-text-info(v-if="language === 'en'") {{ resume.en.job }}
-        figure.image.is-128x128.is-inline-block
-          img.is-rounded(v-bind:src="avatar")
-        .container.has-top-margin
-          button.button.is-medium.my-card(v-if="language === 'fr'" onclick="window.open('https://fr.wikipedia.org/wiki/Jedi');" target='_blank')
-            i.fas.fa-jedi.has-text-primary
-          button.button.is-medium.my-card(v-if="language === 'en'" onclick="window.open('https://en.wikipedia.org/wiki/Jedi');" target='_blank')
-            i.fas.fa-jedi.has-text-primary
-          button.button.is-medium.my-card(onclick="window.location.href = 'mailto:tdesaules@outlook.com';")
-            i.fas.fa-at.has-text-primary
-          button.button.is-medium.my-card(onclick="window.location.href = 'tel:+33699384055';")
-            i.fas.fa-mobile-alt.has-text-primary
-          button.button.is-medium.my-card(onclick="window.open('https://fr.linkedin.com/in/thibault-desaules-70993375');")
-            i.fab.fa-linkedin-in.has-text-primary
-          button.button.is-medium.my-card(onclick="window.open('https://api.whatsapp.com/send?phone=33699384055');")
-            i.fab.fa-whatsapp.has-text-primary
-          button.button.is-medium.my-card(onclick="window.location.href = 'skype:tdesaules@outlook.com?add';")
-            i.fab.fa-skype.has-text-primary
+      .tile.is-child.has-text-centered
+        .card.tile.is-child.box.has-no-padding
+          .card-image
+            figure.image.is-4by3
+              img(v-bind:src="me")
+          .card-content
+            .media
+              .container.is-vertical-center
+                .media-content
+                  p.title.is-4.has-text-primary {{ resume.name }}
+                  p.subtitle.is-5.has-text-info(v-if="language === 'fr'") {{ resume.fr.job }}
+                  p.subtitle.is-5.has-text-info(v-if="language === 'en'") {{ resume.en.job }}
+            .container.has-top-margin
+              button.button.is-medium.my-card(v-if="language === 'fr'" onclick="window.open('https://fr.wikipedia.org/wiki/Jedi');" target='_blank')
+                i.fas.fa-jedi.has-text-primary
+              button.button.is-medium.my-card(v-if="language === 'en'" onclick="window.open('https://en.wikipedia.org/wiki/Jedi');" target='_blank')
+                i.fas.fa-jedi.has-text-primary
+              button.button.is-medium.my-card(onclick="window.location.href = 'mailto:tdesaules@outlook.com';")
+                i.fas.fa-at.has-text-primary
+              button.button.is-medium.my-card(onclick="window.location.href = 'tel:+33699384055';")
+                i.fas.fa-mobile-alt.has-text-primary
+              button.button.is-medium.my-card(onclick="window.open('https://fr.linkedin.com/in/thibault-desaules-70993375');")
+                i.fab.fa-linkedin-in.has-text-primary
+              button.button.is-medium.my-card(onclick="window.open('https://api.whatsapp.com/send?phone=33699384055');")
+                i.fab.fa-whatsapp.has-text-primary
+              button.button.is-medium.my-card(onclick="window.location.href = 'skype:tdesaules@outlook.com?add';")
+                i.fab.fa-skype.has-text-primary
       .tile.is-child.box.has-no-padding.is-hidden-touch
         figure.image.is-3by4
           img.has-img-radius(v-bind:src="column")
@@ -54,7 +60,7 @@
 
 import config from "../config/config.json";
 import column from '../img/column-3by4.jpg';
-import avatar from '../img/avatar.jpg';
+import me from '../img/1.jpg';
 export default { 
   data () {
     var language = "fr"
@@ -64,7 +70,7 @@ export default {
       language: language,
       resume: config.resume,
       column: column,
-      avatar: avatar
+      me: me,
     }
   }
 }
@@ -89,5 +95,8 @@ button.my-card
   padding: 0
 .has-img-radius
   border-radius: 6px
+.is-vertical-center
+  display: flex
+  align-items: center
 
 </style>
