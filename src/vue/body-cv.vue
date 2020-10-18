@@ -68,9 +68,6 @@
             | {{ study.en.school }} [ {{ study.en.degree }} ]
     .tile.is-vertical.is-parent.is-4
       .card.tile.is-child.box.has-no-padding.is-hidden-touch
-        .card-image
-          figure.image.is-4by3
-            img.is-rounded(v-bind:src="column")
         .card-content
           .media
             .container.is-vertical-center
