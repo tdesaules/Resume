@@ -70,7 +70,7 @@
       .card.tile.is-child.box.has-no-padding.is-hidden-touch
         .card-image
           figure.image.is-4by3
-            img.has-img-radius(src='https://bulma.io/images/placeholders/1280x960.png' alt='Placeholder image')
+            img.is-rounded(v-bind:src="column")
         .card-content
           .media
             .container.is-vertical-center
@@ -128,6 +128,7 @@
 
 import VueHorizontalList from "vue-horizontal-list";
 import config from "../config/config.json";
+import column from '../img/column-3by4.jpg';
 import avatar from '../img/avatar.jpg';
 export default { 
   components: {VueHorizontalList},
