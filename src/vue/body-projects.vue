@@ -24,7 +24,7 @@
         .tile.is-parent.is-1
           .tile.is-child.is-full-centered
             figure.image.is-48x48.is-inline-block
-                img.is-rounded(v-bind:src="avatar")
+                img.is-rounded(v-bind:src="me")
         .tile.is-parent.is-vertical
           .tile.is-child
             i.fas.fa-feather-alt.has-text-info &nbsp {{ project.author }}
@@ -49,7 +49,7 @@
 
 import VueHorizontalList from "vue-horizontal-list";
 import config from "../config/config.json";
-import avatar from '../img/avatar.jpg';
+import me from '../img/9.jpg';
 export default { 
   components: {VueHorizontalList},
   data () {
@@ -58,7 +58,7 @@ export default {
     this.$root.$on('EN', () => { this.language = "en" })
     return { 
       language: language,
-      avatar: avatar,
+      me: me,
       projects: config.projects
     }
   },

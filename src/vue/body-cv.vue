@@ -128,8 +128,7 @@
 
 import VueHorizontalList from "vue-horizontal-list";
 import config from "../config/config.json";
-import avatar from '../img/avatar.jpg';
-import me from '../img/1.jpg';
+import me from '../img/3.jpg';
 export default { 
   components: {VueHorizontalList},
   data () {
@@ -139,7 +138,6 @@ export default {
     return { 
       language: language,
       cv: config.cv,
-      avatar: avatar,
       me: me,
       showModal: false,
       jobName: undefined,
@@ -186,8 +184,8 @@ export default {
 .has-small-bottom-padding
   padding-bottom: 10px
 .has-separator:not(:last-child)
-  border-bottom: 1px dashed
-  padding-bottom: 20px
+  border-bottom: 0px dashed
+  padding-bottom: 25px
 .has-small-padding
   padding: 10px
 .has-small-margin

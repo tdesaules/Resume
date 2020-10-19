@@ -32,8 +32,8 @@
               button.button.is-medium.my-card(onclick="window.location.href = 'skype:tdesaules@outlook.com?add';")
                 i.fab.fa-skype.has-text-primary
       .tile.is-child.box.has-no-padding.is-hidden-touch
-        figure.image.is-3by4
-          img.has-img-radius(v-bind:src="column")
+        figure.image.is-1by1
+          img.has-img-radius(v-bind:src="other")
     .tile.is-parent
       .tile.is-child.box
         article.tile.is-child.has-text-justified
@@ -59,7 +59,7 @@
 <script>
 
 import config from "../config/config.json";
-import column from '../img/column-3by4.jpg';
+import other from '../img/8.jpg';
 import me from '../img/1.jpg';
 export default { 
   data () {
@@ -69,7 +69,7 @@ export default {
     return { 
       language: language,
       resume: config.resume,
-      column: column,
+      other: other,
       me: me,
     }
   }
