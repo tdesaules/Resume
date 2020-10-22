@@ -6,7 +6,7 @@
     .modal-background(v-on:click='closeModal()')
     .modal-card
       header.modal-card-head
-        p.modal-card-title.has-text-centered.has-text-primary {{ jobName }}
+        p.modal-card-title.has-text-centered {{ jobName }}
         button.delete(aria-label='close' v-on:click='closeModal()')
       section.modal-card-body
         div(v-for='details in jobDetails')
@@ -28,14 +28,14 @@
           .level.is-marginless.has-mid-top-padding
             .level-left
               .level-item
-                p.subtitle.is-5 {{ job.name }}
+                p.subtitle.is-4 {{ job.name }}
             .level-right
               .level-item
-                p.subtitle.is-6(v-if="language === 'fr'")
+                p.subtitle.is-6.has-text-weight-medium(v-if="language === 'fr'")
                   i {{ job.fr.startdate }}
                   i.fas.fa-angle-double-right.has-right-margin.has-left-margin
                   i {{ job.fr.enddate }}
-                p.subtitle.is-6(v-if="language === 'en'")
+                p.subtitle.is-6.has-text-weight-medium(v-if="language === 'en'")
                   i {{ job.en.startdate }}
                   i.fas.fa-angle-double-right.has-right-margin.has-left-margin
                   i {{ job.en.enddate }}
@@ -45,8 +45,11 @@
           p.has-small-margin.has-text-justified(v-if="language === 'en'")
             i.fas.fa-angle-right.has-right-margin
             | {{ job.en.summary }}
-          button.button.is-light.is-fullwidth.modal-button(v-if="language === 'fr'" v-on:click='openModal(job, "fr")') plus
-          button.button.is-light.is-fullwidth.modal-button(v-if="language === 'en'" v-on:click='openModal(job, "en")') more
+          div.has-text-centered.is-30pct.center
+            button.button.is-light.modal-button.is-small.is-outlined.is-fullwidth(v-if="language === 'fr'" v-on:click='openModal(job, "fr")')
+              span.is-size-6.has-text-weight-medium.is-black plus
+            button.button.is-light.modal-button.is-small.is-outlined.is-fullwidth(v-if="language === 'en'" v-on:click='openModal(job, "en")')
+              span.is-size-6.has-text-weight-medium more
       .tile.is-child.box
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.study.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.study.title.en.value }}
@@ -70,25 +73,22 @@
       .card.tile.is-child.box.has-no-padding.is-hidden-touch
         .card-image
           figure.image.is-4by3
-            img.has-img-radius(src='https://bulma.io/images/placeholders/1280x960.png' alt='Placeholder image')
+            img(v-bind:src="me")
         .card-content
           .media
             .container.is-vertical-center
-              .media-left
-                figure.image.is-48x48.is-inline-block
-                  img.is-rounded(v-bind:src="avatar")
               .media-content
-                p.title.is-4.has-text-primary {{ cv.card.name }}
-          p.has-text-info {{ cv.card.mail }}
-          p.has-text-info {{ cv.card.phone }}
-          p.has-text-info {{ cv.card.address }}
+                p.title.is-4 {{ cv.card.name }}
+                p {{ cv.card.mail }}
+                p {{ cv.card.phone }}
+                p {{ cv.card.address }}
       .tile.is-child.box
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.tongue.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.tongue.title.en.value }}
         .container(v-for="tongue in cv.tongue.tongues")
           p.has-small-margin.has-text-justified(v-if="language === 'fr'") {{ tongue.fr.value }}
           p.has-small-margin.has-text-justified(v-if="language === 'en'") {{ tongue.en.value }}
-      .tile.is-child.box
+      .tile.is-child.box.is-hidden-touch
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.conference.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.conference.title.en.value }}
         vue-horizontal-list(:items='conferences' :options='{responsive: [{size: 1}]}')
@@ -100,12 +100,12 @@
               .card-content
                 .media
                   .media-left
-                    span.icon.is-medium.has-text-info
+                    span.icon.is-medium
                       i(:class='item.icon')
                   .media-content
                     p.title.is-5
-                      a(@click='openNewTab(item.link)').has-text-info {{item.title}}
-                    p.subtitle.is-6.has-text-primary {{item.hosted}}
+                      a(@click='openNewTab(item.link)') {{item.title}}
+                    p.subtitle.is-6 {{item.hosted}}
                 .content
                   .level.is-marginless
                     .level-left
@@ -128,7 +128,7 @@
 
 import VueHorizontalList from "vue-horizontal-list";
 import config from "../config/config.json";
-import avatar from '../img/avatar.jpg';
+import me from '../img/3.jpg';
 export default { 
   components: {VueHorizontalList},
   data () {
@@ -138,7 +138,7 @@ export default {
     return { 
       language: language,
       cv: config.cv,
-      avatar: avatar,
+      me: me,
       showModal: false,
       jobName: undefined,
       jobDetails: undefined,
@@ -184,8 +184,8 @@ export default {
 .has-small-bottom-padding
   padding-bottom: 10px
 .has-separator:not(:last-child)
-  border-bottom: 1px dashed
-  padding-bottom: 20px
+  border-bottom: 0px dashed
+  padding-bottom: 25px
 .has-small-padding
   padding: 10px
 .has-small-margin
@@ -204,5 +204,9 @@ export default {
   margin-left: 10px
 .no-margin-bottom
   margin-bottom: 0px !important
+.is-30pct
+  width: 30%;
+.center
+  margin: auto;
 
 </style>

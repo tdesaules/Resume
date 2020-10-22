@@ -1,6 +1,6 @@
 {
   "name": "@tdesaules/resume",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Resume webapp integration with vue.js webpack based and bulma.io",
   "main": "index.js",
   "scripts": {
