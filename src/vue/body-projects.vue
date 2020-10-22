@@ -27,20 +27,20 @@
                 img.is-rounded(v-bind:src="me")
         .tile.is-parent.is-vertical
           .tile.is-child
-            i.fas.fa-feather-alt.has-text-info &nbsp {{ project.author }}
+            i.fas.fa-feather-alt &nbsp {{ project.author }}
           .tile.is-child
-            i.fab.fa-github.has-text-info
-            a(@click='openNewTab(project.github.url)').has-text-info.has-text-weight-normal &nbsp {{ project.github.name }}
+            i.fab.fa-github
+            a(@click='openNewTab(project.github.url)').has-text-weight-normal &nbsp {{ project.github.name }}
           .tile.is-child
             p(v-for='(source, index) in project.sources')
-              i.fas.fa-link.has-text-info(:class="{ 'is-invisible': index != 0 }")
-              a(@click='openNewTab(source.url)').has-text-info.has-text-weight-light &nbsp {{ source.url }}
+              i.fas.fa-link(:class="{ 'is-invisible': index != 0 }")
+              a(@click='openNewTab(source.url)').has-text-weight-light &nbsp {{ source.url }}
     .tile.is-ancestor
       .tile.is-12.box.bottom-radius.no-box-shadow
-        .content.has-text-grey(v-if="language === 'fr'")
-          p.has-text-grey(v-for="paraph in project.fr.summary" v-html="paraph.p")
-        .content.has-text-grey(v-if="language === 'en'")
-          p.has-text-grey(v-for="paraph in project.en.summary" v-html="paraph.p")
+        .content(v-if="language === 'fr'")
+          p(v-for="paraph in project.fr.summary" v-html="paraph.p")
+        .content(v-if="language === 'en'")
+          p(v-for="paraph in project.en.summary" v-html="paraph.p")
 
 </template>
 

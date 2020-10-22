@@ -41,6 +41,7 @@ export default {
 
 <style lang="sass">
 
+@import "../sass/variable.sass"
 @import "../sass/style.sass"
 
 </style>

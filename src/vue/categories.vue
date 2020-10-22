@@ -3,9 +3,9 @@
 
 section.section
   .tabs.is-centered
-    ul
+    ul.has-border-bottom-color
       li(v-for='category in categories')
-        a.has-text-weight-medium.has-text-primary(v-on:click='handleCategoryClick(category)') {{ category }}
+        a.has-text-weight-medium.has-border-bottom-link-color.has-text-jet(v-on:click='handleCategoryClick(category)') {{ category }}
 
 </template>
 
@@ -32,5 +32,12 @@ export default {
 
 <!-- STYLE -->
 <style lang="sass" scoped>
+
+.has-border-bottom-color
+  border-bottom-color: #404040 !important
+.has-border-bottom-link-color
+  border-bottom-color: #404040 !important
+.has-border-bottom-link-color:hover
+  border-bottom-color: #DB8906 !important
 
 </style>

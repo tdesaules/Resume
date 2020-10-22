@@ -6,7 +6,7 @@
     .modal-background(v-on:click='closeModal()')
     .modal-card
       header.modal-card-head
-        p.modal-card-title.has-text-centered.has-text-primary {{ jobName }}
+        p.modal-card-title.has-text-centered {{ jobName }}
         button.delete(aria-label='close' v-on:click='closeModal()')
       section.modal-card-body
         div(v-for='details in jobDetails')
@@ -78,10 +78,10 @@
           .media
             .container.is-vertical-center
               .media-content
-                p.title.is-4.has-text-primary {{ cv.card.name }}
-                p.has-text-info {{ cv.card.mail }}
-                p.has-text-info {{ cv.card.phone }}
-                p.has-text-info {{ cv.card.address }}
+                p.title.is-4 {{ cv.card.name }}
+                p {{ cv.card.mail }}
+                p {{ cv.card.phone }}
+                p {{ cv.card.address }}
       .tile.is-child.box
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.tongue.title.fr.value }}
         h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.tongue.title.en.value }}
@@ -100,12 +100,12 @@
               .card-content
                 .media
                   .media-left
-                    span.icon.is-medium.has-text-info
+                    span.icon.is-medium
                       i(:class='item.icon')
                   .media-content
                     p.title.is-5
-                      a(@click='openNewTab(item.link)').has-text-info {{item.title}}
-                    p.subtitle.is-6.has-text-primary {{item.hosted}}
+                      a(@click='openNewTab(item.link)') {{item.title}}
+                    p.subtitle.is-6 {{item.hosted}}
                 .content
                   .level.is-marginless
                     .level-left
