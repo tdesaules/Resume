@@ -1,4 +1,4 @@
-name: CI / CD
+name: Build & Release
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
     types: [opened]
 
 jobs:
-  continuous-integration :
-    name: Continuous Integration
+  build :
+    name: Build
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
     runs-on: ubuntu-latest
     steps:
@@ -28,8 +28,8 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  continuous-deployment-develop:
-    name: Continuous Delivery Develop
+  release-develop:
+    name: Release Develop
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
@@ -44,8 +44,8 @@ jobs:
       - run: mkdir .vercel
       - run: echo '{"orgId":"Yv1xc0fvIE4ZoGxCVlrFxJqj","projectId":"QmbBDxnqzjsRWmYcgxG4UBzF2HRx1GdzYxEN45aFjcnnXU"}' > .vercel/project.json
       - run: vercel --token YrCkNGR5dnpTJUFpLZfu3HcW --prod --confirm
-  continuous-deployment-master:
-    name: Continuous Delivery Master
+  release-master:
+    name: Release Mater
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
