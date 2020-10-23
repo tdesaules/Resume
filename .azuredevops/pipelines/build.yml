@@ -1,21 +1,16 @@
 name: $(Date:yyyyMMdd)$(Rev:.r)
-
-variables:
-  var1: value1
-
-
 pool:
   vmImage: 'ubuntu-latest'
-
+trigger:
+  pr:
+    branches:
+      - master
 stages:
   - stage: Build
-    trigger:
-      branches:
-        - develop
     jobs:
-      - job: BuildJob
+      - job: Checkout
         steps:
-          - script: echo Building!
+          - script: echo Checkout
   - stage: Test
     jobs:
       - job: TestOnWindows
@@ -24,11 +19,8 @@ stages:
       - job: TestOnLinux
         steps:
           - script: echo Testing on Linux!
-  - stage: Deploy
+  - stage: Publish
     jobs:
       - job: Deploy
-        trigger:
-          branches:
-            - master
         steps:
           - script: echo Deploying the code!
