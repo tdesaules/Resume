@@ -9,11 +9,11 @@ pool:
 
 stages:
   - stage: Build
+    trigger:
+      branches:
+        - develop
     jobs:
       - job: BuildJob
-        trigger:
-          branches:
-            - develop
         steps:
           - script: echo Building!
   - stage: Test
