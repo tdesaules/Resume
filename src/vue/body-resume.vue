@@ -13,7 +13,7 @@
             .media
               .container.is-vertical-center
                 .media-content
-                  p.title.is-4.has-text-fulvous {{ resume.name }}
+                  p.title.is-4.has-text-title {{ resume.name }}
                   p.subtitle.is-5.has-text-weight-semibold.has-text-onyx(v-if="language === 'fr'") {{ resume.fr.job }}
                   p.subtitle.is-5.has-text-weight-semibold.has-text-onyx(v-if="language === 'en'") {{ resume.en.job }}
             .container.has-top-margin
@@ -37,8 +37,8 @@
     .tile.is-parent
       .tile.is-child.box
         article.tile.is-child.has-text-justified
-          p.title.is-3.has-text-fulvous(v-if="language === 'fr'") {{ resume.fr.title }}
-          p.title.is-3.has-text-fulvous(v-if="language === 'en'") {{ resume.en.title }}
+          p.title.is-3.has-text-title(v-if="language === 'fr'") {{ resume.fr.title }}
+          p.title.is-3.has-text-title(v-if="language === 'en'") {{ resume.en.title }}
           p.subtitle.is-5.has-text-weight-semibold.has-text-onyx(v-if="language === 'fr'") {{ resume.fr.subtitle }}
           p.subtitle.is-5.has-text-weight-semibold.has-text-onyx(v-if="language === 'en'") {{ resume.en.subtitle }}
           .content(v-if="language === 'fr'")
@@ -47,9 +47,9 @@
             p.has-text-jet(v-for="paraph in resume.en.summary" v-html="paraph.p")
           .content.has-left-border
             br
-            p.i.fas.fa-quote-left.has-text-fulvous
+            p.i.fas.fa-quote-left.has-text-title
               span.has-text-weight-light.is-family-primary.has-text-onyx &nbsp;&nbsp; {{ resume.citation.text }}
-            p.is-italic.has-text-weight-semibold.has-text-right.has-text-fulvous {{ resume.citation.author }}
+            p.is-italic.has-text-weight-semibold.has-text-right.has-text-title {{ resume.citation.author }}
           .content.has-text-centered
             p.subtitle.tag.is-rounded.is-link.has-text-weight-semibold.has-ext-margin.has-background-onyx(v-for="tag in resume.hashtag") # {{ tag.tag }}
 

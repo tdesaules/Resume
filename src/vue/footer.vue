@@ -38,6 +38,6 @@ export default {
 .has-border-bottom-link-color
   border-bottom-color: #404040 !important
 .has-border-bottom-link-color:hover
-  border-bottom-color: #DB8906 !important
+  border-bottom-color: hsl(28, 83%, 44%) !important
 
 </style>

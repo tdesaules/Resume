@@ -22,51 +22,53 @@
   .tile.is-ancestor
     .tile.is-vertical.is-parent
       .tile.is-child.box
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.experience.title.fr.value }}
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.experience.title.en.value }}
+        p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.experience.title.fr.value }}
+        p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.experience.title.en.value }}
         .container.has-separator(v-for="job in cv.experience.jobs")
           .level.is-marginless.has-mid-top-padding
             .level-left
               .level-item
-                p.subtitle.is-4 {{ job.name }}
+                p.subtitle.is-5.has-text-weight-semibold.has-text-onyx {{ job.name }}
             .level-right
               .level-item
-                p.subtitle.is-6.has-text-weight-medium(v-if="language === 'fr'")
+                p.subtitle.is-6.has-text-weight-medium.has-text-jet(v-if="language === 'fr'")
                   i {{ job.fr.startdate }}
                   i.fas.fa-angle-double-right.has-right-margin.has-left-margin
                   i {{ job.fr.enddate }}
-                p.subtitle.is-6.has-text-weight-medium(v-if="language === 'en'")
+                p.subtitle.is-6.has-text-weight-medium.has-text-jet(v-if="language === 'en'")
                   i {{ job.en.startdate }}
                   i.fas.fa-angle-double-right.has-right-margin.has-left-margin
                   i {{ job.en.enddate }}
-          p.has-small-margin.has-text-justified(v-if="language === 'fr'") 
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'fr'") 
             i.fas.fa-angle-right.has-right-margin 
             | {{ job.fr.summary }}
-          p.has-small-margin.has-text-justified(v-if="language === 'en'")
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'en'")
             i.fas.fa-angle-right.has-right-margin
             | {{ job.en.summary }}
           div.has-text-centered.is-30pct.center
-            button.button.is-light.modal-button.is-small.is-outlined.is-fullwidth(v-if="language === 'fr'" v-on:click='openModal(job, "fr")')
-              span.is-size-6.has-text-weight-medium.is-black plus
-            button.button.is-light.modal-button.is-small.is-outlined.is-fullwidth(v-if="language === 'en'" v-on:click='openModal(job, "en")')
-              span.is-size-6.has-text-weight-medium more
+            button.button.is-small.is-fullwidth.is-rounded(v-if="language === 'fr'" v-on:click='openModal(job, "fr")')
+              span.icon.is-small
+                i.fas.fa-chevron-circle-down
+              span.is-size-6.has-text-weight-medium plus
+            button.button.is-light.is-small.is-outlined.is-fullwidth(v-if="language === 'en'" v-on:click='openModal(job, "en")')
+              span.is-size-6.has-text-weight-medium.has-text-jet more
       .tile.is-child.box
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.study.title.fr.value }}
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.study.title.en.value }}
+        p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.study.title.fr.value }}
+        p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.study.title.en.value }}
         .container.has-separator(v-for="study in cv.study.studies")
           .level.is-marginless.has-mid-top-padding
             .level-left
               .level-item
-                p.subtitle.is-5(v-if="language === 'fr'") {{ study.fr.name }}
-                p.subtitle.is-5(v-if="language === 'en'") {{ study.en.name }}
+                p.subtitle.is-5.has-text-weight-semibold.has-text-onyx(v-if="language === 'fr'") {{ study.fr.name }}
+                p.subtitle.is-5.has-text-weight-semibold.has-text-onyx(v-if="language === 'en'") {{ study.en.name }}
             .level-right
               .level-item
-                p.subtitle.is-6
+                p.subtitle.is-6.has-text-weight-medium.has-text-jet
                   i {{ study.year }}
-          p.has-small-margin.has-text-justified(v-if="language === 'fr'")
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'fr'")
             i.fas.fa-angle-right.has-right-margin
             | {{ study.fr.school }} [ {{ study.fr.degree }} ]
-          p.has-small-margin.has-text-justified(v-if="language === 'en'")
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'en'")
             i.fas.fa-angle-right.has-right-margin
             | {{ study.en.school }} [ {{ study.en.degree }} ]
     .tile.is-vertical.is-parent.is-4
@@ -78,19 +80,19 @@
           .media
             .container.is-vertical-center
               .media-content
-                p.title.is-4 {{ cv.card.name }}
-                p {{ cv.card.mail }}
-                p {{ cv.card.phone }}
-                p {{ cv.card.address }}
+                p.title.is-4.has-text-title {{ cv.card.name }}
+                p.has-text-jet {{ cv.card.mail }}
+                p.has-text-jet {{ cv.card.phone }}
+                p.has-text-jet {{ cv.card.address }}
       .tile.is-child.box
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.tongue.title.fr.value }}
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.tongue.title.en.value }}
+        p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.tongue.title.fr.value }}
+        p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.tongue.title.en.value }}
         .container(v-for="tongue in cv.tongue.tongues")
-          p.has-small-margin.has-text-justified(v-if="language === 'fr'") {{ tongue.fr.value }}
-          p.has-small-margin.has-text-justified(v-if="language === 'en'") {{ tongue.en.value }}
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'fr'") {{ tongue.fr.value }}
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'en'") {{ tongue.en.value }}
       .tile.is-child.box.is-hidden-touch
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.conference.title.fr.value }}
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.conference.title.en.value }}
+        p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.conference.title.fr.value }}
+        p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.conference.title.en.value }}
         vue-horizontal-list(:items='conferences' :options='{responsive: [{size: 1}]}')
           template(v-slot:default='{item}')
             .card
@@ -100,26 +102,25 @@
               .card-content
                 .media
                   .media-left
-                    span.icon.is-medium
+                    span.icon.has-text-jet
                       i(:class='item.icon')
                   .media-content
-                    p.title.is-5
-                      a(@click='openNewTab(item.link)') {{item.title}}
-                    p.subtitle.is-6 {{item.hosted}}
+                    a.has-text-weight-bold.has-text-jet(@click='openNewTab(item.link)') {{item.title}}
+                    p.has-text-weight-light.has-text-jet {{item.hosted}}
                 .content
                   .level.is-marginless
                     .level-left
                       .level-item
-                        p.has-small-margin.has-text-justified {{item.content}}
+                        p.has-small-margin.has-text-justified.has-text-jet {{item.content}}
                     .level-right
                       .level-item
-                        time(:datetime='item.date').has-small-margin.has-text-justified.is-italic {{item.date}}
+                        time(:datetime='item.date').has-small-margin.has-text-justified.is-italic.has-text-jet {{item.date}}
       .tile.is-child.box
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'fr'") {{ cv.hobbie.title.fr.value }}
-        h4.title.is-4.is-marginless.has-small-bottom-padding(v-if="language === 'en'") {{ cv.hobbie.title.en.value }}
+        p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.hobbie.title.fr.value }}
+        p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.hobbie.title.en.value }}
         .container(v-for="hobbie in cv.hobbie.hobbies")
-          p.has-small-margin.has-text-justified(v-if="language === 'fr'") {{ hobbie.fr.value }}
-          p.has-small-margin.has-text-justified(v-if="language === 'en'") {{ hobbie.en.value }}
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'fr'") {{ hobbie.fr.value }}
+          p.has-small-margin.has-text-justified.has-text-jet(v-if="language === 'en'") {{ hobbie.en.value }}
 
 </template>
 
