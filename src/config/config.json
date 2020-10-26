@@ -65,11 +65,11 @@
           "fr" : {
             "startdate" : "mars 2019",
             "enddate" : "maintenant",
-            "summary" : "Ingénieur système et devops Microsoft au sein de la DSI en environnement agile, j'accompagne les équipes scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure.",
+            "summary" : "Ingénieur Système et DevOps Microsoft au sein de la DSI en environnement agile, j'accompagne les équipes Scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure. J'ai comme mission principale : la gestion de l'infrastructure \"as code\", la réalisation des pipelines d'intégration et de déploiement continue, la supervision et la mise en place d'applications web.",
             "certifications" : [ "Azure AZ-900" ],
             "details" : [
               { 
-                "p" : "gestion des jobs de déploiement et d'intégration continue",
+                "p" : "création des pipelines d'intégration et de déploiement continue",
                 "hashtag" : [ "jenkins" , "gitlab" , "sonarqube" ]
               },
               { 
@@ -77,20 +77,20 @@
                 "hashtag" : [ "centreon" , "graylog" , "beats" ]
               },
               { 
-                "p" : "automatisation et gestion des déploiements d'application web",
+                "p" : "gestion de l'infrastructure as code",
                 "hashtag" : [ "puppet" , "puppet-bolt" , "foreman" ]
               },
               { 
-                "p" : "gestion et mise en place du laod-balancing pour les sites internes",
+                "p" : "mise en place du laod-balancing pour les sites internes",
                 "hashtag" : [ "haproxy" ]
               },
               { 
-                "p" : "création de scripts d'automatisation",
+                "p" : "réalisation de scripts pour l'automatisation",
                 "hashtag" : [ "powershell" ]
               },
               { 
                 "p" : "suivi des projets et des tickets",
-                "hashtag" : [ "redmine" , "jira" ]
+                "hashtag" : [ "redmine" , "jira", "azure devops" ]
               },
               { 
                 "p" : "documentation et procédures",
@@ -129,7 +129,7 @@
               },
               { 
                 "p" : "livraison des applications web en production",
-                "hashtag" : [ "dotnet" , "aspnet" , "c#" , "static" , "php" ]
+                "hashtag" : [ "dotnet" , "javascript" , "php" ]
               },
               { 
                 "p" : "réalisation d'applications web pour la gestion des infrastructures (génération certificats, génération configurations réseaux...)",
@@ -310,7 +310,7 @@
           "title" : "Multi-cluster & multi-cloud service mesh",
           "hosted" : "Marco Palladino, CTO & Co-Founder @Kong",
           "content" : "With CNCF’s Kuma and Envoy",
-          "image" : "https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2020/09/diagram-02-1536x779.jpg",
+          "image" : "https://kuma.io/images/diagrams/v3/diagram-platform-agnostic@2x.png",
           "link" : "https://www.cncf.io/webinars/multi-cluster-multi-cloud-service-mesh-with-cncfs-kuma-and-envoy/",
           "date" : "2020-10-06",
           "icon" : "fas fa-2x fa-video"
