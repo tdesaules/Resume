@@ -48,8 +48,8 @@
 <script>
 
 import VueHorizontalList from "vue-horizontal-list";
-import config from "../config/config.json";
-import me from '../img/9.jpg';
+import config from "Config/config.json";
+import me from 'Img/9.jpg';
 export default { 
   components: {VueHorizontalList},
   data () {

@@ -128,8 +128,8 @@
 <script>
 
 import VueHorizontalList from "vue-horizontal-list";
-import config from "../config/config.json";
-import me from '../img/3.jpg';
+import config from "Config/config.json";
+import me from 'Img/3.jpg';
 export default { 
   components: {VueHorizontalList},
   data () {
@@ -149,11 +149,11 @@ export default {
   },
   methods: {
     openModal: function(job, language) {
-      if ( language == "en") { 
+      if ( language === "en") { 
         this.jobDetails = job.en.details
         this.jobCertifications = job.en.certifications
       }
-      if ( language == "fr") { 
+      if ( language === "fr") { 
         this.jobDetails = job.fr.details 
         this.jobCertifications = job.fr.certifications
       }

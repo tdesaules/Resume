@@ -11,6 +11,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
   },
+  resolve: {
+    alias: {
+      Vue: path.resolve(__dirname, './src/vue'),
+      Config: path.resolve(__dirname, './src/config'),
+      Img: path.resolve(__dirname, './src/img'),
+    }
+  },
   module: {
     rules: [
       {

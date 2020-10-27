@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import vue_app from './vue/app.vue'
+import vue_app from 'Vue/app.vue'
 
 new Vue({
   el: '#resume',

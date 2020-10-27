@@ -58,9 +58,9 @@
 <!-- SCRIPT -->
 <script>
 
-import config from "../config/config.json";
-import other from '../img/8.jpg';
-import me from '../img/1.jpg';
+import config from "Config/config.json";
+import other from 'Img/8.jpg';
+import me from 'Img/1.jpg';
 export default { 
   data () {
     var language = "fr"

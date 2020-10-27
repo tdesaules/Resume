@@ -1,7 +1,7 @@
 <!-- TEMPLATE -->
 <template lang="pug">
 
-#vue_index
+div
   vue_categories
   vue_body
   vue_footer
@@ -11,9 +11,9 @@
 <!-- SCRIPT -->
 <script>
 
-import vue_categories from './categories.vue'
-import vue_body from './body.vue'
-import vue_footer from './footer.vue'
+import vue_categories from 'Vue/categories.vue'
+import vue_body from 'Vue/body.vue'
+import vue_footer from 'Vue/footer.vue'
 export default { 
   components: { 
     vue_categories,
@@ -21,7 +21,7 @@ export default {
     vue_footer
   },
   computed: {
-    test() {
+    data() {
       var context = "resume"
       this.$root.$on('RESUME', () => { 
         this.context = "resume"

@@ -12,7 +12,7 @@ section.section
 <!-- SCRIPT -->
 <script>
 
-import config from "../config/config.json";
+import config from "Config/config.json";
 export default {
   computed: {
     languages() {
