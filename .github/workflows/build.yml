@@ -50,9 +50,9 @@ jobs:
         with:
           name: my-artifact-full
       - uses: actions/upload-artifact@v2
-          with:
-            name: my-artifact-dist
-            path: ./dist/*
+        with:
+          name: my-artifact-dist
+          path: ./dist/*
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
