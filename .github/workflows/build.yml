@@ -47,8 +47,8 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@tdesaules'
       - uses: actions/download-artifact@v2
-          with:
-            name: my-artifact-full
+        with:
+          name: my-artifact-full
       - uses: actions/upload-artifact@v2
           with:
             name: my-artifact-dist
