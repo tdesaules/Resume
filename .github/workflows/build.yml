@@ -42,11 +42,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: my-artifact-coverage
-      - run: echo ${{ secrets.DEEPSOURCE_DSN }}
-      - run: DEEPSOURCE_DSN=${{ secrets.DEEPSOURCE_DSN }}
-      - run: echo $DEEPSOURCE_DSN
       - run: curl https://deepsource.io/cli | sh
       - run: ./bin/deepsource report --analyzer test-coverage --key javascript --value-file coverage/cobertura-coverage.xml
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
   publish:
     name: publish
     runs-on: ubuntu-latest
