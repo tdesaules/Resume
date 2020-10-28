@@ -1,11 +1,8 @@
-name: Build & Release
+name: Continuous Delivery Master
 
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [master]
-    types: [opened]
 
 jobs:
   release-master:
