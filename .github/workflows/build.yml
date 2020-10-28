@@ -1,0 +1,58 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tdesaules'
+      - run: npm install
+      - run: npm run build:prod
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact-full
+          path: ./*
+          if-no-files-found: error
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact-full
+      - run: export DEEPSOURCE_DSN=${{ secrets.DEEPSOURCE_DSN }}
+      - run: curl https://deepsource.io/cli | sh
+      - run: npm run test
+      - run: ./bin/deepsource report --analyzer test-coverage --key javascript --value-file coverage/cobertura-coverage.xml
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tdesaules'
+      - uses: actions/download-artifact@v2
+          with:
+            name: my-artifact-full
+      - uses: actions/upload-artifact@v2
+          with:
+            name: my-artifact-dist
+            path: ./dist/*
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

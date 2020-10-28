@@ -1,5 +1,9 @@
 version = 1
 
+test_patterns = ["src/test/**", "src/spec/**"]
+
+exclude_patterns = ["dist/**", "bin/**"]
+
 [[analyzers]]
 name = "test-coverage"
 enabled = true

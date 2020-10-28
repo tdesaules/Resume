@@ -1,0 +1,23 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  release-develop:
+    name: Release Develop
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm install
+      - run: npm run build:dev
+      - run: npm install --global vercel
+      - run: mkdir .vercel
+      - run: echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}' > .vercel/project.json
+      - run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm

@@ -1,0 +1,28 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [master]
+    types: [opened]
+
+jobs:
+  release-master:
+    name: Release Mater
+    if: ${{ github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tdesaules'
+      - run: npm install @tdesaules/resume
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: mv node_modules/@tdesaules/resume/dist .
+      - run: npm install --global vercel
+      - run: mkdir .vercel
+      - run: echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
+      - run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm

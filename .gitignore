@@ -3,3 +3,4 @@ dist
 coverage
 .vercel
 .netlify
+bin
