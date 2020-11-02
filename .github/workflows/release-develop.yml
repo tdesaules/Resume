@@ -10,14 +10,27 @@ jobs:
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v2
+      - id: setup-node
+        name: setup node
+        uses: actions/setup-node@v1
         with:
           node-version: '12'
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm install
-      - run: npm run build:dev
-      - run: npm install --global vercel
-      - run: mkdir .vercel
-      - run: echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}' > .vercel/project.json
-      - run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+      - id: install
+        name: install dependencies
+        run: npm install
+      - id: build
+        name: build app
+        run: npm run build:dev
+      - id: install-vercel
+        name: install vercel cli
+        run: npm install --global vercel
+      - id: configure-vercel
+        name: configure vercel
+        run: mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}' > .vercel/project.json
+      - id: release-vercel
+        name: release on vercel dev
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm

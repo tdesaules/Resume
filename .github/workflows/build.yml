@@ -12,20 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: checkout
-        name: checkout repository
+        name: checkout
         uses: actions/checkout@v2
       - id: setup-node
-        name: setup node software
+        name: setup node
         uses: actions/setup-node@v1
         with:
           node-version: '12'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@tdesaules'
       - id: install
-        name: install npm dependency
+        name: install dependencies
         run: npm install
       - id: build
-        name: build apps
+        name: build app
         run: npm run build:prod
       - id: test
         name: run tests
@@ -34,7 +34,7 @@ jobs:
         name: install deepsource cli
         run: curl https://deepsource.io/cli | sh
       - id: deepsource-coverage
-        name: deepsource upload code & coverage
+        name: upload code & coverage deepsource
         run: ./bin/deepsource report --analyzer test-coverage --key javascript --value-file coverage/cobertura-coverage.xml
         env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}

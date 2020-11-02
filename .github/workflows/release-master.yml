@@ -10,16 +10,27 @@ jobs:
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v1
+      - id: setup-node
+        name: setup node
+        uses: actions/setup-node@v1
         with:
           node-version: '12'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@tdesaules'
-      - run: npm install @tdesaules/resume
+      - id: install-resume
+        name: install resume package
+        run: npm install @tdesaules/resume
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: mv node_modules/@tdesaules/resume/dist .
-      - run: npm install --global vercel
-      - run: mkdir .vercel
-      - run: echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
-      - run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+      - id: move-resume
+        name: move resume dist
+        run: mv node_modules/@tdesaules/resume/dist .
+      - id: install-vercel
+        name: install vercel
+        run: npm install --global vercel
+      - id: configure-vercel
+        name: configure vercel
+        run: mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
+      - id: release-vercel
+        name: release on vercel prd
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
