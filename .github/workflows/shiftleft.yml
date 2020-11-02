@@ -23,7 +23,7 @@ jobs:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_TOKEN }}
           SHIFTLEFT_DIAGNOSTIC: true
       - name: ShiftLeft Analyze
-        run: bin/sl analyze src
+        run: bin/sl analyze
         env:
           SHIFTLEFT_APP: resume
           SHIFTLEFT_CPG: true
