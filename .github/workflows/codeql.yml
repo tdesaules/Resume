@@ -10,7 +10,7 @@ on:
 jobs:
   codeql:
     name: CodeQL Analyze
-    if: ${{ ( github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' ) || github.ref == 'develop' }}
+    if: ${{ (github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master') || github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
