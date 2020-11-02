@@ -19,6 +19,7 @@ jobs:
       - run: npm install
       - run: npm run build:prod
       - run: npm run test
+      - run: chmod -R 777 .git
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact-coverage
