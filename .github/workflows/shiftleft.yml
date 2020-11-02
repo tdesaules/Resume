@@ -1,0 +1,30 @@
+name: Github CodeQL
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened]
+
+jobs:
+  codeql:
+    name: CodeQL Analyze
+    if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
+    runs-on: ubuntu-latest
+    steps:
+      - rune: java -version
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download ShiftLeft
+        run: mkdir bin && curl https://cdn.shiftleft.io/download/sl > bin/sl && chmod a+rx bin/sl
+      - name: Auth ShiftLeft
+        run: bin/sl auth
+        env:
+          SHIFTLEFT_ORG_ID: ${{ secrets.SHIFTLEFT_ORG }}
+          SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_TOKEN }}
+          SHIFTLEFT_DIAGNOSTIC: true
+      - name: ShiftLeft Analyze
+        run: bin/sl analyze src
+        env:
+          SHIFTLEFT_APP: resume
+          SHIFTLEFT_CPG: true
+          SHIFTLEFT_LANG_JS: true
