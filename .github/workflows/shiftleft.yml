@@ -20,4 +20,4 @@ jobs:
       - name: Auth ShiftLeft
         run: bin/sl auth --org "${{ secrets.SHIFTLEFT_ORG }}" --token "${{ secrets.SHIFTLEFT_TOKEN }}" --diagnostic
       - name: ShiftLeft Analyze
-        run: bin/sl analyze --app "resume" --cpg --js --package-json package.json .
+        run: bin/sl analyze --app "resume" --cpg --js .
