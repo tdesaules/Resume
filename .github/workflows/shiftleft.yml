@@ -11,7 +11,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
     runs-on: ubuntu-latest
     steps:
-      - rune: java -version
+      - run: java -version
       - name: Checkout
         uses: actions/checkout@v2
       - name: Download ShiftLeft
