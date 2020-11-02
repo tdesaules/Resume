@@ -8,14 +8,13 @@ on:
 jobs:
   build:
     name: build, test and publish
-    #if: ${{ github.event_name == 'pull_request' && github.head_ref == 'refs/heads/develop' && github.base_ref == 'refs/heads/master' }}
+    if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.head_ref }} ${{ github.base_ref }}
       - id: checkout
         name: checkout repository
         uses: actions/checkout@v2
-      - id: setup-node 
+      - id: setup-node
         name: setup node software
         uses: actions/setup-node@v1
         with:
