@@ -4,13 +4,11 @@ on:
   pull_request:
     branches: [master]
     types: [opened]
-  push:
-    branches: [ develop ]
 
 jobs:
   codeql:
     name: CodeQL Analyze
-    if: ${{ (github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master') || github.ref == 'refs/heads/develop' }}
+    if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -20,6 +18,9 @@ jobs:
       - id: checkout
         name: checkout
         uses: actions/checkout@v2
+      - id: install
+        name: install dependencies
+        run: npm install
       - id: init-codeql
         name: Initialize CodeQL
         uses: github/codeql-action/init@v1

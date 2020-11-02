@@ -11,20 +11,13 @@ jobs:
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
     runs-on: ubuntu-latest
     steps:
-      - run: java -version
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: npm install
       - name: Download ShiftLeft
         run: mkdir bin && curl https://cdn.shiftleft.io/download/sl > bin/sl && chmod a+rx bin/sl
       - name: Auth ShiftLeft
-        run: bin/sl auth
-        env:
-          SHIFTLEFT_ORG_ID: ${{ secrets.SHIFTLEFT_ORG }}
-          SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_TOKEN }}
-          SHIFTLEFT_DIAGNOSTIC: true
+        run: bin/sl auth --org "${{ secrets.SHIFTLEFT_ORG }}" --token "${{ secrets.SHIFTLEFT_TOKEN }}" --diagnostic
       - name: ShiftLeft Analyze
-        run: bin/sl analyze
-        env:
-          SHIFTLEFT_APP: resume
-          SHIFTLEFT_CPG: true
-          SHIFTLEFT_LANG_JS: true
+        run: bin/sl analyze --app "resume" --cpg --js --package-json package.json .
