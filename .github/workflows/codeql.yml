@@ -1,0 +1,30 @@
+name: Github CodeQL
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened]
+  push:
+    branches: [ develop ]
+
+jobs:
+  codeql:
+    name: CodeQL Analyze
+    if: ${{ ( github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' ) || github.ref == 'develop' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v2
+      - id: init-codeql
+        name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
+      - id: analyze-codeql
+        name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
