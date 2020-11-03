@@ -31,17 +31,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         with:
-          projectBaseDir: src
           args: >
             -Dsonar.organization=${{ secrets.SONARCLOUD_ORGANIZATION_KEY }}
             -Dsonar.projectKey=${{ secrets.SONARCLOUD_PROJECK_KEY }}
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.language=js
             -Dsonar.sources=src
-            -Dsonar.exclusions=./**/test/*.js
-            -Dsonar.exclusions=./**/spec/*.js
-            -Dsonar.tests=./src/tests
-            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
             -Dsonar.verbose=true
       - name: Report test coverage to DeepSource
         uses: deepsourcelabs/test-coverage-action@master
