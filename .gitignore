@@ -1,6 +1,6 @@
 node_modules
 dist
+coverage
 .vercel
-
-# Local Netlify folder
 .netlify
+bin

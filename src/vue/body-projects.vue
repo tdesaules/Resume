@@ -8,8 +8,8 @@
         .tile.is-child.is-1.is-full-centered
           i(:class='project.icon')
         .tile.is-child
-          h1.title(v-if="language === 'fr'") {{project.fr.title}}
-          h1.title(v-if="language === 'en'") {{project.en.title}}
+          h1.title.has-text-fulvous(v-if="language === 'fr'") {{project.fr.title}}
+          h1.title.has-text-fulvous(v-if="language === 'en'") {{project.en.title}}
     .tile.is-ancestor.is-hidden-mobile
       .tile.is-parent.is-12.box.no-radius.no-box-shadow
         .tile.is-child.is-1
@@ -48,8 +48,8 @@
 <script>
 
 import VueHorizontalList from "vue-horizontal-list";
-import config from "../config/config.json";
-import me from '../img/9.jpg';
+import config from "Config/config.json";
+import me from 'Img/9.jpg';
 export default { 
   components: {VueHorizontalList},
   data () {

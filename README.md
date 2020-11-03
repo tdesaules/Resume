@@ -44,6 +44,7 @@ npm install --save-dev node-sass sass-loader css-loader style-loader mini-css-ex
 npm install --save-dev babel-loader @babel/core @babel/preset-env
 npm install --save-dev file-loader
 npm install --save-dev bulma
+npm install --save-dev jest @vue/test-utils vue-jest jest-transform-stub babel-jest babel-core@^7.0.0-bridge.0
 ```
 
 ## Build and Test

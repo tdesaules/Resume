@@ -1,0 +1,29 @@
+name: CD (push master)
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  release-master:
+    name: Release master branch
+    if: ${{ github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tdesaules'
+      - name: Install npm resume package
+        run: |
+          npm install @tdesaules/resume
+          mv node_modules/@tdesaules/resume/dist .
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to Vercel
+        run: |
+          npm install --global vercel
+          mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm

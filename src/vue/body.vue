@@ -14,9 +14,9 @@
 <!-- SCRIPT -->
 <script>
 
-import vue_body_resume from './body-resume.vue'
-import vue_body_cv from './body-cv.vue'
-import vue_body_projects from './body-projects.vue'
+import vue_body_resume from 'Vue/body-resume.vue'
+import vue_body_cv from 'Vue/body-cv.vue'
+import vue_body_projects from 'Vue/body-projects.vue'
 export default { 
   components: { 
     vue_body_resume,

@@ -1,0 +1,27 @@
+name: $(Date:yyyyMMdd)$(Rev:.rr)
+pool:
+  vmImage: 'ubuntu-latest'
+trigger: none
+pr:
+  branches:
+    include:
+      - master
+stages:
+  - stage: Build
+    jobs:
+      - job: Checkout
+        steps:
+          - script: echo Checkout
+  - stage: Test
+    jobs:
+      - job: TestOnWindows
+        steps:
+          - script: echo Testing on Windows!
+      - job: TestOnLinux
+        steps:
+          - script: echo Testing on Linux!
+  - stage: Publish
+    jobs:
+      - job: Deploy
+        steps:
+          - script: echo Deploying the code!
