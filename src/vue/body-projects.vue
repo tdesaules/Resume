@@ -50,21 +50,21 @@
 import VueHorizontalList from "vue-horizontal-list";
 import config from "Config/config.json";
 import me from 'Img/9.jpg';
-export default { 
+export default {
   components: {VueHorizontalList},
   data () {
     var language = "fr"
     this.$root.$on('FR', () => { this.language = "fr" })
     this.$root.$on('EN', () => { this.language = "en" })
-    return { 
+    return {
       language: language,
       me: me,
       projects: config.projects
     }
   },
   methods: {
-    openNewTab: function (link) {   
-      window.open(link, "_blank");    
+    openNewTab: function (link) { 
+      window.open(link, "_blank");
     }
   }
 }
@@ -85,7 +85,7 @@ export default {
 .no-radius
   border-radius: 0px 0px 0px 0px
 .small-border-bottom
-  border-bottom: 1px solid 
+  border-bottom: 1px solid
   border-bottom-color: #dbdbdb
 .no-box-shadow
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 0px rgba(10, 10, 10, 0.02)

@@ -17,22 +17,22 @@
 import vue_body_resume from 'Vue/body-resume.vue'
 import vue_body_cv from 'Vue/body-cv.vue'
 import vue_body_projects from 'Vue/body-projects.vue'
-export default { 
-  components: { 
+export default {
+  components: {
     vue_body_resume,
     vue_body_cv,
     vue_body_projects
   },
   data () {
     var context = "resume"
-    this.$root.$on('RESUME', () => { 
-      this.context = "resume" 
+    this.$root.$on('RESUME', () => {
+      this.context = "resume"
     })
-    this.$root.$on('CV', () => { 
-      this.context = "cv" 
+    this.$root.$on('CV', () => {
+      this.context = "cv"
     })
-    this.$root.$on('PROJECTS', () => { 
-      this.context = "projects" 
+    this.$root.$on('PROJECTS', () => {
+      this.context = "projects"
     })
     return { context: context }
   },

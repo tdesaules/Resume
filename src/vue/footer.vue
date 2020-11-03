@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    handleLanguage: function(language) { 
+    handleLanguage: function(language) {
       this.$root.$emit(language)
     }
   }

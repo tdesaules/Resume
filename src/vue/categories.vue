@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    handleCategoryClick(category) { 
+    handleCategoryClick(category) {
       this.$root.$emit(category)
     }
   }

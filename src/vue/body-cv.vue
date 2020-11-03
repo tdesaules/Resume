@@ -130,31 +130,31 @@
 import VueHorizontalList from "vue-horizontal-list";
 import config from "Config/config.json";
 import me from 'Img/3.jpg';
-export default { 
+export default {
   components: {VueHorizontalList},
   data () {
     var language = "fr"
     this.$root.$on('FR', () => { this.language = "fr" })
     this.$root.$on('EN', () => { this.language = "en" })
-    return { 
+    return {
       language: language,
       cv: config.cv,
       me: me,
       showModal: false,
       jobName: undefined,
       jobDetails: undefined,
-      jobCertifications: undefined, 
+      jobCertifications: undefined,
       conferences: config.cv.conference.items
     }
   },
   methods: {
     openModal: function(job, language) {
-      if ( language === "en") { 
+      if ( language === "en") {
         this.jobDetails = job.en.details
         this.jobCertifications = job.en.certifications
       }
-      if ( language === "fr") { 
-        this.jobDetails = job.fr.details 
+      if ( language === "fr") {
+        this.jobDetails = job.fr.details
         this.jobCertifications = job.fr.certifications
       }
       this.showModal = true
@@ -166,8 +166,8 @@ export default {
       this.jobDetails = undefined
       this.jobCertifications = undefined
     },
-    openNewTab: function (link) {   
-      window.open(link, "_blank");    
+    openNewTab: function (link) {
+      window.open(link, "_blank");
     }
   }
 }

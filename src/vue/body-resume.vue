@@ -61,12 +61,12 @@
 import config from "Config/config.json";
 import other from 'Img/8.jpg';
 import me from 'Img/1.jpg';
-export default { 
+export default {
   data () {
     var language = "fr"
     this.$root.$on('FR', () => { this.language = "fr" })
     this.$root.$on('EN', () => { this.language = "en" })
-    return { 
+    return {
       language: language,
       resume: config.resume,
       other: other,
