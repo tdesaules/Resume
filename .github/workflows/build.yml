@@ -26,18 +26,10 @@ jobs:
       - name: Run tests
         run: npm run test
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=${{ secrets.SONARCLOUD_ORGANIZATION_KEY }}
-            -Dsonar.projectKey=${{ secrets.SONARCLOUD_PROJECT_KEY }}
-            -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.language=js
-            -Dsonar.sources=src
-            -Dsonar.verbose=true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Report test coverage to DeepSource
         uses: deepsourcelabs/test-coverage-action@master
         with:
