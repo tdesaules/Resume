@@ -5,3 +5,5 @@ var vm = new Vue({
   el: '#resume',
   render: h => h(vue_app)
 })
+
+vm()
