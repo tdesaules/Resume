@@ -33,7 +33,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=${{ secrets.SONARCLOUD_ORGANIZATION_KEY }}
-            -Dsonar.projectKey=${{ secrets.SONARCLOUD_PROJECK_KEY }}
+            -Dsonar.projectKey=${{ secrets.SONARCLOUD_PROJECT_KEY }}
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.language=js
             -Dsonar.sources=src
