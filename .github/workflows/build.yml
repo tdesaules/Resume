@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI (merge develop to master)
 
 on:
   pull_request:
@@ -7,39 +7,31 @@ on:
 
 jobs:
   build:
-    name: build, test and publish
+    name: Build, test and publish application
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
     runs-on: ubuntu-latest
     steps:
-      - id: checkout
-        name: checkout
+      - name: Checkout Github repository
         uses: actions/checkout@v2
-      - id: setup-node
-        name: setup node
+      - name: Setup node.js and npm
         uses: actions/setup-node@v1
         with:
           node-version: '12'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@tdesaules'
-      - id: install
-        name: install dependencies
-        run: npm install
-      - id: build
-        name: build app
-        run: npm run build:prod
-      - id: test
-        name: run tests
+      - name: Build application
+        run: |
+          npm install
+          npm run build:prod
+      - name: Run tests
         run: npm run test
-      - id: install-deepsource
-        name: install deepsource cli
-        run: curl https://deepsource.io/cli | sh
-      - id: deepsource-coverage
-        name: upload code & coverage deepsource
-        run: ./bin/deepsource report --analyzer test-coverage --key javascript --value-file coverage/cobertura-coverage.xml
+      - name: Deepsource analysis
+        run: |
+          curl https://deepsource.io/cli | sh
+          ./bin/deepsource report --analyzer test-coverage --key javascript --value-file coverage/cobertura-coverage.xml
         env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
-      - id: artifact
-        name: upload artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact-coverage
@@ -47,8 +39,7 @@ jobs:
             dits/*
             coverage/*
           if-no-files-found: error
-      - id: package
-        name: publish package
+      - name: Publish package to Github
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

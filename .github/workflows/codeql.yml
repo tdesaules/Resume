@@ -1,4 +1,4 @@
-name: Github CodeQL
+name: CodeQL (merge develop to master)
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   codeql:
-    name: CodeQL Analyze
+    name: CodeQL analysis
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
     runs-on: ubuntu-latest
     strategy:
@@ -15,17 +15,11 @@ jobs:
       matrix:
         language: [ 'javascript' ]
     steps:
-      - id: checkout
-        name: checkout
+      - name: Checkout Github repository
         uses: actions/checkout@v2
-      - id: install
-        name: install dependencies
-        run: npm install
-      - id: init-codeql
-        name: Initialize CodeQL
+      - name: CodeQL init
         uses: github/codeql-action/init@v1
         with:
           languages: ${{ matrix.language }}
-      - id: analyze-codeql
-        name: Perform CodeQL Analysis
+      - name: CodeQL Analyze
         uses: github/codeql-action/analyze@v1

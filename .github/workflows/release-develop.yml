@@ -1,4 +1,4 @@
-name: Continuous Delivery Develop
+name: CD (push develop)
 
 on:
   push:
@@ -10,27 +10,20 @@ jobs:
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
-      - id: checkout
-        name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      - id: setup-node
-        name: setup node
+      - name: Setup node.js
         uses: actions/setup-node@v1
         with:
           node-version: '12'
           registry-url: 'https://npm.pkg.github.com'
-      - id: install
-        name: install dependencies
-        run: npm install
-      - id: build
-        name: build app
-        run: npm run build:dev
-      - id: install-vercel
-        name: install vercel cli
-        run: npm install --global vercel
-      - id: configure-vercel
-        name: configure vercel
-        run: mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}' > .vercel/project.json
-      - id: release-vercel
-        name: release on vercel dev
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+      - name: Build app
+        run: |
+          npm install
+          npm run build:dev
+      - name: Deploy Vercel
+        run: |
+          npm install --global vercel
+          mkdir .vercel
+          echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}' > .vercel/project.json
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
