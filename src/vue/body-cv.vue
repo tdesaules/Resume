@@ -18,7 +18,7 @@
               span.tag.has-text-weight-medium.has-ext-margin.is-rounded.is-tag1(v-for='hashtag in details.hashtag') # {{ hashtag }}
       footer.modal-card-foot
         p.has-right-margin.has-text-base certifications :
-        p.tag.is-rounded.has-text-weight-medium.has-ext-margin.no-margin-bottom.is-tag2(v-for='certification in jobCertifications') {{ certification }} 
+        p.tag.is-rounded.has-text-weight-medium.has-ext-margin.no-margin-bottom.is-tag2(v-for='certification in jobCertifications') {{ certification }}
   .tile.is-ancestor
     .tile.is-vertical.is-parent
       .tile.is-child.box
@@ -39,8 +39,8 @@
                   i {{ job.en.startdate }}
                   i.fas.fa-angle-double-right.has-right-margin.has-left-margin
                   i {{ job.en.enddate }}
-          p.has-small-margin.has-text-justified.has-text-base(v-if="language === 'fr'") 
-            i.fas.fa-angle-right.has-right-margin 
+          p.has-small-margin.has-text-justified.has-text-base(v-if="language === 'fr'")
+            i.fas.fa-angle-right.has-right-margin
             | {{ job.fr.summary }}
           p.has-small-margin.has-text-justified.has-text-base(v-if="language === 'en'")
             i.fas.fa-angle-right.has-right-margin
@@ -166,7 +166,7 @@ export default {
       this.jobDetails = undefined
       this.jobCertifications = undefined
     },
-    openNewTab: function (link) {
+    openNewTab: function(link) {
       window.open(link, "_blank");
     }
   }
