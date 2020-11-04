@@ -131,7 +131,7 @@ import VueHorizontalList from "vue-horizontal-list";
 import config from "Config/config.json";
 import me from 'Img/3.jpg';
 export default {
-  components: {VueHorizontalList},
+  components: { VueHorizontalList },
   data () {
     var language = "fr"
     this.$root.$on('FR', () => { this.language = "fr" })
