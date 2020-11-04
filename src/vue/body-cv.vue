@@ -148,7 +148,7 @@ export default {
     }
   },
   methods: {
-    openModal: function(job, language) {
+    openModal: (job, language) {
       if ( language === "en") {
         this.jobDetails = job.en.details
         this.jobCertifications = job.en.certifications
@@ -160,13 +160,13 @@ export default {
       this.showModal = true
       this.jobName = job.name
     },
-    closeModal: function() {
+    closeModal: function () {
       this.showModal = false
       this.jobName = undefined
       this.jobDetails = undefined
       this.jobCertifications = undefined
     },
-    openNewTab: function(link) {
+    openNewTab: function (link) {
       window.open(link, "_blank");
     }
   }

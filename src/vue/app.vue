@@ -21,7 +21,7 @@ export default {
     vueFooter
   },
   computed: {
-    data() {
+    data () {
       var context = "resume"
       this.$root.$on('RESUME', () => {
         this.context = "resume"

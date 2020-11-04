@@ -15,14 +15,14 @@ section.section
 import config from "Config/config.json";
 export default {
   computed: {
-    categories() {
+    categories () {
       return config.categories.map((category) => {
         return category.name;
       })
     }
   },
   methods: {
-    handleCategoryClick(category) {
+    handleCategoryClick (category) {
       this.$root.$emit(category)
     }
   }

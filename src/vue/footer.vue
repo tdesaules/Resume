@@ -15,14 +15,14 @@ section.section
 import config from "Config/config.json";
 export default {
   computed: {
-    languages() {
+    languages () {
       return config.languages.map((language) => {
         return language.name;
       })
     }
   },
   methods: {
-    handleLanguage: function(language) {
+    handleLanguage: function (language) {
       this.$root.$emit(language)
     }
   }
