@@ -11,14 +11,14 @@ div
 <!-- SCRIPT -->
 <script>
 
-import vue_categories from 'Vue/categories.vue'
-import vue_body from 'Vue/body.vue'
-import vue_footer from 'Vue/footer.vue'
+import vueCategories from 'Vue/categories.vue'
+import vueBody from 'Vue/body.vue'
+import vueFooter from 'Vue/footer.vue'
 export default {
   components: {
-    vue_categories,
-    vue_body,
-    vue_footer
+    vueCategories,
+    vueBody,
+    vueFooter
   },
   computed: {
     data() {

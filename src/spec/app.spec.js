@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils'
-import vue_app from 'Vue/app.vue'
+import app from 'Vue/app.vue'
 
 describe('app.vue', () => {
-  const wrapper = shallowMount(vue_app);
+  const wrapper = shallowMount(app);
   test('has vue_categories', () => {
     expect(wrapper.html()).toContain('<vue_categories-stub></vue_categories-stub>')
   })

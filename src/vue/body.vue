@@ -14,14 +14,14 @@
 <!-- SCRIPT -->
 <script>
 
-import vue_body_resume from 'Vue/body-resume.vue'
-import vue_body_cv from 'Vue/body-cv.vue'
-import vue_body_projects from 'Vue/body-projects.vue'
+import vueBodyResume from 'Vue/body-resume.vue'
+import vueBodyCv from 'Vue/body-cv.vue'
+import vueBodyProjects from 'Vue/body-projects.vue'
 export default {
   components: {
-    vue_body_resume,
-    vue_body_cv,
-    vue_body_projects
+    vueBodyResume,
+    vueBodyCv,
+    vueBodyProjects
   },
   data () {
     var context = "resume"
