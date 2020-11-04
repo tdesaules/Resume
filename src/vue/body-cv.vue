@@ -148,7 +148,7 @@ export default {
     }
   },
   methods: {
-    openModal: (job, language) {
+    openModal: function (job, language) {
       if ( language === "en") {
         this.jobDetails = job.en.details
         this.jobCertifications = job.en.certifications
