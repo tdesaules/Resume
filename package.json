@@ -6,10 +6,10 @@
   "scripts": {
     "test": "jest",
     "build:dev": "webpack --config webpack.dev.js",
-    "build:prod": "webpack --config webpack.prod.js",
+    "build:prd": "webpack --config webpack.prd.js",
     "start:watch": "webpack-dev-server --config webpack.dev.js --mode development --open --hot --watch",
     "start:dev": "webpack --config webpack.dev.js && node server.js",
-    "start:prod": "webpack --config webpack.prod.js && node server.js"
+    "start:prd": "webpack --config webpack.prd.js && node server.js"
   },
   "repository": {
     "type": "git",
