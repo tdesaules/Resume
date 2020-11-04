@@ -35,7 +35,7 @@ export default {
       this.context = "projects"
     })
     return { context: context }
-  },
+  }
 }
 
 </script>

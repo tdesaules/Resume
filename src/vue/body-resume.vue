@@ -70,7 +70,7 @@ export default {
       language: language,
       resume: config.resume,
       other: other,
-      me: me,
+      me: me
     }
   }
 }

@@ -9,7 +9,7 @@ module.exports = merge(common, {
     compress: true,
     disableHostCheck: true,
     host: '0.0.0.0',
-    port: 3000,
+    port: 3000
   },
   module: {
     rules: [
@@ -20,20 +20,20 @@ module.exports = merge(common, {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
-            },
+              sourceMap: true
+            }
           },
           {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
               sassOptions: {
-                indentedSyntax: true,
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
+                indentedSyntax: true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
 });

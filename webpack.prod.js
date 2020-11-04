@@ -13,32 +13,32 @@ module.exports = merge(common, {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: false,
-            },
+              sourceMap: false
+            }
           },
           {
             loader: 'sass-loader',
             options: {
               sourceMap: false,
               sassOptions: {
-                indentedSyntax: true,
-              },
-            },
-          },
-        ],
-      },
-    ],
+                indentedSyntax: true  
+              }
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new MinCssExtractPlugin({
       filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
-    }),
+      chunkFilename: '[id].[hash].css'
+    })
   ],
   optimization: {
     nodeEnv: 'production',
     splitChunks: {
-      chunks: 'all',
-    },
-  },
+      chunks: 'all'
+    }
+  }
 });

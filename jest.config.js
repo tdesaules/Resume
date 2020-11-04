@@ -7,7 +7,7 @@ module.exports = {
   moduleNameMapper: {
     "^Vue/(.*)$": "<rootDir>/src/vue/$1",
     "^Config/(.*)$": "<rootDir>/src/config/$1",
-    "^Img/(.*)$": "<rootDir>/src/img/$1",
+    "^Img/(.*)$": "<rootDir>/src/img/$1"
   },
   transform: {
     ".*\\.(vue)$": "vue-jest",
