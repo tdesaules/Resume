@@ -63,7 +63,7 @@ export default {
     }
   },
   methods: {
-    openNewTab: function(link) { 
+    openNewTab: function(link) {
       window.open(link, "_blank");
     }
   }
