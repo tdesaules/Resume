@@ -1,5 +1,5 @@
 <!-- TEMPLATE -->
-<template lang="pug">
+<template lang='pug'>
 
 section.section
   .tabs.is-centered
@@ -12,7 +12,7 @@ section.section
 <!-- SCRIPT -->
 <script>
 
-import config from "Config/config.json";
+import config from 'Config/config.json';
 export default {
   computed: {
     categories () {
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <!-- STYLE -->
-<style lang="sass" scoped>
+<style lang='sass' scoped>
 
 .has-border-bottom-color
   border-bottom-color: #404040 !important

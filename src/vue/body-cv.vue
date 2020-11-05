@@ -1,5 +1,5 @@
 <!-- HTML PUG -->
-<template lang="pug">
+<template lang='pug'>
 
 .container
   .modal(v-bind:class="{ 'is-active': showModal }")
@@ -24,7 +24,7 @@
       .tile.is-child.box
         p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.experience.title.fr.value }}
         p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.experience.title.en.value }}
-        .container.has-separator(v-for="job in cv.experience.jobs")
+        .container.has-separator(v-for='job in cv.experience.jobs')
           .level.is-marginless.has-mid-top-padding
             .level-left
               .level-item
@@ -55,7 +55,7 @@
       .tile.is-child.box
         p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.study.title.fr.value }}
         p.title.is-3.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.study.title.en.value }}
-        .container.has-separator(v-for="study in cv.study.studies")
+        .container.has-separator(v-for='study in cv.study.studies')
           .level.is-marginless.has-mid-top-padding
             .level-left
               .level-item
@@ -75,7 +75,7 @@
       .card.tile.is-child.box.has-no-padding.is-hidden-touch
         .card-image
           figure.image.is-4by3
-            img(v-bind:src="me")
+            img(v-bind:src='me')
         .card-content
           .media
             .container.is-vertical-center
@@ -87,7 +87,7 @@
       .tile.is-child.box
         p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.tongue.title.fr.value }}
         p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.tongue.title.en.value }}
-        .container(v-for="tongue in cv.tongue.tongues")
+        .container(v-for='tongue in cv.tongue.tongues')
           p.has-small-margin.has-text-justified.has-text-base(v-if="language === 'fr'") {{ tongue.fr.value }}
           p.has-small-margin.has-text-justified.has-text-base(v-if="language === 'en'") {{ tongue.en.value }}
       .tile.is-child.box.is-hidden-touch
@@ -118,7 +118,7 @@
       .tile.is-child.box
         p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.hobbie.title.fr.value }}
         p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.hobbie.title.en.value }}
-        .container(v-for="hobbie in cv.hobbie.hobbies")
+        .container(v-for='hobbie in cv.hobbie.hobbies')
           p.has-small-margin.has-text-justified.has-text-base(v-if="language === 'fr'") {{ hobbie.fr.value }}
           p.has-small-margin.has-text-justified.has-text-base(v-if="language === 'en'") {{ hobbie.en.value }}
 
@@ -127,15 +127,15 @@
 <!-- JAVASCRIPT -->
 <script>
 
-import VueHorizontalList from "vue-horizontal-list";
-import config from "Config/config.json";
+import VueHorizontalList from 'vue-horizontal-list';
+import config from 'Config/config.json';
 import me from 'Img/3.jpg';
 export default {
   components: { VueHorizontalList },
   data () {
-    var language = "fr"
-    this.$root.$on('FR', () => { this.language = "fr" })
-    this.$root.$on('EN', () => { this.language = "en" })
+    var language = 'fr'
+    this.$root.$on('FR', () => { this.language = 'fr' })
+    this.$root.$on('EN', () => { this.language = 'en' })
     return {
       language: language,
       cv: config.cv,
@@ -149,11 +149,11 @@ export default {
   },
   methods: {
     openModal: function (job, language) {
-      if (language === "en") {
+      if (language === 'en') {
         this.jobDetails = job.en.details
         this.jobCertifications = job.en.certifications
       }
-      if (language === "fr") {
+      if (language === 'fr') {
         this.jobDetails = job.fr.details
         this.jobCertifications = job.fr.certifications
       }
@@ -167,7 +167,7 @@ export default {
       this.jobCertifications = undefined
     },
     openNewTab: function (link) {
-      window.open(link, "_blank");
+      window.open(link, '_blank');
     }
   }
 }
@@ -175,7 +175,7 @@ export default {
 </script>
 
 <!-- SASS -->
-<style lang="sass" scoped>
+<style lang='sass' scoped>
 
 .is-vertical-center
   display: flex

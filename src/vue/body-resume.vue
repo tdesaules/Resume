@@ -1,5 +1,5 @@
 <!-- TEMPLATE -->
-<template lang="pug">
+<template lang='pug'>
 
 .container
   .tile.is-ancestor
@@ -8,7 +8,7 @@
         .card.tile.is-child.box.has-no-padding
           .card-image
             figure.image.is-4by3
-              img(v-bind:src="me")
+              img(v-bind:src='me')
           .card-content
             .media
               .container.is-vertical-center
@@ -33,7 +33,7 @@
                 i.fab.fa-skype.has-text-skype
       .tile.is-child.box.has-no-padding.is-hidden-touch
         figure.image.is-1by1
-          img.has-img-radius(v-bind:src="other")
+          img.has-img-radius(v-bind:src='other')
     .tile.is-parent
       .tile.is-child.box
         article.tile.is-child.has-text-justified
@@ -42,30 +42,30 @@
           p.subtitle.is-5.has-text-weight-semibold.has-text-subtitle(v-if="language === 'fr'") {{ resume.fr.subtitle }}
           p.subtitle.is-5.has-text-weight-semibold.has-text-subtitle(v-if="language === 'en'") {{ resume.en.subtitle }}
           .content(v-if="language === 'fr'")
-            p.has-text-base(v-for="paraph in resume.fr.summary" v-html="paraph.p")
+            p.has-text-base(v-for='paraph in resume.fr.summary' v-html='paraph.p')
           .content(v-if="language === 'en'")
-            p.has-text-base(v-for="paraph in resume.en.summary" v-html="paraph.p")
+            p.has-text-base(v-for='paraph in resume.en.summary' v-html='paraph.p')
           .content.has-left-border
             br
             p.i.fas.fa-quote-left.has-text-title
               span.has-text-weight-light.is-family-primary.has-text-subtitle &nbsp;&nbsp; {{ resume.citation.text }}
             p.is-italic.has-text-weight-semibold.has-text-right.has-text-title {{ resume.citation.author }}
           .content.has-text-centered
-            p.tag.is-rounded.has-text-weight-semibold.has-ext-margin.is-tag2(v-for="tag in resume.hashtag") # {{ tag.tag }}
+            p.tag.is-rounded.has-text-weight-semibold.has-ext-margin.is-tag2(v-for='tag in resume.hashtag') # {{ tag.tag }}
 
 </template>
 
 <!-- SCRIPT -->
 <script>
 
-import config from "Config/config.json";
+import config from 'Config/config.json';
 import other from 'Img/8.jpg';
 import me from 'Img/1.jpg';
 export default {
   data () {
-    var language = "fr"
-    this.$root.$on('FR', () => { this.language = "fr" })
-    this.$root.$on('EN', () => { this.language = "en" })
+    var language = 'fr'
+    this.$root.$on('FR', () => { this.language = 'fr' })
+    this.$root.$on('EN', () => { this.language = 'en' })
     return {
       language: language,
       resume: config.resume,
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <!-- STYLE -->
-<style lang="sass" scoped>
+<style lang='sass' scoped>
 
 .has-ext-margin
   margin: 2px

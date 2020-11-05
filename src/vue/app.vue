@@ -1,10 +1,10 @@
 <!-- TEMPLATE -->
-<template lang="pug">
+<template lang='pug'>
 
 div
-  vue_categories
-  vue_body
-  vue_footer
+  vueCategories
+  vueBody
+  vueFooter
 
 </template>
 
@@ -22,15 +22,15 @@ export default {
   },
   computed: {
     data () {
-      var context = "resume"
+      var context = 'resume'
       this.$root.$on('RESUME', () => {
-        this.context = "resume"
+        this.context = 'resume'
       })
       this.$root.$on('CV', () => {
-        this.context = "cv"
+        this.context = 'cv'
       })
       this.$root.$on('DASHBOARD', () => {
-        this.context = "dashboard"
+        this.context = 'dashboard'
       })
       return { context: context }
     }
@@ -39,9 +39,9 @@ export default {
 
 </script>
 
-<style lang="sass">
+<style lang='sass'>
 
-@import "../sass/variable.sass"
-@import "../sass/style.sass"
+@import '../sass/variable.sass'
+@import '../sass/style.sass'
 
 </style>

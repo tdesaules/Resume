@@ -1,38 +1,38 @@
 <!-- TEMPLATE -->
-<template lang="pug">
+<template lang='pug'>
 
 .container
   section.section(v-if="context === 'resume'")
-    vue_body_resume
+    VueBodyResume
   section.section(v-else-if="context === 'cv'")
-    vue_body_cv
+    VueBodyCv
   section.section(v-else-if="context === 'projects'")
-    vue_body_projects
+    VueBodyProjects
 
 </template>
 
 <!-- SCRIPT -->
 <script>
 
-import vueBodyResume from 'Vue/body-resume.vue'
-import vueBodyCv from 'Vue/body-cv.vue'
-import vueBodyProjects from 'Vue/body-projects.vue'
+import VueBodyResume from 'Vue/body-resume.vue'
+import VueBodyCv from 'Vue/body-cv.vue'
+import VueBodyProjects from 'Vue/body-projects.vue'
 export default {
   components: {
-    vueBodyResume,
-    vueBodyCv,
-    vueBodyProjects
+    VueBodyResume,
+    VueBodyCv,
+    VueBodyProjects
   },
   data () {
-    var context = "resume"
+    var context = 'resume'
     this.$root.$on('RESUME', () => {
-      this.context = "resume"
+      this.context = 'resume'
     })
     this.$root.$on('CV', () => {
-      this.context = "cv"
+      this.context = 'cv'
     })
     this.$root.$on('PROJECTS', () => {
-      this.context = "projects"
+      this.context = 'projects'
     })
     return { context: context }
   }
@@ -41,6 +41,6 @@ export default {
 </script>
 
 <!-- STYLE -->
-<style lang="sass" scoped>
+<style lang='sass' scoped>
 
 </style>
