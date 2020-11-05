@@ -21,7 +21,7 @@ module.exports = merge(common, {
             options: {
               sourceMap: false,
               sassOptions: {
-                indentedSyntax: true  
+                indentedSyntax: true
               }
             }
           }
