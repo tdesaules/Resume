@@ -3,7 +3,7 @@ module.exports = {
   globals: {
     'vue-jest': {}
   },
-  moduleFileExtensions: [ 'js', 'json', 'vue' ],
+  moduleFileExtensions: ['js', 'json', 'vue'],
   moduleNameMapper: {
     '^Vue/(.*)$': '<rootDir>/src/vue/$1',
     '^Config/(.*)$': '<rootDir>/src/config/$1',
@@ -18,6 +18,6 @@ module.exports = {
     '/node_modules/'
   ],
   collectCoverage: true,
-  collectCoverageFrom: [ 'src/**/*.{vue,js}', '!**/node_modules/**' ],
-  coverageReporters: [ 'cobertura', 'lcov' ]
+  collectCoverageFrom: ['src/**/*.{vue,js}', '!**/node_modules/**'],
+  coverageReporters: ['cobertura', 'lcov']
 }
