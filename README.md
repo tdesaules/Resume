@@ -70,6 +70,7 @@ security :
 
 ### Github Actions Pipeline
 
+### Azure DevOps Pipeline
 
 ## Contribute
 
