@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import app from 'Vue/app.vue'
+import App from 'Vue/app.vue'
 
-describe('app.vue', () => {
-  const wrapper = mount(app);
+describe('App.vue', () => {
+  const wrapper = mount(App);
   test('is a Vue instance', () => {
     expect(wrapper.isVueInstance).toBeTruthy();
   })

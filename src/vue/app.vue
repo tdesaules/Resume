@@ -2,23 +2,23 @@
 <template lang='pug'>
 
 div
-  vueCategories
-  vueBody
-  vueFooter
+  VueCategories
+  VueBody
+  VueFooter
 
 </template>
 
 <!-- SCRIPT -->
 <script>
 
-import vueCategories from 'Vue/categories.vue'
-import vueBody from 'Vue/body.vue'
-import vueFooter from 'Vue/footer.vue'
+import VueCategories from 'Vue/categories.vue'
+import VueBody from 'Vue/body.vue'
+import VueFooter from 'Vue/footer.vue'
 export default {
   components: {
-    vueCategories,
-    vueBody,
-    vueFooter
+    VueCategories,
+    VueBody,
+    VueFooter
   },
   computed: {
     data () {
