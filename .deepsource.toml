@@ -1,8 +1,8 @@
 version = 1
 
-test_patterns = ["src/test/**", "src/spec/**"]
+test_patterns = ["src/tests/**", "src/specs/**"]
 
-exclude_patterns = ["dist/**", "bin/**"]
+exclude_patterns = [".azuredevops/**", ".devcontainer/**", ".github/**", ".vscode/**", "dist/**", "node_modules/**"]
 
 [[analyzers]]
 name = "test-coverage"
