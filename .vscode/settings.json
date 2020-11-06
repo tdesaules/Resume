@@ -8,6 +8,8 @@
         "projectid",
         "shiftleft",
         "shiftleft access token",
+        "sonarcloud",
+        "sonarqube",
         "token",
         "vercel",
         "vercel orgid",
