@@ -30,6 +30,8 @@ jobs:
           CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\(\d\+\.\d\+\.\d\+\).*/\1/')
           NEXT_VERSION=$(grep version package.json | sed 's/.*"version":\s\"\(.*\)\",/\1/')
           tools/compare --current_version $CURRENT_VERSION --next_version $NEXT_VERSION
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v2
         with:
