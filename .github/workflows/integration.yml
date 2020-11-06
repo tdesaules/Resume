@@ -58,7 +58,7 @@ jobs:
       - name: CodeQL init
         uses: github/codeql-action/init@v1
         with:
-          languages: [ 'javascript' ]
+          languages: javascript
       - name: CodeQL scan
         uses: github/codeql-action/analyze@v1
   shiftleft:
