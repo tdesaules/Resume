@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: '12'
       - name: Run unit tests
-        run: npm run test
+        run: |
+          npm install
+          npm run test
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v2
         with:
