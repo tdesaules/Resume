@@ -1,4 +1,4 @@
-name: Pull Request (Develop to Master)
+name: Integration
 
 on:
   pull_request:
@@ -6,6 +6,41 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  codeql:
+    name: CodeQL analysis
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+    steps:
+      - name: Checkout Github repository
+        uses: actions/checkout@v2
+      - name: CodeQL init
+        uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
+      - name: CodeQL Analyze
+        uses: github/codeql-action/analyze@v1
+  shiftleft:
+    name: ShiftLeft
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          npm install
+          npm run build:prod
+      - name: ShiftLeft Analyze
+        run: |
+          mkdir bin
+          curl https://cdn.shiftleft.io/download/sl > bin/sl
+          chmod a+rx bin/sl
+          bin/sl auth --org "${{ secrets.SHIFTLEFT_ORG }}" --token "${{ secrets.SHIFTLEFT_TOKEN }}" --diagnostic
+          bin/sl analyze --app "resume" --cpg --js .
   build:
     name: Build, test and publish application
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
@@ -42,38 +77,3 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  codeql:
-    name: CodeQL analysis
-    if: ${{ github.ref == 'refs/heads/develop' }}
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
-    steps:
-      - name: Checkout Github repository
-        uses: actions/checkout@v2
-      - name: CodeQL init
-        uses: github/codeql-action/init@v1
-        with:
-          languages: ${{ matrix.language }}
-      - name: CodeQL Analyze
-        uses: github/codeql-action/analyze@v1
-  shiftleft:
-    name: ShiftLeft
-    if: ${{ github.ref == 'refs/heads/develop' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build
-        run: |
-          npm install
-          npm run build:prod
-      - name: ShiftLeft Analyze
-        run: |
-          mkdir bin
-          curl https://cdn.shiftleft.io/download/sl > bin/sl
-          chmod a+rx bin/sl
-          bin/sl auth --org "${{ secrets.SHIFTLEFT_ORG }}" --token "${{ secrets.SHIFTLEFT_TOKEN }}" --diagnostic
-          bin/sl analyze --app "resume" --cpg --js .

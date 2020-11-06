@@ -1,4 +1,4 @@
-name: Push Develop
+name: Release on Development
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
 
 jobs:
   release-develop:
-    name: Release Develop
+    name: Release develop branch
+    if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
