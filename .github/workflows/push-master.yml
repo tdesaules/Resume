@@ -1,4 +1,4 @@
-name: CD (push master)
+name: Push Master
 
 on:
   push:

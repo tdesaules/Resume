@@ -1,4 +1,4 @@
-name: CD (push develop)
+name: Push Develop
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
 jobs:
   release-develop:
     name: Release Develop
-    if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
