@@ -1,8 +1,8 @@
 <!-- HTML PUG -->
-<template lang="pug">
+<template lang='pug'>
 
 .container
-  .container(:class="{ 'has-top-margin': index != 0 }" v-for="project in projects")
+  .container(:class="{ 'has-top-margin': index != 0 }" v-for='project in projects')
     .tile.is-ancestor
       .tile.is-parent.is-12.box.top-radius.small-border-bottom
         .tile.is-child.is-1.is-full-centered
@@ -24,7 +24,7 @@
         .tile.is-parent.is-1
           .tile.is-child.is-full-centered
             figure.image.is-48x48.is-inline-block
-                img.is-rounded(v-bind:src="me")
+                img.is-rounded(v-bind:src='me')
         .tile.is-parent.is-vertical
           .tile.is-child
             i.fas.fa-feather-alt &nbsp {{ project.author }}
@@ -38,33 +38,33 @@
     .tile.is-ancestor
       .tile.is-12.box.bottom-radius.no-box-shadow
         .content(v-if="language === 'fr'")
-          p(v-for="paraph in project.fr.summary" v-html="paraph.p")
+          p(v-for='paraph in project.fr.summary' v-html='paraph.p')
         .content(v-if="language === 'en'")
-          p(v-for="paraph in project.en.summary" v-html="paraph.p")
+          p(v-for='paraph in project.en.summary' v-html='paraph.p')
 
 </template>
 
 <!-- JAVASCRIPT -->
 <script>
 
-import VueHorizontalList from "vue-horizontal-list";
-import config from "Config/config.json";
+import VueHorizontalList from 'vue-horizontal-list';
+import config from 'Config/config.json';
 import me from 'Img/9.jpg';
-export default { 
-  components: {VueHorizontalList},
+export default {
+  components: { VueHorizontalList },
   data () {
-    var language = "fr"
-    this.$root.$on('FR', () => { this.language = "fr" })
-    this.$root.$on('EN', () => { this.language = "en" })
-    return { 
+    var language = 'fr'
+    this.$root.$on('FR', () => { this.language = 'fr' })
+    this.$root.$on('EN', () => { this.language = 'en' })
+    return {
       language: language,
       me: me,
       projects: config.projects
     }
   },
   methods: {
-    openNewTab: function (link) {   
-      window.open(link, "_blank");    
+    openNewTab: function (link) {
+      window.open(link, '_blank');
     }
   }
 }
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <!-- SASS -->
-<style lang="sass" scoped>
+<style lang='sass' scoped>
 
 .is-full-centered
   display: flex
@@ -85,7 +85,7 @@ export default {
 .no-radius
   border-radius: 0px 0px 0px 0px
 .small-border-bottom
-  border-bottom: 1px solid 
+  border-bottom: 1px solid
   border-bottom-color: #dbdbdb
 .no-box-shadow
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 0px rgba(10, 10, 10, 0.02)

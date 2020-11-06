@@ -1,36 +1,36 @@
 <!-- TEMPLATE -->
-<template lang="pug">
+<template lang='pug'>
 
 div
-  vue_categories
-  vue_body
-  vue_footer
+  VueCategories
+  VueBody
+  VueFooter
 
 </template>
 
 <!-- SCRIPT -->
 <script>
 
-import vue_categories from 'Vue/categories.vue'
-import vue_body from 'Vue/body.vue'
-import vue_footer from 'Vue/footer.vue'
-export default { 
-  components: { 
-    vue_categories,
-    vue_body,
-    vue_footer
+import VueCategories from 'Vue/categories.vue'
+import VueBody from 'Vue/body.vue'
+import VueFooter from 'Vue/footer.vue'
+export default {
+  components: {
+    VueCategories,
+    VueBody,
+    VueFooter
   },
   computed: {
-    data() {
-      var context = "resume"
-      this.$root.$on('RESUME', () => { 
-        this.context = "resume"
+    data () {
+      var context = 'resume'
+      this.$root.$on('RESUME', () => {
+        this.context = 'resume'
       })
-      this.$root.$on('CV', () => { 
-        this.context = "cv" 
+      this.$root.$on('CV', () => {
+        this.context = 'cv'
       })
-      this.$root.$on('DASHBOARD', () => { 
-        this.context = "dashboard" 
+      this.$root.$on('DASHBOARD', () => {
+        this.context = 'dashboard'
       })
       return { context: context }
     }
@@ -39,9 +39,9 @@ export default {
 
 </script>
 
-<style lang="sass">
+<style lang='sass'>
 
-@import "../sass/variable.sass"
-@import "../sass/style.sass"
+@import '../sass/variable.sass'
+@import '../sass/style.sass'
 
 </style>

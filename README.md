@@ -57,9 +57,21 @@ npm run start:dev
 npm run start:prod
 ```
 
-## Pipeline CI/CD
+## CI / CD
 
-tbd with github action
+### Embedded : Github Repository
+
+code analyse:
+- <https://deepsource.io/>
+- <https://sonarcloud.io/> 
+
+security :
+- <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
+- <https://www.sonatype.com/depshield/>
+
+### Github Actions Pipeline
+
+### Azure DevOps Pipeline
 
 ## Contribute
 

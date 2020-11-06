@@ -1,4 +1,4 @@
-name: CD (push master)
+name: Release on Production
 
 on:
   push:

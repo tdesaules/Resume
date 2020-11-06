@@ -1,46 +1,41 @@
 <!-- TEMPLATE -->
-<template lang="pug">
+<template lang='pug'>
 
 .container
   section.section(v-if="context === 'resume'")
-    vue_body_resume
+    VueBodyResume
   section.section(v-else-if="context === 'cv'")
-    vue_body_cv
+    VueBodyCv
   section.section(v-else-if="context === 'projects'")
-    vue_body_projects
+    VueBodyProjects
 
 </template>
 
 <!-- SCRIPT -->
 <script>
 
-import vue_body_resume from 'Vue/body-resume.vue'
-import vue_body_cv from 'Vue/body-cv.vue'
-import vue_body_projects from 'Vue/body-projects.vue'
-export default { 
-  components: { 
-    vue_body_resume,
-    vue_body_cv,
-    vue_body_projects
+import VueBodyResume from 'Vue/body-resume.vue'
+import VueBodyCv from 'Vue/body-cv.vue'
+import VueBodyProjects from 'Vue/body-projects.vue'
+export default {
+  components: {
+    VueBodyResume,
+    VueBodyCv,
+    VueBodyProjects
   },
   data () {
-    var context = "resume"
-    this.$root.$on('RESUME', () => { 
-      this.context = "resume" 
+    var context = 'resume'
+    this.$root.$on('RESUME', () => {
+      this.context = 'resume'
     })
-    this.$root.$on('CV', () => { 
-      this.context = "cv" 
+    this.$root.$on('CV', () => {
+      this.context = 'cv'
     })
-    this.$root.$on('PROJECTS', () => { 
-      this.context = "projects" 
+    this.$root.$on('PROJECTS', () => {
+      this.context = 'projects'
     })
     return { context: context }
-  },
+  }
 }
 
 </script>
-
-<!-- STYLE -->
-<style lang="sass" scoped>
-
-</style>

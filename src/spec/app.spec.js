@@ -1,15 +1,15 @@
 import { shallowMount } from '@vue/test-utils'
-import vue_app from 'Vue/app.vue'
+import app from 'Vue/app.vue'
 
 describe('app.vue', () => {
-  const wrapper = shallowMount(vue_app);
-  test('has vue_categories', () => {
-    expect(wrapper.html()).toContain('<vue_categories-stub></vue_categories-stub>')
+  const wrapper = shallowMount(app);
+  test('has VueCategories', () => {
+    expect(wrapper.html()).toContain('<vuecategories-stub></vuecategories-stub>')
   })
-  test('has vue_body', () => {
-    expect(wrapper.html()).toContain('<vue_body-stub></vue_body-stub>')
+  test('has VueBody', () => {
+    expect(wrapper.html()).toContain('<vuebody-stub></vuebody-stub>')
   })
-  test('has vue_footer', () => {
-    expect(wrapper.html()).toContain('<vue_footer-stub></vue_footer-stub>')
+  test('has VueFooter', () => {
+    expect(wrapper.html()).toContain('<vuefooter-stub></vuefooter-stub>')
   })
 });
