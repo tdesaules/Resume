@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+const argv = yargs(hideBin(process.argv)).argv
+const compareVersions = require('compare-versions')
+
+result = compareVersions(argv.current_version, argv.next_version)
+
+if (result < 0) {
+    process.exitCode = 0
+} 
+else {
+    process.exitCode = 1
+}
