@@ -6,9 +6,14 @@ const compareVersions = require('compare-versions')
 
 result = compareVersions(argv.current_version, argv.next_version)
 
+console.log(`INFO : version in package.conf is ${argv.next_version}`)
+console.log(`INFO : package version already released is ${argv.current_version}`)
+
 if (result < 0) {
+    console.log('INFO : new version is compliant')
     process.exitCode = 0
 } 
 else {
+    console.log('ERROR : new version is under or equal to the deployed version')
     process.exitCode = 1
 }
