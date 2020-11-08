@@ -100,7 +100,8 @@ jobs:
           scope: '@tdesaules'
       - name: Install npm resume package
         run: |
-          npm install @tdesaules/resume@$GITHUB_REF
+          TAG=$(echo $GITHUB_REF | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+          npm install @tdesaules/resume@$TAG
           mv node_modules/@tdesaules/resume/dist .
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
