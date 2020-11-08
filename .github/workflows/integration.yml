@@ -27,8 +27,8 @@ jobs:
           npm run test
       - name: ESLint Analysis
         run: |
-          npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
           npx eslint "src/**/*.{js,vue}" --format stylish
+          npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
       - name: Check if version correct
         run: |
           CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
