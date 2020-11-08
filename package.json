@@ -1,6 +1,6 @@
 {
   "name": "@tdesaules/resume",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Resume webapp integration with vue.js webpack based and bulma.io",
   "main": "index.js",
   "scripts": {
@@ -74,6 +74,10 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.2.0"
+    "webpack-merge": "^5.2.0",
+    "yargs": "^16.1.0"
+  },
+  "dependencies": {
+    "compare-versions": "^3.6.0"
   }
 }
