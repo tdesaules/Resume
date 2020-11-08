@@ -27,7 +27,7 @@ jobs:
       - name: Run tests
         run: npm run test
       - name: Retrieve package version
-        run: grep version package.json | sed 's/.*"version":\s\"\(.*\)\",/\1/' > VERSION.md
+        run: grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
       - name: Publish package to Github
         run: npm publish
         env:
@@ -72,6 +72,7 @@ jobs:
           name: my-artifact
       - name: Set version environment variable
         run: export VERSION=$(cat VERSION.md)
+        run: echo $VERSION
       - name: Create release
         uses: actions/create-release@v1
         env:
