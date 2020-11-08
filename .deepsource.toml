@@ -13,6 +13,9 @@ name = "javascript"
 enabled = true
 
   [analyzers.meta]
-  environment = ["jest"]
+  environment = [
+    "jest",
+    "browser"
+  ]
   plugins = ["vue"]
   style_guide = "standard"
