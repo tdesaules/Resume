@@ -3,6 +3,8 @@ name: Release on Production
 on:
   push:
     branches: [ master ]
+  release:
+    types: [ published ]
 
 jobs:
   build:
@@ -74,37 +76,36 @@ jobs:
         run: echo "version=$(cat VERSION.md)" >> $GITHUB_ENV
       - name: Create release
         uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.version }}
           release_name: Release/${{ env.version }}
           body: |
-            Auto created release based on ${{ env.GITHUB_WORKFLOW }}
-            by : ${{ env.GITHUB_ACTOR }}
-            on : ${{ env.GITHUB_EVENT_NAME }}
+            Auto created release based on ${{ github.workflow }}
+            by : ${{ github.actor }}
+            on : ${{ github.event_name }}
           draft: false
           prerelease: false
-  # deploy:
-  #   name: Release master branch
-  #   if: ${{ github.ref == 'refs/heads/no' }}
-  #   runs-on: ubuntu-latest
-  #   needs: create-release
-  #   steps:
-  #     - name: Setup node.js
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '12'
-  #         registry-url: 'https://npm.pkg.github.com'
-  #         scope: '@tdesaules'
-  #     - name: Install npm resume package
-  #       run: |
-  #         npm install @tdesaules/resume
-  #         mv node_modules/@tdesaules/resume/dist .
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     - name: Deploy to Vercel
-  #       run: |
-  #         npm install --global vercel
-  #         mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
-  #         vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    name: Release master branch
+    if: ${{ github.event_name == 'release' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tdesaules'
+      - name: Install npm resume package
+        run: |
+          npm install @tdesaules/resume@$GITHUB_REF
+          mv node_modules/@tdesaules/resume/dist .
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to Vercel
+        run: |
+          npm install --global vercel
+          mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
