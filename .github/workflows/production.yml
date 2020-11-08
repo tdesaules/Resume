@@ -71,8 +71,9 @@ jobs:
         with:
           name: my-artifact
       - name: Set version environment variable
-        run: export VERSION=$(cat VERSION.md)
-        run: echo $VERSION
+        run: |
+          export VERSION=$(cat VERSION.md)
+          echo $VERSION
       - name: Create release
         uses: actions/create-release@v1
         env:
