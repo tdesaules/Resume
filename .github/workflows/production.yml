@@ -71,16 +71,14 @@ jobs:
         with:
           name: my-artifact
       - name: Set version environment variable
-        run: |
-          export VERSION=$(cat VERSION.md)
-          echo $VERSION
+        run: echo "version=$(cat VERSION.md)" >> $GITHUB_ENV
       - name: Create release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: Release/${{ env.VERSION }}
+          tag_name: ${{ env.version }}
+          release_name: Release/${{ env.version }}
           body: |
             Auto created release based on ${{ env.GITHUB_WORKFLOW }}
             by : ${{ env.GITHUB_ACTOR }}
