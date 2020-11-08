@@ -1,6 +1,6 @@
 module.exports = {
     "env": {
-        //"jest": true,
+        "jest": true,
         "browser": true,
         "es2021": true
     },
