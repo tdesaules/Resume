@@ -25,6 +25,8 @@ jobs:
         run: |
           npm install
           npm run test
+      - name: Change path in test report
+        run: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
       - name: ESLint Analysis
         run: |
           npx eslint "src/**/*.{js,vue}" --format stylish
