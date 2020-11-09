@@ -4,9 +4,9 @@ const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = { // skipcq: JS-0125
-  entry: path.resolve(__dirname, 'src/main.js'),
+  entry: path.resolve(__dirname, 'src/main.js'), // skipcq: JS-0125
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // skipcq: JS-0125
     filename: '[name].[hash].js'
   },
   resolve: {
