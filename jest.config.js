@@ -1,3 +1,6 @@
+/*global module from webpack*/
+/*eslint no-undef: "error"*/
+
 module.exports = {
   verbose: true,
   globals: {

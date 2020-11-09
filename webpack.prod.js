@@ -1,3 +1,7 @@
+/*global module from webpack*/
+/*global __dirname from webpack*/
+/*eslint no-undef: "error"*/
+
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MinCssExtractPlugin = require('mini-css-extract-plugin');
