@@ -56,6 +56,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: my-artifact
+      - name: Get some info
+        run: |
+          ls -l
+          ls -l coverage/*
+          ls -l /home/runner/work/resume/resume
       - name: Replace sonar version based on package.json
         run: |
           NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
