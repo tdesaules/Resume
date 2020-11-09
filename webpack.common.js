@@ -1,7 +1,3 @@
-/*global module from webpack*/
-/*global __dirname from webpack*/
-/*eslint no-undef: "error"*/
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
