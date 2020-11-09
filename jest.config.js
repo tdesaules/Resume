@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { // skipcq: JS-0125
   verbose: true,
   globals: {
     'vue-jest': {}

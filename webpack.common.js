@@ -3,7 +3,7 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = {
+module.exports = { // skipcq: JS-0125
   entry: path.resolve(__dirname, 'src/main.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -11,9 +11,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Vue: path.resolve(__dirname, './src/vue'),
-      Config: path.resolve(__dirname, './src/config'),
-      Img: path.resolve(__dirname, './src/img')
+      Vue: path.resolve(__dirname, './src/vue'), // skipcq: JS-0125
+      Config: path.resolve(__dirname, './src/config'), // skipcq: JS-0125
+      Img: path.resolve(__dirname, './src/img') // skipcq: JS-0125
     }
   },
   module: {
