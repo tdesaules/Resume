@@ -2,7 +2,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MinCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = merge(common, {
+module.exports = merge(common, { // skipcq: JS-0125
   mode: 'production',
   module: {
     rules: [

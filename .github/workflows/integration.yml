@@ -25,7 +25,11 @@ jobs:
         run: |
           npm install
           npm run test
-      - name : Check if version correct
+      - name: ESLint Analysis
+        run: |
+          npx eslint "src/**/*.{js,vue}" --format stylish
+          npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+      - name: Check if version correct
         run: |
           CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
           NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
@@ -52,6 +56,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: my-artifact
+          path: coverage
+      - name: Replace sonar version based on package.json
+        run: |
+          NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+          sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
       - name: SonarCloud scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
