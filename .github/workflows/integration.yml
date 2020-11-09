@@ -56,6 +56,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: my-artifact
+      - name: Replace sonar version based on package.json
+        run: |
+          NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+          sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
       - name: SonarCloud scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
