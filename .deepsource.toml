@@ -19,4 +19,3 @@ enabled = true
   module_system = "commonjs"
   dependency_file_paths = [ "package.json" ]
   ecma_version = "2020"
-  style_guide = "standard"
