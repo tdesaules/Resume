@@ -19,3 +19,4 @@ enabled = true
   ]
   plugins = ["vue"]
   style_guide = "standard"
+  module_system = "commonjs"
