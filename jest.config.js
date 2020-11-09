@@ -19,5 +19,6 @@ module.exports = { // skipcq: JS-0125
   ],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{vue,js}', '!**/node_modules/**'],
-  coverageReporters: ['cobertura', 'lcov']
+  coverageReporters: ['cobertura', 'lcov'],
+  testResultsProcessor: "jest-sonar-reporter"
 }

@@ -37,12 +37,9 @@
       ]
     ]
   },
-  "jest": {
-    "testResultsProcessor": "jest-sonar-reporter"
-  },
   "jestSonar": {
     "reportPath": "coverage",
-    "reportFile": "tests.xml"
+    "reportFile": "tests-report.xml"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
