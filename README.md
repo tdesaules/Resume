@@ -65,11 +65,29 @@ code analyse:
 - <https://deepsource.io/>
 - <https://sonarcloud.io/> 
 
-security :
+security:
 - <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
 - <https://www.sonatype.com/depshield/>
+- <https://app.snyk.io/>
 
 ### Github Actions Pipeline
+
+code analyse:
+- <https://sonarcloud.io/>
+
+unit test:
+- <https://jestjs.io/>
+
+linter:
+- <https://eslint.org/>
+
+security:
+- <https://app.snyk.io/>
+- <https://www.shiftleft.io/>
+- <https://securitylab.github.com/tools/codeql>
+
+deployment:
+- <https://vercel.com/>
 
 ### Azure DevOps Pipeline
 

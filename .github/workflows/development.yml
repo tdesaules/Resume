@@ -5,6 +5,23 @@ on:
     branches: [ develop ]
 
 jobs:
+  snyk:
+    name: Snyk Analysis
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Github repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Snyk scan
+        run: |
+          npm install --global snyk
+          snyk auth $SNYK_TOKEN
+          snyk monitor --project-name=@github-action/resume
+          snyk test --project-name=@github-action/resume
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   release-develop:
     name: Deploy Develop Branch
     if: ${{ github.ref == 'refs/heads/develop' }}
@@ -27,5 +44,9 @@ jobs:
         run: |
           npm install --global vercel
           mkdir .vercel
-          echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}' > .vercel/project.json
-          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+          echo "{"orgId":"VERCEL_ORGID","projectId":"$VERCEL_PROJECTID_DEV"}" > .vercel/project.json
+          vercel --token $VERCEL_TOKEN --prod --confirm
+        env:
+          VERCEL_ORGID: ${{ secrets.VERCEL_ORGID }}
+          VERCEL_PROJECTID_DEV: ${{ secrets.VERCEL_PROJECTID_DEV }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
