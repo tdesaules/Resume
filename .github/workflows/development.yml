@@ -22,8 +22,8 @@ jobs:
         run: |
           npm install --global snyk
           snyk auth $SNYK_TOKEN
-          snyk monitor --project-name=@github-action/resume-dev
-          snyk test --project-name=@github-action/resume-dev
+          snyk monitor --dev --project-name=@github-action/resume-dev
+          snyk test --dev --project-name=@github-action/resume-dev
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   release-develop:
