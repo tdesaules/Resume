@@ -26,5 +26,9 @@ jobs:
       - name: Deploy to Vercel
         run: |
           npm install --global vercel
-          mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
-          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+          mkdir .vercel && echo "{\"orgId\":\"$VERCEL_ORGID\",\"projectId\":\"$VERCEL_PROJECTID_PRD\"}" > .vercel/project.json
+          vercel --token $VERCEL_TOKEN --prod --confirm
+        env:
+          VERCEL_ORGID: ${{ secrets.VERCEL_ORGID }}
+          VERCEL_PROJECTID_PRD: ${{ secrets.VERCEL_PROJECTID_PRD }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
