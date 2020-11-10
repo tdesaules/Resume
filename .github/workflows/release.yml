@@ -1,10 +1,8 @@
-name: Release on Production
+name: Release
 
 on:
   push:
     branches: [ master ]
-  release:
-    types: [ created, published ]
 
 jobs:
   build:
@@ -50,7 +48,7 @@ jobs:
             VERSION.md
           if-no-files-found: error
   sonarqube:
-    name: SonarQube
+    name: SonarQube Analysis
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     needs: build
@@ -97,26 +95,3 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  deploy:
-    name: Deploy release
-    if: ${{ github.event_name == 'release' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@tdesaules'
-      - name: Install npm resume package
-        run: |
-          TAG=$(echo $GITHUB_REF | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
-          npm install @tdesaules/resume@$TAG
-          mv node_modules/@tdesaules/resume/dist .
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Deploy to Vercel
-        run: |
-          npm install --global vercel
-          mkdir .vercel && echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_PRD }}"}' > .vercel/project.json
-          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
