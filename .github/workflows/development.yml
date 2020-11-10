@@ -47,7 +47,7 @@ jobs:
         run: |
           npm install --global vercel
           mkdir .vercel
-          echo "{"orgId":"VERCEL_ORGID","projectId":"$VERCEL_PROJECTID_DEV"}" > .vercel/project.json
+          echo "{"orgId":"$VERCEL_ORGID","projectId":"$VERCEL_PROJECTID_DEV"}" > .vercel/project.json
           cat .vercel/project.json
           vercel --token $VERCEL_TOKEN --prod --confirm
         env:
