@@ -21,11 +21,9 @@ jobs:
       - name: Snyk scan
         run: |
           npm install --global snyk
-          snyk auth $SNYK_TOKEN
+          snyk auth ${{ secrets.SNYK_TOKEN }}
           snyk monitor --project-name=@github-action/resume-dev
           snyk test --project-name=@github-action/resume-dev
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   release-develop:
     name: Deploy Develop Branch
     if: ${{ github.ref == 'refs/heads/develop' }}
@@ -47,10 +45,6 @@ jobs:
         run: |
           npm install --global vercel
           mkdir .vercel
-          echo "{"orgId":"$VERCEL_ORGID","projectId":"$VERCEL_PROJECTID_DEV"}" > .vercel/project.json
+          echo "{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}" > .vercel/project.json
           cat .vercel/project.json
-          vercel --token $VERCEL_TOKEN --prod --confirm
-        env:
-          VERCEL_ORGID: ${{ secrets.VERCEL_ORGID }}
-          VERCEL_PROJECTID_DEV: ${{ secrets.VERCEL_PROJECTID_DEV }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
