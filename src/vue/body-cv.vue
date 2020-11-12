@@ -72,18 +72,19 @@
             i.fas.fa-angle-right.has-right-margin
             | {{ study.en.school }} [ {{ study.en.degree }} ]
     .tile.is-vertical.is-parent.is-4
-      .card.tile.is-child.box.has-no-padding.is-hidden-touch
-        .card-image
-          figure.image.is-4by3
-            img(v-bind:src='me')
-        .card-content
-          .media
-            .container.is-vertical-center
-              .media-content
-                p.title.is-4.has-text-title {{ cv.card.name }}
-                p.has-text-base {{ cv.card.mail }}
-                p.has-text-base {{ cv.card.phone }}
-                p.has-text-base {{ cv.card.address }}
+      .tile.is-child.box.has-no-padding.is-hidden-touch
+        .card
+          .card-image
+            figure.image.is-4by3
+              img(v-bind:src='me')
+          .card-content
+            .media
+              .container.is-vertical-center
+                .media-content
+                  p.title.is-4.has-text-title {{ cv.card.name }}
+                  p.has-text-base {{ cv.card.mail }}
+                  p.has-text-base {{ cv.card.phone }}
+                  p.has-text-base {{ cv.card.address }}
       .tile.is-child.box
         p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'fr'") {{ cv.tongue.title.fr.value }}
         p.title.is-4.is-marginless.has-small-bottom-padding.has-text-title(v-if="language === 'en'") {{ cv.tongue.title.en.value }}
