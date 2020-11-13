@@ -71,8 +71,9 @@ stages:
               versionSpec: '12.x'
             displayName: Setup node
           - script: |
+              ls -l
               npm install --global netlify-cli
-              netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir dist --prod
+              netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --prod
             displayName: install netlify cli and deploy
             env:
               NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
