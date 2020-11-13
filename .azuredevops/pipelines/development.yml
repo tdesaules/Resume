@@ -4,14 +4,13 @@ trigger:
   branches:
     include: [ develop ]
 
-
 pool:
   vmImage: 'ubuntu-latest'
 
 stages:
   - stage: checkout
     displayName: Checkout
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
     variables:
       - group: resume
     jobs:
