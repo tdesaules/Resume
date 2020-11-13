@@ -1,0 +1,65 @@
+name: Development $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger:
+  branches:
+    include: [ develop ]
+
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: checkout
+    displayName: Checkout
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: resume
+    jobs:
+      - job: checkout
+        displayName: Checkout
+        steps:
+          - checkout: self
+            fetchDepth: 0
+  - stage: setup_node
+    displayName: Setup Node 
+    dependsOn: checkout
+    jobs:
+      - job: setup_node
+        displayName: Setup Node
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+  - stage: prepare
+    displayName: Prepare
+    dependsOn: setup_node
+    jobs:
+      - job: snyk
+        displayName: Snyk
+        steps:
+          - script: | 
+              npm install --global snyk
+              snyk auth $SNYK_TOKEN
+              snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+              snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+            env:
+              SNYK_TOKEN: $(SNYK_TOKEN)
+      - job: build
+        displayName: Build
+        steps:
+          - script: |
+              npm install
+              npm run build:dev
+  - stage: deploy
+    displayName: Deploy
+    dependsOn: [ snyk, build ]
+    jobs:
+      - job: deploy
+        displayName: Netlify
+        steps:
+          - script: |
+              npm install --global netlify-cli
+              netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir dist --prod
+            env:
+              NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
+              NETLIFY_SITE_ID: $(NETLIFY_SITE_ID_DEV)
