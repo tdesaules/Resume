@@ -53,7 +53,7 @@ stages:
               npm run build:dev
             displayName: Build dev
           - publish: $(System.DefaultWorkingDirectory)/dist
-            artifact: my-artifact
+            artifact: dist
             displayName: Publish artifact
   - stage: deploy
     displayName: Deploy
@@ -67,15 +67,13 @@ stages:
         steps:
           - checkout: none
           - download: current
-            artifact: my-artifact
+            artifact: dist
             displayName: Download artifact
           - task: NodeTool@0
             inputs:
               versionSpec: '12.x'
             displayName: Setup node
           - script: |
-              mkdir dist
-              mv *.{jpg,png,html,js,css} dist/
               npm install --global netlify-cli
               netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir dist --prod
             displayName: install netlify cli and deploy
