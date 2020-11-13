@@ -16,6 +16,7 @@ stages:
     jobs:
       - job: snyk
         displayName: Snyk
+        timeoutInMinutes: 5
         steps:
           - checkout: self
             fetchDepth: 0
@@ -38,6 +39,7 @@ stages:
     jobs:
       - job: resume_development
         displayName: Resume Dev
+        timeoutInMinutes: 5
         steps:
           - checkout: self
             fetchDepth: 0
@@ -61,6 +63,7 @@ stages:
     jobs:
       - job: netlify
         displayName: Netlify
+        timeoutInMinutes: 5
         steps:
           - checkout: none
           - download: current
