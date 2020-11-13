@@ -75,7 +75,7 @@ stages:
             displayName: Setup node
           - script: |
               npm install --global netlify-cli
-              netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir dist --prod
+              netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir $(Pipeline.Workspace)/dist --prod
             displayName: install netlify cli and deploy
             env:
               NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
