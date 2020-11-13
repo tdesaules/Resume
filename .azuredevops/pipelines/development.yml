@@ -51,7 +51,7 @@ stages:
               npm run build:dev
   - stage: deploy
     displayName: Deploy
-    dependsOn: [ snyk, build ]
+    dependsOn: prepare
     jobs:
       - job: deploy
         displayName: Netlify
