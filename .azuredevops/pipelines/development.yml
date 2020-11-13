@@ -10,6 +10,7 @@ pool:
 stages:
   - stage: security
     displayName: Security
+    dependsOn: []
     variables:
       - group: resume
     jobs:
@@ -33,6 +34,7 @@ stages:
               SNYK_TOKEN: $(SNYK_TOKEN)
   - stage: build
     displayName: Build
+    dependsOn: []
     jobs:
       - job: resume_development
         displayName: Resume Dev
