@@ -66,6 +66,10 @@ stages:
           - download: current
             artifact: my-artifact
             displayName: Download artifact
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node
           - script: |
               npm install --global netlify-cli
               netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir dist --prod
