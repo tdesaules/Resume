@@ -94,7 +94,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: ShiftLeft vulnerability scan
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: DeepCode scan
         run: |
           pip --version
           pip install deepcode
