@@ -41,7 +41,7 @@ stages:
             inputs:
               command: publish
               publishRegistry: useFeed
-              publishFeed: resume/tdesaules
+              publishFeed: resume/packages
             displayName: Publish package to Azure Artifacts
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
