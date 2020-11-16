@@ -84,8 +84,8 @@ jobs:
           languages: javascript
       - name: CodeQL vulnerability scan
         uses: github/codeql-action/analyze@v1
-  shiftleft:
-    name: ShiftLeft Analysis
+  deepcode:
+    name: DeepCode Alnalysis
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
     runs-on: ubuntu-latest
     needs: test
@@ -96,14 +96,10 @@ jobs:
           fetch-depth: 0
       - name: ShiftLeft vulnerability scan
         run: |
-          mkdir bin
-          curl https://cdn.shiftleft.io/download/sl > bin/sl
-          chmod a+rx bin/sl
-          bin/sl auth --org "$SHIFTLEFT_ORG" --token "$SHIFTLEFT_TOKEN" --diagnostic
-          bin/sl analyze --app "resume" --cpg --js .
+          pip install deepcode
+          deepcode analyze --api-key $DEEPCODE_TOKEN --path src --with-linters --log-file=coverage/deepcode.log --result-text --severity warning
         env:
-          SHIFTLEFT_ORG: ${{ secrets.SHIFTLEFT_ORG }}
-          SHIFTLEFT_TOKEN: ${{ secrets.SHIFTLEFT_TOKEN }}
+          DEEPCODE_TOKEN: ${{ secrets.DEEPCODE_TOKEN }}
   snyk:
     name: Snyk Analysis
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
