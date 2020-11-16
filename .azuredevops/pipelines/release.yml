@@ -12,8 +12,8 @@ stages:
     displayName: Build
     dependsOn: []
     jobs:
-      - job: resume_development
-        displayName: Resume Dev
+      - job: release_production
+        displayName: Release Prod
         timeoutInMinutes: 5
         steps:
           - checkout: self
@@ -29,13 +29,13 @@ stages:
             displayName: Build prod
           - script: npm run test
             displayName: Run unit tests
-          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" $(Pipeline.Workspace)/coverage/tests-report.xml
+          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
             displayName: Change path in test report
           - script: |
-              npx eslint "src/**/*.{js,vue}" --format json --output-file $(Pipeline.Workspace)/coverage/eslint.json
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
               npx eslint "src/**/*.{js,vue}" --format stylish
             displayName: ESLint Analysis
-          - script: grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > $(Pipeline.Workspace)/VERSION.md
+          - script: grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
             displayName: Retrieve package version
           - task: Npm@1
             inputs:
