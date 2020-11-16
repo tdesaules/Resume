@@ -100,9 +100,9 @@ jobs:
           python-version: 3.8
       - name: DeepCode scan
         run: |
-          pip --version
           pip install deepcode
-          deepcode analyze --api-key $DEEPCODE_TOKEN --path src --with-linters --log-file=coverage/deepcode.log --result-text --severity warning
+          deepcode login --api-key $DEEPCODE_TOKEN
+          deepcode analyze --path . --with-linters --log-file=coverage/deepcode.log --result-text --severity warning
         env:
           DEEPCODE_TOKEN: ${{ secrets.DEEPCODE_TOKEN }}
   snyk:
