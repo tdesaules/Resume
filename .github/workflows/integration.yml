@@ -96,6 +96,7 @@ jobs:
           fetch-depth: 0
       - name: ShiftLeft vulnerability scan
         run: |
+          pip --version
           pip install deepcode
           deepcode analyze --api-key $DEEPCODE_TOKEN --path src --with-linters --log-file=coverage/deepcode.log --result-text --severity warning
         env:
