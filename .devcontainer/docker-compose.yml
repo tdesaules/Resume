@@ -5,7 +5,7 @@ services:
     networks:
       - development
     dns:
-      - coredns
+      - '172.16.254.253'
     container_name: resume
     build: 
       context: .
@@ -17,9 +17,9 @@ services:
       - '3000'
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.portainer.rule=Host(`resume.desaules.local`)'
-      - 'traefik.http.routers.portainer.entrypoints=web'
-      - 'traefik.http.services.portainer.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.resume.rule=Host(`resume.desaules.local`)'
+      - 'traefik.http.routers.resume.entrypoints=web'
+      - 'traefik.http.services.resume.loadbalancer.server.port=3000'
 
 networks:
   development:
