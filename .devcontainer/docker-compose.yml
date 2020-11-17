@@ -1,13 +1,11 @@
-version: '3.7'
+version: '3.8'
 
 services:
   resume:
     networks:
-    - traefik
+      - development
     dns:
-      - consul-server
-      - 8.8.8.8
-      - 8.8.4.4
+      - coredns
     container_name: resume
     build: 
       context: .
@@ -16,14 +14,13 @@ services:
       - ..:/workspace/resume:cached
     command: sleep infinity
     ports:
-      - "3000:3000"
+      - '3000'
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.resume.rule=Host(`ae-resume.service.consul`)"
-      - "traefik.http.routers.resume.entrypoints=web"
-      - 'SERVICE_3000_NAME=resume'
-      - 'SERVICE_3000_TAGS=3000,http'
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.portainer.rule=Host(`resume.desaules.local`)'
+      - 'traefik.http.routers.portainer.entrypoints=web'
+      - 'traefik.http.services.portainer.loadbalancer.server.port=3000'
 
 networks:
-  traefik:
+  development:
     external: true
