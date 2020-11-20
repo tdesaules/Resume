@@ -17,6 +17,7 @@ services:
       - '3000'
     labels:
       - 'traefik.enable=true'
+      - 'traefik.http.routers.resume.service=resume'
       - 'traefik.http.routers.resume.rule=Host(`resume.desaules.local`)'
       - 'traefik.http.routers.resume.entrypoints=web'
       - 'traefik.http.services.resume.loadbalancer.server.port=3000'
