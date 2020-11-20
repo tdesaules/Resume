@@ -10,5 +10,6 @@
 	"deepcode.deepcode",
 	"whitesource.whitesource-advise",
 	"sonarsource.sonarlint-vscode",
+	"snyk-security.vscode-vuln-cost"
 ]
 }
