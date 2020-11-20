@@ -1,8 +1,10 @@
 name: Release $(Date:yyyyMMdd)$(Rev:.rr)
 
 trigger:
+  batch: true
   branches:
     include: [ master ]
+pr: none
 
 pool:
   vmImage: 'ubuntu-latest'
