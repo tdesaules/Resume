@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Resume webapp integration with vue.js webpack based and bulma.io
+Resume webapp integration with vue.js webpack and bulma.io
 
-## Getting Started
+## Init project and dependencies
 
 Installation process to init the app.
 
@@ -27,14 +27,14 @@ Init webpack base
 npm install --save-dev webpack webpack-cli webpack-dev-server html-webpack-plugin clean-webpack-plugin webpack-dev-middleware koa-webpack-dev-middleware webpack-merge terser-webpack-plugin
 ```
 
-Node.js / Koa.js
+Init Node.js / Koa.js
 
 ```shell
 npm install --save-dev koa koa-static koa-webpack
 npm install --save-dev node-fetch
 ```
 
-Framework HTML / CSS / JavaScript
+Init Framework HTML / CSS / JavaScript
 
 ```shell
 npm install --save-dev pug pug-plain-loader
@@ -47,6 +47,14 @@ npm install --save-dev bulma
 npm install --save-dev jest @vue/test-utils vue-jest jest-transform-stub babel-jest babel-core@^7.0.0-bridge.0
 ```
 
+## Init workspace
+
+```shell
+git clone https://github.com/tdesaules/resume.git
+cd resume
+npm install
+```
+
 ## Build and Test
 
 ```shell
@@ -55,41 +63,58 @@ npm run build:prod
 npm run start:watch
 npm run start:dev
 npm run start:prod
+npm run test
 ```
 
 ## CI / CD
 
-### Embedded : Github Repository
-
-code analyse:
-- <https://deepsource.io/>
-- <https://sonarcloud.io/> 
+### IDE (Visual Studio Code):
 
 security:
-- <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
-- <https://www.sonatype.com/depshield/>
-- <https://app.snyk.io/>
+- Deepcode: <https://www.deepcode.ai/>
+- WhiteSource Bolt: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
+
+code quality:
+- SonarLint: <https://www.sonarsource.com/products/sonarlint/>
+
+### Github Repository
+
+security:
+- WhiteSource Bolt for GitHub: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
+- Deepcode: <https://www.deepcode.ai/>
+
+code quality:
+- Codacy: <https://codacy.com/>
+- SonarCloud: <https://sonarcloud.io/>
 
 ### Github Actions Pipeline
 
-code analyse:
-- <https://sonarcloud.io/>
-
-unit test:
-- <https://jestjs.io/>
-
-linter:
-- <https://eslint.org/>
-
 security:
-- <https://app.snyk.io/>
-- <https://www.shiftleft.io/>
-- <https://securitylab.github.com/tools/codeql>
+- Snyk: <https://snyk.io/>
 
-deployment:
-- <https://vercel.com/>
+unit tests:
+- Jest: <https://jestjs.io/>
+
+code quality:
+- SonarQube: <https://www.sonarqube.org/>
+- ESLint: <https://eslint.org/>
+
+deploy:
+- Vercel: <https://vercel.com/>
 
 ### Azure DevOps Pipeline
+
+security:
+- Snyk: <https://snyk.io/>
+
+unit tests:
+- 
+
+code quality:
+- 
+
+deploy:
+- Netlify: <https://netlify.com/>
 
 ## Contribute
 
@@ -97,8 +122,10 @@ deployment:
 
 ## Ressource
 
-- <https://dev.azure.com/tdesaules/resume-webpack/>
+- <https://github.com/tdesaules/resume> 
+- <https://dev.azure.com/tdesaules/resume/>
 - <https://webpack.js.org/>
 - <https://vuejs.org/>
-- <https://vue-loader.vuejs.org/>
 - <https://bulma.io/>
+- <https://eslint.org/>
+- <https://jestjs.io/>

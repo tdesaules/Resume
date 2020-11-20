@@ -68,42 +68,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  codeql:
-    name: CodeQL Analysis
-    if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: CodeQL initialization
-        uses: github/codeql-action/init@v1
-        with:
-          languages: javascript
-      - name: CodeQL vulnerability scan
-        uses: github/codeql-action/analyze@v1
-  deepcode:
-    name: DeepCode Alnalysis
-    if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-      - name: DeepCode scan
-        run: |
-          pip install deepcode
-          deepcode --api-key $DEEPCODE_TOKEN analyze --path . --with-linters --log-file=deepcode.log --result-text --severity warning
-        env:
-          DEEPCODE_TOKEN: ${{ secrets.DEEPCODE_TOKEN }}
   snyk:
     name: Snyk Analysis
     if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}

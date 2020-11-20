@@ -6,5 +6,9 @@
   "settings": {
     "terminal.integrated.shell.linux": "/bin/ash"
   },
-  "extensions": []
+  "extensions": [
+	"deepcode.deepcode",
+	"whitesource.whitesource-advise",
+	"sonarsource.sonarlint-vscode",
+]
 }
