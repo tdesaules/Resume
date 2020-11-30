@@ -1,0 +1,52 @@
+name: Integration $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger: none
+pr:
+  autoCancel: false
+  branches:
+    include: [ master ]
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: test
+    displayName: Unit Tests
+    dependsOn: []
+    jobs:
+      - job: test
+        displayName: Run unit tests and lint
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node and npm
+          - script: |
+              npm install
+              npm run test
+            displayName: Run unit tests
+          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+            displayName: Change path in test report
+          - script: |
+              npx eslint "src/**/*.{js,vue}" --format stylish
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+            displayName: ESLint scan
+          - task: Npm@1
+            inputs:
+              command: view
+              publishRegistry: useFeed
+              publishFeed: resume/packages
+            displayName: View package on azure artifacts
+          - script: |
+              npm view @tdesaules/resume
+              CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              tools/compare --current_version $CURRENT_VERSION --next_version $NEXT_VERSION
+            displayName: Check if version correct
+          - publish: $(System.DefaultWorkingDirectory)/coverage
+            artifact: coverage
+            displayName: Publish coverage artifact

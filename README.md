@@ -4,7 +4,6 @@
 ![Version](https://img.shields.io/github/package-json/v/tdesaules/resume?color=blue)
 ![Code Size](https://img.shields.io/github/languages/code-size/tdesaules/resume)
 ![Release](https://img.shields.io/github/v/release/tdesaules/resume?color=blue)
-![Release Date](https://img.shields.io/github/release-date/tdesaules/resume?color=blue)
 ![Last Comit](https://img.shields.io/github/last-commit/tdesaules/resume)
 ![Issues](https://img.shields.io/github/issues-raw/tdesaules/resume)
 
@@ -12,6 +11,7 @@
 ![Uptime](https://img.shields.io/uptimerobot/ratio/m786436753-308971c88c0c631bb6b46c02)
 
 ![SonarQube](https://img.shields.io/sonar/quality_gate/tdesaules_resume?label=quality%20gate&logo=sonarqube&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)
+![Snyk Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/tdesaules/resume?logo=snyk&logoColor=white)
 
 ![Github Development](https://img.shields.io/github/workflow/status/tdesaules/resume/Development?label=development&logo=github-actions&logoColor=white)
 ![Github Integration](https://img.shields.io/github/workflow/status/tdesaules/resume/Integration?label=integration&logo=github-actions&logoColor=white)
