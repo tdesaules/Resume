@@ -35,12 +35,6 @@ stages:
               npx eslint "src/**/*.{js,vue}" --format stylish
               npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
             displayName: ESLint scan
-          - task: Npm@1
-            inputs:
-              command: view
-              publishRegistry: useFeed
-              publishFeed: resume/packages
-            displayName: View package on azure artifacts
           - script: |
               npm view @tdesaules/resume
               CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
