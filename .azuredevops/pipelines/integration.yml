@@ -36,7 +36,7 @@ stages:
               npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
             displayName: ESLint scan
           - script: |
-              mv .azuredevops/.npmrc .npmrc
+              npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
               npm view @tdesaules/resume
               CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
               NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
