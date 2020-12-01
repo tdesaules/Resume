@@ -29,7 +29,8 @@ stages:
               npm install
               npm run test
             displayName: Run unit tests
-          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+          - script: |
+              sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
             displayName: Change path in test report
           - script: |
               npx eslint "src/**/*.{js,vue}" --format stylish
@@ -45,3 +46,33 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/coverage
             artifact: coverage
             displayName: Publish coverage artifact
+  - stage: 
+    displayName: Code Quality
+    dependsOn: [test]
+    variables:
+      - group: resume
+    jobs:
+      - job: Codacy
+        displayName: Run unit tests and lint
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - download: current
+            artifact: coverage
+            displayName: Download artifact
+          - script: |
+              curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
+              cd codacy-analysis-cli-* && sudo make install
+            displayName: Download and install Codacy
+          - script: |
+              codacy-analysis-cli analyze --directory src --project-token $CODACY_TOKEN --allow-network --verbose --upload
+            displayName: Codacy analysis
+            env:
+              CODACY_TOKEN: $(CODACY_TOKEN)
+          - script: |
+              bash <(curl -Ls https://coverage.codacy.com/get.sh) report
+            displayName: Codacy coverage
+            env:
+              CODACY_TOKEN: $(CODACY_TOKEN)
