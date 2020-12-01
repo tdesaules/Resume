@@ -50,66 +50,66 @@ npm run test
 
 security:
 -   Deepcode: <https://www.deepcode.ai/>
-- WhiteSource Bolt: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
-- Snyk: <https://snyk.io/>
+-   WhiteSource Bolt: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
+-   Snyk: <https://snyk.io/>
 
 code quality:
-- SonarLint: <https://www.sonarsource.com/products/sonarlint/>
+-   SonarLint: <https://www.sonarsource.com/products/sonarlint/>
 
 ### Github Repository
 
 security:
-- WhiteSource Bolt for GitHub: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
-- Deepcode: <https://www.deepcode.ai/>
+-   WhiteSource Bolt for GitHub: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
+-   Deepcode: <https://www.deepcode.ai/>
 
 code quality:
-- Codacy: <https://codacy.com/>
-- SonarCloud: <https://sonarcloud.io/>
+-   Codacy: <https://codacy.com/>
+-   SonarCloud: <https://sonarcloud.io/>
 
 ### Github Actions Pipeline
 
 security:
-- Snyk: <https://snyk.io/>
+-   Snyk: <https://snyk.io/>
 
 unit tests:
-- Jest: <https://jestjs.io/>
+-   Jest: <https://jestjs.io/>
 
 code quality:
-- SonarQube: <https://www.sonarqube.org/>
+-   SonarQube: <https://www.sonarqube.org/>
 
 deploy:
-- Vercel: <https://vercel.com/>
+-   Vercel: <https://vercel.com/>
 
 ### Azure DevOps Pipeline
 
 security:
-- Snyk: <https://snyk.io/>
+-   Snyk: <https://snyk.io/>
 
 unit tests:
-- tbd
+-   tbd
 
 code quality:
-- tbd
+-   tbd
 
 deploy:
-- Netlify: <https://netlify.com/>
+-   Netlify: <https://netlify.com/>
 
 ### Scheduled
 
 ## Contribute
 
-- <tdesaules@outlook.com>
+-   <tdesaules@outlook.com>
 
 ## Ressource
 
-- <https://github.com/tdesaules/resume/>
-- <https://dev.azure.com/tdesaules/resume/>
-- <https://webpack.js.org/>
-- <https://vuejs.org/>
-- <https://bulma.io/>
-- <https://nodejs.org/>
-- <https://koajs.com/>
-- <https://eslint.org/>
-- <https://jestjs.io/>
-- <https://shields.io/>
-- <https://uptimerobot.com/>
+-   <https://github.com/tdesaules/resume/>
+-   <https://dev.azure.com/tdesaules/resume/>
+-   <https://webpack.js.org/>
+-   <https://vuejs.org/>
+-   <https://bulma.io/>
+-   <https://nodejs.org/>
+-   <https://koajs.com/>
+-   <https://eslint.org/>
+-   <https://jestjs.io/>
+-   <https://shields.io/>
+-   <https://uptimerobot.com/>
