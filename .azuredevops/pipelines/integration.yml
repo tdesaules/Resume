@@ -78,3 +78,28 @@ stages:
             displayName: Codacy coverage
             env:
               CODACY_TOKEN: $(CODACY_TOKEN)
+  - stage: security
+    displayName: Security
+    dependsOn: [test]
+    variables:
+      - group: resume
+    jobs:
+      - job: snyk
+        displayName: Snyk
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node and npm
+          - script: | 
+              npm install --global snyk
+              snyk auth $SNYK_TOKEN
+              snyk monitor --fail-on=patchable --project-name=@azure-pipeline/resume
+              snyk test --fail-on=patchable --project-name=@azure-pipeline/resume
+            displayName: Install Snyk and analyze
+            env:
+              SNYK_TOKEN: $(SNYK_TOKEN)
