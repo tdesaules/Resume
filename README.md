@@ -98,7 +98,7 @@ deploy:
 
 ## Contribute
 
--   <tdesaules@outlook.com>
+-   tdesaules@outlook.com
 
 ## Ressource
 
