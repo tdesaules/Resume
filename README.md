@@ -98,11 +98,11 @@ deploy:
 
 ## Contribute
 
-    - tdesaules@outlook.com
+    - <tdesaules@outlook.com>
 
 ## Ressource
 
-    - <https://github.com/tdesaules/resume> 
+    - <https://github.com/tdesaules/resume/>
     - <https://dev.azure.com/tdesaules/resume/>
     - <https://webpack.js.org/>
     - <https://vuejs.org/>
