@@ -9,4 +9,6 @@ exclude_paths:
   - src/specs/**
   - src/tests/**
   - codacy-analysis-cli-master/**
-  - '**/*.json'
+  - '**/config.json'
+  - package-lock.json
+  - package.json
