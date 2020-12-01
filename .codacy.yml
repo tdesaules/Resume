@@ -4,6 +4,7 @@ exclude_paths:
   - .devcontainer/**
   - .github/**
   - .vscode/**
-  - dist/**
-  - node_modules/**
-  - codacy-analysis-cli-master/**
+  - ./dist/**
+  - ./node_modules/**
+  - ./codacy-analysis-cli-master/**
+  - ./**.json
