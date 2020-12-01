@@ -13,3 +13,8 @@ exclude_paths:
   - package-lock.json
   - package.json
   - '*.md'
+  - webpack.common.js
+  - webpack.prod.js
+  - webpack.dev.js
+  - .eslintrc.js
+  - jest.config.js
