@@ -4,3 +4,4 @@ coverage
 .vercel
 .netlify
 bin
+codacy-analysis-cli-master

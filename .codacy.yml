@@ -8,3 +8,4 @@ exclude_paths:
   - node_modules/**
   - src/specs/**
   - src/tests/**
+  - codacy-analysis-cli-master/**
