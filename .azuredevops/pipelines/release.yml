@@ -1,0 +1,74 @@
+name: Release $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger:
+  batch: true
+  branches:
+    include: [ master ]
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: build
+    displayName: Build
+    dependsOn: []
+    jobs:
+      - job: release_prod
+        displayName: Release Prod
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node
+          - script: |
+              npm install
+              npm run build:prod
+            displayName: Build Prod
+          - script: npm run test
+            displayName: Run unit tests
+          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+            displayName: Change path in test report
+          - script: |
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+              npx eslint "src/**/*.{js,vue}" --format stylish
+            displayName: ESLint analysis
+          - script: grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
+            displayName: Retrieve package version
+          - task: Npm@1
+            inputs:
+              command: publish
+              publishRegistry: useFeed
+              publishFeed: resume/packages
+            displayName: Publish package to azure artifacts
+          - publish: $(System.DefaultWorkingDirectory)/dist
+            artifact: dist
+            displayName: Publish dist
+          - publish: $(System.DefaultWorkingDirectory)/coverage
+            artifact: coverage
+            displayName: Publish coverage
+          - publish: $(System.DefaultWorkingDirectory)/VERSION.md
+            artifact: version
+            displayName: Publish version
+  - stage: analysis
+    displayName: Analysis
+    dependsOn: [build]
+    jobs:
+      - job: codacy
+        displayName: Codacy
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - download: current
+            artifact: coverage
+            displayName: Download artifact
+          - script: |
+              curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
+              cd codacy-analysis-cli-* && sudo make install
+            displayName: Download Codacy

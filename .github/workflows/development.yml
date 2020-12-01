@@ -5,21 +5,42 @@ on:
     branches: [ develop ]
 
 jobs:
-  release-develop:
-    name: Deploy Develop Branch
+  snyk:
+    name: Snyk Analysis
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout github repository
+      - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Setup node.js and npm
+      - name: Setup node and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Snyk vulnerability scan
+        run: |
+          npm install --global snyk
+          snyk auth $SNYK_TOKEN
+          snyk monitor --dev --fail-on=patchable --project-name=@github-action/resume-dev
+          snyk test --dev --fail-on=patchable --project-name=@github-action/resume-dev
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  release-develop:
+    name: Deploy Development
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup node and npm
         uses: actions/setup-node@v1
         with:
           node-version: '12'
           registry-url: 'https://npm.pkg.github.com'
-      - name: Build
+      - name: Build application for dev
         run: |
           npm install
           npm run build:dev
@@ -27,5 +48,9 @@ jobs:
         run: |
           npm install --global vercel
           mkdir .vercel
-          echo '{"orgId":"${{ secrets.VERCEL_ORGID }}","projectId":"${{ secrets.VERCEL_PROJECTID_DEV }}"}' > .vercel/project.json
-          vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+          echo "{\"orgId\":\"$VERCEL_ORGID\",\"projectId\":\"$VERCEL_PROJECTID_DEV\"}" > .vercel/project.json
+          vercel --token $VERCEL_TOKEN --prod --confirm
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORGID: ${{ secrets.VERCEL_ORGID }}
+          VERCEL_PROJECTID_DEV: ${{ secrets.VERCEL_PROJECTID_DEV }}

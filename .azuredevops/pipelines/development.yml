@@ -1,0 +1,83 @@
+name: Development $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger:
+  branches:
+    include: [ develop ]
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: security
+    displayName: Security
+    dependsOn: []
+    variables:
+      - group: resume
+    jobs:
+      - job: snyk
+        displayName: Snyk
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node and npm
+          - script: | 
+              npm install --global snyk
+              snyk auth $SNYK_TOKEN
+              snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+              snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+            displayName: Install Snyk and analyze
+            env:
+              SNYK_TOKEN: $(SNYK_TOKEN)
+  - stage: build
+    displayName: Build
+    dependsOn: []
+    jobs:
+      - job: resume_development
+        displayName: Resume dev
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node and npm
+          - script: |
+              npm install
+              npm run build:dev
+            displayName: Build dev
+          - publish: $(System.DefaultWorkingDirectory)/dist
+            artifact: dist
+            displayName: Publish artifact
+  - stage: deploy
+    displayName: Deploy
+    dependsOn: [ security, build ]
+    variables:
+      - group: resume
+    jobs:
+      - job: netlify
+        displayName: Netlify
+        timeoutInMinutes: 5
+        steps:
+          - checkout: none
+          - download: current
+            artifact: dist
+            displayName: Download artifact
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node
+          - script: |
+              npm install --global netlify-cli
+              netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir $(Pipeline.Workspace)/dist --prod
+            displayName: Install Netlify cli and deploy
+            env:
+              NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
+              NETLIFY_SITE_ID: $(NETLIFY_SITE_ID_DEV)

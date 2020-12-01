@@ -7,18 +7,9 @@
     "terminal.integrated.shell.linux": "/bin/ash"
   },
   "extensions": [
-    "octref.vetur",
-    "syler.sass-indented",
-    "formulahendry.auto-close-tag",
-    "formulahendry.auto-rename-tag",
-    "formulahendry.code-runner",
-    "esbenp.prettier-vscode",
-    "streetsidesoftware.code-spell-checker",
-    "msjsdiag.debugger-for-chrome",
-    "ms-edgedevtools.vscode-edge-devtools",
-    "eamodio.gitlens",
-    "idleberg.icon-fonts",
-    "pkief.material-icon-theme",
-    "ms-vsts.team"
-  ]
+	"deepcode.deepcode",
+	"whitesource.whitesource-advise",
+	"sonarsource.sonarlint-vscode",
+	"snyk-security.vscode-vuln-cost"
+]
 }

@@ -1,0 +1,78 @@
+name: Integration $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger: none
+pr:
+  autoCancel: false
+  branches:
+    include: [ master ]
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: test
+    displayName: Unit Tests
+    dependsOn: []
+    jobs:
+      - job: test
+        displayName: Run unit tests and lint
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node and npm
+          - script: |
+              npm install
+              npm run test
+            displayName: Run unit tests
+          - script: |
+              sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+            displayName: Change path in test report
+          - script: |
+              npx eslint "src/**/*.{js,vue}" --format stylish
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+            displayName: ESLint scan
+          - script: |
+              npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
+              npm view @tdesaules/resume
+              CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              tools/compare --current_version $CURRENT_VERSION --next_version $NEXT_VERSION
+            displayName: Check if version correct
+          - publish: $(System.DefaultWorkingDirectory)/coverage
+            artifact: coverage
+            displayName: Publish coverage artifact
+  - stage: 
+    displayName: Code Quality
+    dependsOn: [test]
+    variables:
+      - group: resume
+    jobs:
+      - job: Codacy
+        displayName: Run unit tests and lint
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - download: current
+            artifact: coverage
+            displayName: Download artifact
+          - script: |
+              curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
+              cd codacy-analysis-cli-* && sudo make install
+            displayName: Download and install Codacy
+          - script: |
+              codacy-analysis-cli analyze --directory src --project-token $CODACY_TOKEN --allow-network --verbose --upload
+            displayName: Codacy analysis
+            env:
+              CODACY_TOKEN: $(CODACY_TOKEN)
+          - script: |
+              bash <(curl -Ls https://coverage.codacy.com/get.sh) report
+            displayName: Codacy coverage
+            env:
+              CODACY_TOKEN: $(CODACY_TOKEN)

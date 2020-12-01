@@ -18,7 +18,7 @@
         { "p" : "J'aime l'informatique depuis que je suis petit (merci Windows 95). <i class='far fa-grin-hearts'></i>" },
         { "p" : "Assembler son ordinateur, écouter le son gracieux d'un échec suite à une mise jour de bios, défragmentation son disque dur, ruiner son premier processeur avec un delid, mais surtout réussir la compilation de son kernel, illumer une led sur un Arduino, lancer son premier conteneur... <i class='far fa-grin-squint-tears'></i>"},
         { "p" : "Entre nous... je suis un geek." },
-        { "p" : "Ma filmographie, Star Wars, Jurassic Park, Matrix, Retour vers le futur, Star Trek, Alien. Ma bibliothèque, 1984, Asimov, Harry Potter, Esperanza 64. La Mega Drive, une vraie console ! Une maison qui ne repond pas au son de ma voix (#jarvis) n'est pas ma maison." },
+        { "p" : "Ma filmographie, Star Wars, Jurassic Park, Matrix, Retour vers le futur, Star Trek, Alien. Ma bibliothèque, 1984, Autre-Monde, Harry Potter, Esperanza 64. La Mega Drive, une vraie console ! Une maison qui ne repond pas au son de ma voix (#jarvis) n'est pas ma maison." },
         { "p" : "Bon, et l'aspect pro dans tout ça ?" },
         { "p" : "Après un passage éclair dans le monde du développement au début de mes études (Assembleur, C, C++, HTML, CSS, JavaScript, PHP, Java C#), je me suis réorienté sur l'infrastructure." },
         { "p" : "J'ai travaillé dans plusieurs sociétés, débutant sur des systèmes Linux et des applicatifs libres, pour finalement me diriger vers des technologies Microsoft, sans pour autant m'écarter de l'Open Source et des technologies Web." },
@@ -189,6 +189,60 @@
             "enddate" : "march 2014",
             "summary" : "",
             "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [ "" ]
+              }
+            ]
+          }
+        },
+        {
+          "name" : "Promovacances",
+          "fr" : {
+            "startdate" : "septembre 2010",
+            "enddate" : "septembre 2012",
+            "summary" : "",
+            "certifications" : [ "" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [ "" ]
+              }
+            ]
+          },
+          "en" : {
+            "startdate" : "september 2010",
+            "enddate" : "september 2014",
+            "summary" : "",
+            "certifications" : [ "" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [ "" ]
+              }
+            ]
+          }
+        },
+        {
+          "name" : "HomeAway",
+          "fr" : {
+            "startdate" : "septembre 2009",
+            "enddate" : "septembre 2010",
+            "summary" : "",
+            "certifications" : [ "" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [ "" ]
+              }
+            ]
+          },
+          "en" : {
+            "startdate" : "september 2009",
+            "enddate" : "september 2010",
+            "summary" : "",
+            "certifications" : [ "" ],
             "details" : [
               { 
                 "p" : "",
