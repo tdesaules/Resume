@@ -12,4 +12,4 @@ exclude_paths:
   - '**/config.json'
   - package-lock.json
   - package.json
-  - README.md
+  - '*.md'
