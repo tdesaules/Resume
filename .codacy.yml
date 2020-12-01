@@ -6,9 +6,4 @@ exclude_paths:
   - .vscode/**
   - dist/**
   - node_modules/**
-  - src/specs/**
-  - src/tests/**
   - codacy-analysis-cli-master/**
-  - '**/config.json'
-  - package-lock.json
-  - package.json
