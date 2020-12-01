@@ -98,16 +98,18 @@ deploy:
 
 ## Contribute
 
-    - <tdesaules@outlook.com>
+- <tdesaules@outlook.com>
 
 ## Ressource
 
-    - <https://github.com/tdesaules/resume/>
-    - <https://dev.azure.com/tdesaules/resume/>
-    - <https://webpack.js.org/>
-    - <https://vuejs.org/>
-    - <https://bulma.io/>
-    - <https://eslint.org/>
-    - <https://jestjs.io/>
-    - <https://shields.io/>
-    - <https://uptimerobot.com/>
+* <https://github.com/tdesaules/resume/>
+* <https://dev.azure.com/tdesaules/resume/>
+* <https://webpack.js.org/>
+* <https://vuejs.org/>
+* <https://bulma.io/>
+* <https://nodejs.org/>
+* <https://koajs.com/>
+* <https://eslint.org/>
+* <https://jestjs.io/>
+* <https://shields.io/>
+* <https://uptimerobot.com/>
