@@ -49,9 +49,9 @@ npm run test
 ### IDE (Visual Studio Code)
 
 security:
-    - Deepcode: <https://www.deepcode.ai/>
-    - WhiteSource Bolt: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
-    - Snyk: <https://snyk.io/>
+- Deepcode: <https://www.deepcode.ai/>
+- WhiteSource Bolt: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
+- Snyk: <https://snyk.io/>
 
 code quality:
     - SonarLint: <https://www.sonarsource.com/products/sonarlint/>
