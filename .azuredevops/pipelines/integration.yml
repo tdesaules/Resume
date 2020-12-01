@@ -48,7 +48,7 @@ stages:
             displayName: Publish coverage artifact
   - stage: 
     displayName: Code Quality
-    dependsOn: [test]
+    dependsOn: [ test ]
     variables:
       - group: resume
     jobs:
@@ -80,7 +80,7 @@ stages:
               CODACY_TOKEN: $(CODACY_TOKEN)
   - stage: security
     displayName: Security
-    dependsOn: [test]
+    dependsOn: [ test ]
     variables:
       - group: resume
     jobs:

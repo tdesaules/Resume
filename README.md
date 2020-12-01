@@ -137,6 +137,8 @@ code quality:
 deploy:
   - Netlify: <https://netlify.com/>
 
+### Scheduled
+
 ## Contribute
 
   - tdesaules@outlook.com

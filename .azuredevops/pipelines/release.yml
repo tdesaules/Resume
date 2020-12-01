@@ -56,7 +56,7 @@ stages:
             displayName: Publish version
   - stage: analysis
     displayName: Analysis
-    dependsOn: [build]
+    dependsOn: [ build ]
     jobs:
       - job: codacy
         displayName: Codacy
