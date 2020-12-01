@@ -12,8 +12,3 @@ exclude_paths:
   - '**/config.json'
   - package-lock.json
   - package.json
-  - webpack.common.js
-  - webpack.prod.js
-  - webpack.dev.js
-  - .eslintrc.js
-  - jest.config.js
