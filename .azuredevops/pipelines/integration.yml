@@ -67,7 +67,7 @@ stages:
               cd codacy-analysis-cli-* && sudo make install
             displayName: Download and install Codacy
           - script: |
-              codacy-analysis-cli analyze --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
+              codacy-analysis-cli analyze --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --format json --allow-network --upload
             displayName: Codacy analysis
             env:
               CODACY_USER: $(CODACY_TOKEN)
