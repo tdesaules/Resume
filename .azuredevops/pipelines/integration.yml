@@ -74,8 +74,8 @@ stages:
               CODACY_PROJECT: $(CODACY_PROJECT)
               CODACY_TOKEN: $(CODACY_CLI_TOKEN)
           - script: |
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --coverage-reports $(System.DefaultWorkingDirectory)/coverage/lcov.info --partial
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --coverage-reports $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml --partial
+              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --coverage-reports $(Pipeline.Workspace)/coverage/lcov.info --partial
+              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --coverage-reports $(Pipeline.Workspace)/coverage/cobertura-coverage.xml --partial
               bash <(curl -Ls https://coverage.codacy.com/get.sh) final
             displayName: Codacy coverage
             env:
