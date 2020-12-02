@@ -77,7 +77,7 @@ stages:
               bash <(curl -Ls https://coverage.codacy.com/get.sh) report
             displayName: Codacy coverage
             env:
-              CODACY_TOKEN: $(CODACY_TOKEN)
+              CODACY_PROJECT_TOKEN: $(CODACY_TOKEN)
   - stage: security
     displayName: Security
     dependsOn: [ test ]
