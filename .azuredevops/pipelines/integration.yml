@@ -67,16 +67,16 @@ stages:
               cd codacy-analysis-cli-* && sudo make install
             displayName: Download and install Codacy
           - script: |
-              codacy-analysis-cli analyze --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
+              codacy-analysis-cli analyze --commit-uuid $(Build.SourceVersion) --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
             displayName: Codacy analysis
             env:
               CODACY_USER: $(CODACY_USER)
               CODACY_PROJECT: $(CODACY_PROJECT)
               CODACY_TOKEN: $(CODACY_CLI_TOKEN)
           - script: |
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --coverage-reports $(Pipeline.Workspace)/coverage/lcov.info --partial
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --coverage-reports $(Pipeline.Workspace)/coverage/cobertura-coverage.xml --partial
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) final
+              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/lcov.info --partial
+              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/cobertura-coverage.xml --partial
+              bash <(curl -Ls https://coverage.codacy.com/get.sh) final --commit-uuid $(Build.SourceVersion)
             displayName: Codacy coverage
             env:
               CODACY_PROJECT_TOKEN: $(CODACY_COVERAGE_TOKEN)
