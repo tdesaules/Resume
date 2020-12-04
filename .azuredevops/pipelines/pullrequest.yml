@@ -14,7 +14,7 @@ stages:
   - stage: test
     displayName: Tests
     dependsOn: []
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+    condition: eq(variables['System.PullRequest.SourceBranch'], 'develop')
     jobs:
       - job: jest
         displayName: Jest
