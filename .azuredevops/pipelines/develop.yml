@@ -85,8 +85,12 @@ stages:
           - checkout: self
             fetchDepth: 0
             displayName: Checkout repository
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.6' 
+              addToPath: true 
           - script: |
-              pip install deepcode
+              python -m pip install deepcode
               deepcode --help
             displayName: Deepcode
             env:
