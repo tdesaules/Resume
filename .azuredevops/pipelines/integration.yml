@@ -22,8 +22,6 @@ stages:
           - checkout: self
             fetchDepth: 0
             displayName: Checkout repository
-          - script: |
-              git show --oneline
           - task: NodeTool@0
             inputs:
               versionSpec: '12.x'
@@ -54,6 +52,7 @@ stages:
     dependsOn: [ test ]
     variables:
       - group: resume
+      - commit: null
     jobs:
       - job: Codacy
         displayName: Run unit tests and lint
@@ -65,6 +64,11 @@ stages:
           - download: current
             artifact: coverage
             displayName: Download artifact
+          - script: |
+              ##vso[task.setvariable variable=commit]git show --oneline | cut -d ' ' -f 3
+              echo ${{ variables.commit }}
+              echo $(commit)
+            displayName: Get initial commit value
           - script: |
               curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
               cd codacy-analysis-cli-* && sudo make install
