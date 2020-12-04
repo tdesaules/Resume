@@ -78,6 +78,19 @@ stages:
             displayName: Install Snyk and analyze
             env:
               SNYK_TOKEN: $(SNYK_TOKEN)
+      - job: deepcode
+        displayName: DeepCode
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - script: |
+              pip install deepcode
+              deepcode analyze --path $(System.DefaultWorkingDirectory)
+            displayName: Install Deepcode and analyze
+            env:
+              DEEPCODE_API_KEY: $(DEEPCODE_TOKEN)
   - stage: deploy
     displayName: Deploy
     dependsOn: [security,quality]
