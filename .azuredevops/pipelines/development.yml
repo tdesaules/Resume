@@ -49,17 +49,12 @@ stages:
               cd codacy-analysis-cli-* && sudo make install
             displayName: Download and install Codacy
           - script: |
-              echo "test"
-              git show --oneline | cut -d ' ' -f 3
-              COMMIT=$(git show --oneline | cut -d ' ' -f 3)
-              echo $COMMIT
-              codacy-analysis-cli analyze --commit-uuid $COMMIT --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
+              codacy-analysis-cli analyze --commit-uuid $(Build.SourceVersion) --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
             displayName: Codacy analysis
             env:
               CODACY_USER: $(CODACY_USER)
               CODACY_PROJECT: $(CODACY_PROJECT)
               CODACY_TOKEN: $(CODACY_CLI_TOKEN)
-
   - stage: security
     displayName: Security
     dependsOn: [build]
