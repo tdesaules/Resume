@@ -51,9 +51,6 @@ npm run test
 security:
 -   Snyk: <https://snyk.io/>
 
-unit tests:
--   Jest: <https://jestjs.io/>
-
 code quality:
 -   SonarQube: <https://www.sonarqube.org/>
 
@@ -64,9 +61,6 @@ deploy:
 
 security:
 -   Snyk: <https://snyk.io/>
-
-unit tests:
--   tbd
 
 code quality:
 -   tbd
