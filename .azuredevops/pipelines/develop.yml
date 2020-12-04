@@ -54,7 +54,7 @@ stages:
             env:
               CODACY_USER: $(CODACY_USER)
               CODACY_PROJECT: $(CODACY_PROJECT)
-              CODACY_TOKEN: $(CODACY_CLI_TOKEN)
+              CODACY_TOKEN: $(CODACY_TOKEN)
   - stage: security
     displayName: Security
     dependsOn: [build]
