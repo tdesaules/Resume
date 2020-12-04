@@ -1,8 +1,8 @@
-name: develop $(Date:yyyyMMdd)$(Rev:.rr)
+name: push $(Date:yyyyMMdd)$(Rev:.rr)
 
 trigger:
   branches:
-    include: [develop]
+    include: ['*']
 pr: none
 
 pool:
