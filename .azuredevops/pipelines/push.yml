@@ -12,11 +12,11 @@ stages:
   - stage: build
     displayName: Build
     dependsOn: []
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
     jobs:
       - job: dev
         displayName: Dev
         timeoutInMinutes: 5
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
         steps:
           - checkout: self
             fetchDepth: 0
@@ -32,15 +32,16 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
             displayName: Publish dist artifact
-  - stage: deploy
-    displayName: Deploy
+  - stage: netlify
+    displayName: Netlify
     dependsOn: [build]
     variables:
       - group: resume
     jobs:
-      - job: netlify
-        displayName: Netlify
+      - job: dev
+        displayName: Dev
         timeoutInMinutes: 5
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
         steps:
           - checkout: none
           - download: current
