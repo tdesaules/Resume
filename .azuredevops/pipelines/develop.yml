@@ -13,8 +13,8 @@ stages:
     displayName: Build
     dependsOn: []
     jobs:
-      - job: build
-        displayName: Build
+      - job: dev
+        displayName: Dev
         timeoutInMinutes: 5
         steps:
           - checkout: self

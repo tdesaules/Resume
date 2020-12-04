@@ -4,7 +4,7 @@ trigger: none
 pr:
   autoCancel: false
   branches:
-    include: [ master ]
+    include: [master]
   drafts: false
 
 pool:
@@ -12,11 +12,11 @@ pool:
 
 stages:
   - stage: test
-    displayName: Unit Tests
+    displayName: Tests
     dependsOn: []
     jobs:
-      - job: test
-        displayName: Run unit tests and lint
+      - job: jest
+        displayName: Jest
         timeoutInMinutes: 5
         steps:
           - checkout: self

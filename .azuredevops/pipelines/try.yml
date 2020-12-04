@@ -9,7 +9,7 @@ pool:
 stages:
   - stage: quality
     displayName: Quality
-    dependsOn: [build]
+    dependsOn: []
     variables:
       - group: resume
     jobs:
