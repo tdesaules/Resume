@@ -52,7 +52,7 @@ stages:
     dependsOn: [ test ]
     variables:
       - group: resume
-      - commit: null
+      - name: commit
     jobs:
       - job: Codacy
         displayName: Run unit tests and lint
