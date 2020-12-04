@@ -49,6 +49,8 @@ stages:
               cd codacy-analysis-cli-* && sudo make install
             displayName: Download and install Codacy
           - script: |
+              echo "test"
+              git show --oneline | cut -d ' ' -f 3
               COMMIT=$(git show --oneline | cut -d ' ' -f 3)
               echo $COMMIT
               codacy-analysis-cli analyze --commit-uuid $COMMIT --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
