@@ -81,7 +81,7 @@ stages:
             env:
               SNYK_TOKEN: $(SNYK_TOKEN)
   - stage: deploy
-    displayName: Deploy Dev
+    displayName: Deploy
     dependsOn: [security,quality]
     variables:
       - group: resume
