@@ -87,7 +87,7 @@ stages:
             displayName: Checkout repository
           - script: |
               pip install deepcode
-              deepcode analyze --path $(System.DefaultWorkingDirectory)
+              deepcode --help
             displayName: Deepcode
             env:
               DEEPCODE_API_KEY: $(DEEPCODE_TOKEN)
