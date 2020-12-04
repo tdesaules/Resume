@@ -4,7 +4,7 @@ trigger: none
 pr:
   autoCancel: false
   branches:
-    include: '*'
+    include: ['*']
   drafts: false
 
 pool:
