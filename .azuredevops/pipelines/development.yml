@@ -31,6 +31,32 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
             displayName: Publish artifact
+  - stage: 
+    displayName: Code Quality
+    dependsOn: [ build ]
+    variables:
+      - group: resume
+    jobs:
+      - job: Codacy
+        displayName: Run code quality gateway
+        timeoutInMinutes: 10
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: Checkout repository
+          - script: |
+              curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
+              cd codacy-analysis-cli-* && sudo make install
+            displayName: Download and install Codacy
+          - script: |
+              COMMIT=$(git show --oneline | cut -d ' ' -f 3)
+              codacy-analysis-cli analyze --commit-uuid $COMMIT --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
+            displayName: Codacy analysis
+            env:
+              CODACY_USER: $(CODACY_USER)
+              CODACY_PROJECT: $(CODACY_PROJECT)
+              CODACY_TOKEN: $(CODACY_CLI_TOKEN)
+
   - stage: security
     displayName: Security
     dependsOn: [build]
