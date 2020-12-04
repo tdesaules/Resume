@@ -67,6 +67,8 @@ stages:
           - script: |
               $COMMIT=$(git show --oneline | cut -d ' ' -f 3)
               $COMMIT
+              git show --oneline | cut -d ' ' -f 3
+              echo "coucou"
               echo "##vso[task.setvariable variable=commit]$(git show --oneline | cut -d ' ' -f 3)"
               echo ${{ variables.commit }}
               echo $(commit)
