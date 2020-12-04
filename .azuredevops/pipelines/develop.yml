@@ -1,4 +1,4 @@
-name: Development $(Date:yyyyMMdd)$(Rev:.rr)
+name: develop $(Date:yyyyMMdd)$(Rev:.rr)
 
 trigger:
   branches:
@@ -13,8 +13,8 @@ stages:
     displayName: Build
     dependsOn: []
     jobs:
-      - job: build_dev
-        displayName: Build Dev
+      - job: build
+        displayName: Build
         timeoutInMinutes: 5
         steps:
           - checkout: self
