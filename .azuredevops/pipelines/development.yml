@@ -2,7 +2,7 @@ name: Development $(Date:yyyyMMdd)$(Rev:.rr)
 
 trigger:
   branches:
-    include: [ develop ]
+    include: [develop]
 pr: none
 
 pool:
@@ -13,8 +13,8 @@ stages:
     displayName: Build
     dependsOn: []
     jobs:
-      - job: resume_development
-        displayName: Resume dev
+      - job: build_dev
+        displayName: Build Dev
         timeoutInMinutes: 5
         steps:
           - checkout: self
@@ -27,19 +27,19 @@ stages:
           - script: |
               npm install
               npm run build:dev
-            displayName: Build dev
+            displayName: build with npm for dev
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
-            displayName: Publish artifact
-  - stage: 
-    displayName: Code Quality
-    dependsOn: [ build ]
+            displayName: Publish dist artifact
+  - stage: quality
+    displayName: Quality
+    dependsOn: [build]
     variables:
       - group: resume
     jobs:
-      - job: Codacy
-        displayName: Run code quality gateway
-        timeoutInMinutes: 10
+      - job: codacy
+        displayName: Codacy
+        timeoutInMinutes: 5
         steps:
           - checkout: self
             fetchDepth: 0
@@ -50,6 +50,7 @@ stages:
             displayName: Download and install Codacy
           - script: |
               COMMIT=$(git show --oneline | cut -d ' ' -f 3)
+              echo $COMMIT
               codacy-analysis-cli analyze --commit-uuid $COMMIT --directory $(System.DefaultWorkingDirectory) --username $CODACY_USER --project $CODACY_PROJECT --api-token $CODACY_TOKEN --allow-network --verbose --upload
             displayName: Codacy analysis
             env:
@@ -83,8 +84,8 @@ stages:
             env:
               SNYK_TOKEN: $(SNYK_TOKEN)
   - stage: deploy
-    displayName: Deploy
-    dependsOn: [ security ]
+    displayName: Deploy Dev
+    dependsOn: [security,quality]
     variables:
       - group: resume
     jobs:
