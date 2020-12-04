@@ -1,10 +1,10 @@
-name: Integration $(Date:yyyyMMdd)$(Rev:.rr)
+name: pull request $(Date:yyyyMMdd)$(Rev:.rr)
 
 trigger: none
 pr:
   autoCancel: false
   branches:
-    include: [master]
+    include: '*'
   drafts: false
 
 pool:
@@ -14,7 +14,7 @@ stages:
   - stage: test
     displayName: Tests
     dependsOn: []
-    condition: eq(variables['System.PullRequest.SourceBranch'], 'develop')
+    condition: and( eq(variables['System.PullRequest.SourceBranch'], 'develop'), eq(variables['System.PullRequest.TargetBranch'], 'master'))
     jobs:
       - job: jest
         displayName: Jest

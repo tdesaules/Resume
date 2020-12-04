@@ -12,6 +12,7 @@ stages:
   - stage: build
     displayName: Build
     dependsOn: []
+    condition: eq(variables['System.PullRequest.SourceBranch'], 'develop')
     jobs:
       - job: dev
         displayName: Dev
