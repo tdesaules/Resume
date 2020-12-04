@@ -75,6 +75,7 @@ stages:
               CODACY_PROJECT: $(CODACY_PROJECT)
               CODACY_TOKEN: $(CODACY_CLI_TOKEN)
           - script: |
+              echo $(Build.SourceVersion)
               bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/lcov.info --partial
               bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/cobertura-coverage.xml --partial
               bash <(curl -Ls https://coverage.codacy.com/get.sh) final --commit-uuid $(Build.SourceVersion)
