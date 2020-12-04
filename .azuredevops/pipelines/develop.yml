@@ -88,7 +88,7 @@ stages:
           - script: |
               pip install deepcode
               deepcode analyze --path $(System.DefaultWorkingDirectory)
-            displayName: Install Deepcode and analyze
+            displayName: Deepcode
             env:
               DEEPCODE_API_KEY: $(DEEPCODE_TOKEN)
   - stage: deploy
