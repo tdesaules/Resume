@@ -46,26 +46,6 @@ npm run test
 
 ## CI / CD
 
-### IDE (Visual Studio Code)
-
-security:
--   Deepcode: <https://www.deepcode.ai/>
--   WhiteSource Bolt: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
--   Snyk: <https://snyk.io/>
-
-code quality:
--   SonarLint: <https://www.sonarsource.com/products/sonarlint/>
-
-### Github Repository
-
-security:
--   WhiteSource Bolt for GitHub: <https://www.whitesourcesoftware.com/free-developer-tools/bolt/>
--   Deepcode: <https://www.deepcode.ai/>
-
-code quality:
--   Codacy: <https://codacy.com/>
--   SonarCloud: <https://sonarcloud.io/>
-
 ### Github Actions Pipeline
 
 security:
