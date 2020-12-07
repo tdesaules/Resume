@@ -63,14 +63,15 @@ stages:
             fetchDepth: 0
             displayName: Checkout repository
           - script: |
-              curl --create-dirs -sSLo $(Pipeline.Workspace)/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.5.0.2216-linux.zip
+              curl --create-dirs -sSLo $(Pipeline.Workspace)/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
               unzip -o $(Pipeline.Workspace)/.sonar/sonar-scanner.zip -d $(Pipeline.Workspace)/.sonar/
               sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=resume/g" sonar-project.properties
               sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=tdesaules-azure-devops/g" sonar-project.properties
-              $(Pipeline.Workspace)/.sonar/sonar-scanner-cli-4.5.0.2216-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io/
+              $(Pipeline.Workspace)/.sonar/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io/
             displayName: Run sonar-scanner
             env:
               SONAR_SCANNER_OPTS: -server
+              SONAR_SCANNER_VERSION: 4.5.0.2216
 #      - job: codeclimate
 #        displayName: Code Climate
 #        timeoutInMinutes: 5
