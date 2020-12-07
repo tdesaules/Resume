@@ -7,32 +7,86 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-  - stage: quality
-    displayName: Quality
+  - stage: test
+    displayName: Tests
     dependsOn: []
-    variables:
-      - group: resume
     jobs:
-      - job: codacy
-        displayName: Codacy
+      - job: jest
+        displayName: Jest
         timeoutInMinutes: 5
         steps:
           - checkout: self
             fetchDepth: 0
             displayName: Checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: Setup node and npm
           - script: |
-              curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
-              cd codacy-analysis-cli-* && sudo make install
-            displayName: Download and install Codacy
+              npm install
+              npm run test
+            displayName: Run unit tests
           - script: |
-              codacy-analysis-cli analyze --commit-uuid $(Build.SourceVersion) --directory $(System.DefaultWorkingDirectory) --verbose --upload
-            displayName: Codacy analysis
+              COMMIT=$(git show --oneline | cut -d ' ' -f 3)
+              sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+            displayName: Change path in test report
+          - script: |
+              npx eslint "src/**/*.{js,vue}" --format stylish
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+            displayName: ESLint scan
+          - publish: $(System.DefaultWorkingDirectory)/coverage
+            artifact: coverage
+            displayName: Publish coverage artifact
+  - stage: quality
+    displayName: Quality
+    dependsOn: [test]
+    variables:
+      - group: resume
+    jobs:
+      - job: codecov
+        displayName: CodeCov
+        timeoutInMinutes: 5
+        steps:
+          - checkout: none
+          - download: current
+            artifact: coverage
+            displayName: Download artifact
+          - script: |
+              bash <(curl -s https://codecov.io/bash) -s $(Pipeline.Workspace)/coverage/lcov.info
             env:
-              CODACY_PROJECT_TOKEN: $(CODACY_PROJECT_TOKEN)
-          - script: |
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/lcov.info --partial
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/cobertura-coverage.xml --partial
-              bash <(curl -Ls https://coverage.codacy.com/get.sh) final --commit-uuid $(Build.SourceVersion)
-            displayName: Codacy coverage
-            env:
-              CODACY_PROJECT_TOKEN: $(CODACY_PROJECT_TOKEN)
+              CODECOV_TOKEN: $(CODECOV_TOKEN)
+#      - job: codeclimate
+#        displayName: Code Climate
+#        timeoutInMinutes: 5
+#        steps:
+#          - checkout: self
+#            fetchDepth: 0
+#            displayName: Checkout repository
+#          - script: |
+#              curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz
+#              cd codeclimate-* && sudo make install
+#              codeclimate help
+#            displayName: Download and install code climate
+#      - job: codacy
+#        displayName: Codacy
+#        timeoutInMinutes: 5
+#        steps:
+#          - checkout: self
+#            fetchDepth: 0
+#            displayName: Checkout repository
+#          - script: |
+#              curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
+#              cd codacy-analysis-cli-* && sudo make install
+#            displayName: Download and install Codacy
+#          - script: |
+#              codacy-analysis-cli analyze --commit-uuid $(Build.SourceVersion) --directory $(System.DefaultWorkingDirectory) --verbose --upload
+#            displayName: Codacy analysis
+#            env:
+#              CODACY_PROJECT_TOKEN: $(CODACY_PROJECT_TOKEN)
+#          - script: |
+#              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/lcov.info --partial
+#              bash <(curl -Ls https://coverage.codacy.com/get.sh) report --commit-uuid $(Build.SourceVersion) --coverage-reports $(Pipeline.Workspace)/coverage/cobertura-coverage.xml --partial
+#              bash <(curl -Ls https://coverage.codacy.com/get.sh) final --commit-uuid $(Build.SourceVersion)
+#            displayName: Codacy coverage
+#            env:
+#              CODACY_PROJECT_TOKEN: $(CODACY_PROJECT_TOKEN)
