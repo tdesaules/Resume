@@ -62,15 +62,20 @@ stages:
           - checkout: self
             fetchDepth: 0
             displayName: Checkout repository
+          - download: current
+            artifact: coverage
+            displayName: Download artifact
+          - script: |
+              sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=resume/g" sonar-project.properties
+              sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=tdesaules-azure-devops/g" sonar-project.properties
+              sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
+              sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
+              sed -i "s/sonar.javascript.lcov.reportPaths=need-to-be-replaced/sonar.javascript.lcov.reportPaths=$(Pipeline.Workspace)/coverage/lcov.info/g" sonar-project.properties
+              sed -i "s/sonar.testExecutionReportPaths=need-to-be-replaced/sonar.testExecutionReportPaths=$(Pipeline.Workspace)/coverage/tests-report.xml/g" sonar-project.properties
+            displayName: Configure sonar scanner
           - script: |
               curl --create-dirs -sSLo $(Pipeline.Workspace)/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
               unzip -o $(Pipeline.Workspace)/.sonar/sonar-scanner.zip -d $(Pipeline.Workspace)/.sonar/
-              sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=resume/g" sonar-project.properties
-              sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=tdesaules-azure-devops/g" sonar-project.properties
-              git branch --show-current
-              sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
-              sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
-              mv /home/vsts/work/1/coverage .coverage
               $(Pipeline.Workspace)/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io/
             displayName: Run sonar-scanner
             env:
