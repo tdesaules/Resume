@@ -20,18 +20,18 @@ stages:
         steps:
           - checkout: self
             fetchDepth: 0
-            displayName: Checkout repository
+            displayName: checkout repository
           - task: NodeTool@0
             inputs:
               versionSpec: '12.x'
-            displayName: Setup node and npm
+            displayName: setup node and npm
           - script: |
               npm install
               npm run build:dev
             displayName: build with npm for dev
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
-            displayName: Publish dist artifact
+            displayName: publish dist artifact
   - stage: netlify
     displayName: Netlify
     dependsOn: [build]
@@ -46,15 +46,15 @@ stages:
           - checkout: none
           - download: current
             artifact: dist
-            displayName: Download artifact
+            displayName: download artifact
           - task: NodeTool@0
             inputs:
               versionSpec: '12.x'
-            displayName: Setup node
+            displayName: setup node and npm
           - script: |
               npm install --global netlify-cli
               netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir $(Pipeline.Workspace)/dist --prod
-            displayName: Install Netlify cli and deploy
+            displayName: install netlify cli and deploy
             env:
               NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
               NETLIFY_SITE_ID: $(NETLIFY_SITE_ID_DEV)
