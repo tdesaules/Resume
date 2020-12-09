@@ -10,7 +10,6 @@
 ![Status](https://img.shields.io/uptimerobot/status/m786436753-308971c88c0c631bb6b46c02)
 ![Uptime](https://img.shields.io/uptimerobot/ratio/m786436753-308971c88c0c631bb6b46c02)
 
-![SonarQube](https://img.shields.io/sonar/quality_gate/tdesaules_resume?label=quality%20gate&logo=sonarqube&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)
 ![CodeCov](https://img.shields.io/codecov/c/gh/tdesaules/resume?logo=codecov&logoColor=white)
 ![Snyk Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/tdesaules/resume?logo=snyk&logoColor=white)
 
