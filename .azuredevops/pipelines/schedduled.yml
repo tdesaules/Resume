@@ -1,0 +1,59 @@
+name: pull request $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger: none
+pr: none
+schedules:
+  - cron: "0 8 * * *"
+    displayName: Daily Security
+    branches:
+      include:
+        - master
+    always: true
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: security
+    displayName: Security
+    dependsOn: []
+    variables:
+      - group: resume
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    jobs:
+      - job: snyk
+        displayName: Snyk
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: | 
+              npm install --global snyk
+              snyk auth $SNYK_TOKEN
+              snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+              snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+            displayName: install and run snyk
+            env:
+              SNYK_TOKEN: $(SNYK_TOKEN)
+      - job: deepcode
+        displayName: DeepCode
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.8' 
+              addToPath: true 
+          - script: |
+              python -m pip install deepcode
+              deepcode analyze --path $(System.DefaultWorkingDirectory) --with-linters
+            displayName: install and run deepcode
+            env:
+              DEEPCODE_API_KEY: $(DEEPCODE_TOKEN)
