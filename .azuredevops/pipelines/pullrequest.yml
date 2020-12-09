@@ -108,13 +108,15 @@ stages:
             artifact: coverage
             displayName: download artifact
           - script: |
-              echo $SONAR_PROJECT_KEY
               sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=$SONAR_PROJECT_KEY/g" sonar-project.properties
               sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=$SONAR_PROJECT_ORG/g" sonar-project.properties
               sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
               sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
               mv $(Pipeline.Workspace)/coverage ./coverage
             displayName: configure sonar scanner
+            env:
+              SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
+              SONAR_PROJECT_ORG: $(SONAR_PROJECT_ORG)
           - script: |
               curl --create-dirs -sSLo $(Pipeline.Workspace)/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
               unzip -o $(Pipeline.Workspace)/.sonar/sonar-scanner.zip -d $(Pipeline.Workspace)/.sonar/
