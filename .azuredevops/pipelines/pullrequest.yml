@@ -108,7 +108,7 @@ stages:
             artifact: coverage
             displayName: download artifact
           - script: |
-              sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=resume/g" sonar-project.properties
+              sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=sBc3vBJLZrHmlrEW59ALDxNeQLP0xCbUehFGknjL/g" sonar-project.properties
               sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=tdesaules-azure-devops/g" sonar-project.properties
               sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
               sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
