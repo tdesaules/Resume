@@ -54,21 +54,3 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/VERSION.md
             artifact: version
             displayName: Publish version
-  - stage: analysis
-    displayName: Analysis
-    dependsOn: [ build ]
-    jobs:
-      - job: codacy
-        displayName: Codacy
-        timeoutInMinutes: 5
-        steps:
-          - checkout: self
-            fetchDepth: 0
-            displayName: Checkout repository
-          - download: current
-            artifact: coverage
-            displayName: Download artifact
-          - script: |
-              curl -L https://github.com/codacy/codacy-analysis-cli/archive/master.tar.gz | tar xvz
-              cd codacy-analysis-cli-* && sudo make install
-            displayName: Download Codacy

@@ -32,21 +32,129 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
             displayName: publish dist artifact
-  - stage: netlify
-    displayName: Netlify
+      - job: prod
+        displayName: Prod
+        timeoutInMinutes: 5
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: |
+              npm install
+              npm run build:prod
+            displayName: build with npm for prod
+          - script: npm run test
+            displayName: run unit tests
+          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+            displayName: change path in test report
+          - script: |
+              npx eslint "src/**/*.{js,vue}" --format stylish
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+            displayName: eslint scan
+          - publish: $(System.DefaultWorkingDirectory)/dist
+            artifact: dist
+            displayName: publish dist
+          - publish: $(System.DefaultWorkingDirectory)/coverage
+            artifact: coverage
+            displayName: publish coverage
+          - publish: $(System.DefaultWorkingDirectory)/package.json
+            artifact: package
+            displayName: publish package.json
+  - stage: security
+    displayName: Security
     dependsOn: [build]
     variables:
       - group: resume
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
-      - job: dev
-        displayName: Dev
+      - job: snyk
+        displayName: Snyk
         timeoutInMinutes: 5
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: | 
+              npm install --global snyk
+              snyk auth $SNYK_TOKEN
+              snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume
+              snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume
+            displayName: install and run snyk
+            env:
+              SNYK_TOKEN: $(SNYK_TOKEN)
+      - job: deepcode
+        displayName: DeepCode
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.8' 
+              addToPath: true 
+          - script: |
+              python -m pip install deepcode
+              deepcode analyze --path $(System.DefaultWorkingDirectory) --with-linters
+            displayName: install and run deepcode
+            env:
+              DEEPCODE_API_KEY: $(DEEPCODE_TOKEN)
+  - stage: quality
+    displayName: Quality
+    dependsOn: [build]
+    variables:
+      - group: resume
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    jobs:
+      - job: sonarcloud
+        displayName: SonarCloud
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - script: |
+              sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=$SONAR_PROJECT_KEY/g" sonar-project.properties
+              sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=$SONAR_PROJECT_ORG/g" sonar-project.properties
+              NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
+              sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=master/g" sonar-project.properties
+              sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
+            displayName: configure sonar scanner
+            env:
+              SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
+              SONAR_PROJECT_ORG: $(SONAR_PROJECT_ORG)
+          - script: |
+              curl --create-dirs -sSLo $(Pipeline.Workspace)/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+              unzip -o $(Pipeline.Workspace)/.sonar/sonar-scanner.zip -d $(Pipeline.Workspace)/.sonar/
+              $(Pipeline.Workspace)/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io/
+            displayName: run sonar-scanner
+            env:
+              SONAR_SCANNER_VERSION: 4.5.0.2216
+  - stage: deploy
+    displayName: Deploy
+    dependsOn: [build]
+    variables:
+      - group: resume
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+    jobs:
+      - job: netlify
+        displayName: Netlify
+        timeoutInMinutes: 5
         steps:
           - checkout: none
           - download: current
             artifact: dist
-            displayName: download artifact
+            displayName: download dist artifact
           - task: NodeTool@0
             inputs:
               versionSpec: '12.x'
@@ -58,3 +166,34 @@ stages:
             env:
               NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
               NETLIFY_SITE_ID: $(NETLIFY_SITE_ID_DEV)
+  - stage: publish
+    displayName: Publish
+    dependsOn: [security,quality]
+    variables:
+      - group: resume
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    jobs:
+      - job: npm
+        displayName: Npm
+        timeoutInMinutes: 5
+        steps:
+          - checkout: none
+          - download: current
+            artifact: dist
+            displayName: download dist artifact
+          - download: current
+            artifact: coverage
+            displayName: download coverage artifact
+          - download: current
+            artifact: package
+            displayName: download package.json artifact
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - task: Npm@1
+            inputs:
+              command: publish
+              publishRegistry: useFeed
+              publishFeed: resume/packages
+            displayName: publish package to azure artifacts

@@ -1,9 +1,0 @@
-name: develop $(Date:yyyyMMdd)$(Rev:.rr)
-
-trigger: none
-pr: none
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-stages:
