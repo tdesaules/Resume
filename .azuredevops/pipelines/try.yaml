@@ -74,6 +74,9 @@ stages:
             inputs:
               versionSpec: '12.x'
             displayName: setup node and npm
+          - script: |
+              mv $(Pipeline.Workspace)/package/package.json $(Pipeline.Workspace)/package.json
+              rm -rf $(Pipeline.Workspace)/package
           - task: Npm@1
             inputs:
               command: publish
