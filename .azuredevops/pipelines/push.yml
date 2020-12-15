@@ -8,6 +8,9 @@ pr: none
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  - group: resume
+
 stages:
   - stage: build
     displayName: Build
@@ -56,6 +59,9 @@ stages:
               npx eslint "src/**/*.{js,vue}" --format stylish
               npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
             displayName: eslint scan
+          - script: |
+              VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
+            displayName: create VERSION.md
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
             displayName: publish dist
@@ -65,11 +71,12 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/package.json
             artifact: package
             displayName: publish package.json
+          - publish: $(System.DefaultWorkingDirectory)/VERSION.md
+            artifact: version
+            displayName: publish VERSION.md
   - stage: security
     displayName: Security
     dependsOn: [build]
-    variables:
-      - group: resume
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: snyk
@@ -111,8 +118,6 @@ stages:
   - stage: quality
     displayName: Quality
     dependsOn: [build]
-    variables:
-      - group: resume
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: sonarcloud
@@ -143,8 +148,6 @@ stages:
   - stage: deploy
     displayName: Deploy
     dependsOn: [build]
-    variables:
-      - group: resume
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
     jobs:
       - job: netlify
@@ -169,8 +172,6 @@ stages:
   - stage: publish
     displayName: Publish
     dependsOn: [security,quality]
-    variables:
-      - group: resume
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: npm
@@ -197,3 +198,25 @@ stages:
               publishRegistry: useFeed
               publishFeed: resume/packages
             displayName: publish package to azure artifacts
+      - job: release
+        displayName: Release
+        timeoutInMinutes: 5
+        dependsOn: [npm]
+        variables:
+          - name: version
+            value: null
+        steps:
+          - checkout: none
+          - download: current
+            artifact: version
+            displayName: download version artifact
+          - script: |
+              VERSION=$(cat VERSION.md)
+              echo "##vso[task.setvariable variable=version]$VERSION"
+            displayName: add version variable
+          - task: DownloadGitHubRelease@0
+            inputs:
+              connection: tdesaules
+              userRepository: resume
+              defaultVersionType: Specific Tag
+              version:

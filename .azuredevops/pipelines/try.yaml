@@ -1,0 +1,101 @@
+name: try $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: resume
+
+stages:
+  - stage: build
+    displayName: Build
+    dependsOn: []
+    jobs:
+      - job: prod
+        displayName: Prod
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: |
+              npm install
+              npm run build:prod
+            displayName: build with npm for prod
+          - script: npm run test
+            displayName: run unit tests
+          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+            displayName: change path in test report
+          - script: |
+              npx eslint "src/**/*.{js,vue}" --format stylish
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+            displayName: eslint scan
+          - script: |
+              VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
+            displayName: create VERSION.md
+          - publish: $(System.DefaultWorkingDirectory)/dist
+            artifact: dist
+            displayName: publish dist
+          - publish: $(System.DefaultWorkingDirectory)/coverage
+            artifact: coverage
+            displayName: publish coverage
+          - publish: $(System.DefaultWorkingDirectory)/package.json
+            artifact: package
+            displayName: publish package.json
+          - publish: $(System.DefaultWorkingDirectory)/VERSION.md
+            artifact: version
+            displayName: publish VERSION.md
+  - stage: publish
+    displayName: Publish
+    dependsOn: [build]
+    jobs:
+      - job: npm
+        displayName: Npm
+        timeoutInMinutes: 5
+        steps:
+          - checkout: none
+          - download: current
+            artifact: dist
+            displayName: download dist artifact
+          - download: current
+            artifact: coverage
+            displayName: download coverage artifact
+          - download: current
+            artifact: package
+            displayName: download package.json artifact
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - task: Npm@1
+            inputs:
+              command: publish
+              publishRegistry: useFeed
+              publishFeed: resume/packages
+            displayName: publish package to azure artifacts
+      - job: release
+        displayName: Release
+        timeoutInMinutes: 5
+        dependsOn: [npm]
+        variables:
+          - name: version
+            value: null
+        steps:
+          - checkout: none
+          - download: current
+            artifact: version
+            displayName: download version artifact
+          - script: |
+              VERSION=$(cat VERSION.md)
+              echo "##vso[task.setvariable variable=version]$VERSION"
+            displayName: add version variable
+          - script: |
+              echo $(version)
+            displayName: print version var
