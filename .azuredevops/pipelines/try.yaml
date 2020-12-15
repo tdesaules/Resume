@@ -74,14 +74,12 @@ stages:
             inputs:
               versionSpec: '12.x'
             displayName: setup node and npm
-          - script: |
-              mv $(Pipeline.Workspace)/* .
-            displayName: mv artifact
           - task: Npm@1
             inputs:
               command: publish
               publishRegistry: useFeed
               publishFeed: resume/packages
+              workingDir: $(Pipeline.Workspace)
             displayName: publish package to azure artifacts
       - job: release
         displayName: Release
