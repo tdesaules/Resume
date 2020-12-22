@@ -108,7 +108,7 @@ stages:
           - task: Npm@1
             inputs:
               command: custom
-              customCommand: install @tdesaules/resume@$(version)
+              customCommand: install @tdesaules/resume@$(version) -registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
               customRegistries: useFeed
               customFeed: resume/packages
               workingDir: $(Pipeline.Workspace)
