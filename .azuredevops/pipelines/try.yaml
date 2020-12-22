@@ -101,10 +101,6 @@ stages:
               VERSION=$(cat "$(Pipeline.Workspace)/version/VERSION.md")
               echo "##vso[task.setvariable variable=version]$VERSION"
             displayName: add version variable
-          - script: |
-              echo 'registry=https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/' >> $(Pipeline.Workspace)/.npmrc
-              echo 'always-auth=true' >> $(Pipeline.Workspace)/.npmrc
-            displayName: create npmrc
           - task: Npm@1
             inputs:
               command: custom
