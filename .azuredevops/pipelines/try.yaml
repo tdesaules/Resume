@@ -103,12 +103,12 @@ stages:
             displayName: add version variable
           - task: Npm@1
               inputs:
-              command: custom
-              customCommand: npm install @tdesaules/resume@$VERSION
-              customRegistries: useFeed
-              customFeed: resume/packages
-              workingDir: $(Pipeline.Workspace)
-              displayName: install @tdesaules/resume
+                command: custom
+                customCommand: npm install @tdesaules/resume@$VERSION
+                customRegistries: useFeed
+                customFeed: resume/packages
+                workingDir: $(Pipeline.Workspace)
+                displayName: install @tdesaules/resume
             env:
               VERSION: $(version)
           - script: |
