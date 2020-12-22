@@ -48,7 +48,7 @@ stages:
             displayName: publish coverage
           - publish: $(System.DefaultWorkingDirectory)/package.json
             artifact: package
-            displayName: publish package.json
+            displayName: publish version
           - publish: $(System.DefaultWorkingDirectory)/VERSION.md
             artifact: version
             displayName: publish VERSION.md
@@ -56,39 +56,39 @@ stages:
     displayName: Publish
     dependsOn: [build]
     jobs:
-      - job: npm
-        displayName: Npm
-        timeoutInMinutes: 5
-        steps:
-          - checkout: none
-          - download: current
-            artifact: dist
-            displayName: download dist artifact
-          - download: current
-            artifact: coverage
-            displayName: download coverage artifact
-          - download: current
-            artifact: package
-            displayName: download package.json artifact
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '12.x'
-            displayName: setup node and npm
-          - script: |
-              mv $(Pipeline.Workspace)/package/package.json $(Pipeline.Workspace)/package.json
-              rm -rf $(Pipeline.Workspace)/package
-            displayName: mv package.json
-          - task: Npm@1
-            inputs:
-              command: publish
-              publishRegistry: useFeed
-              publishFeed: resume/packages
-              workingDir: $(Pipeline.Workspace)
-            displayName: publish package to azure artifacts
+      # - job: npm
+      #   displayName: Npm
+      #   timeoutInMinutes: 5
+      #   steps:
+      #     - checkout: none
+      #     - download: current
+      #       artifact: dist
+      #       displayName: download dist artifact
+      #     - download: current
+      #       artifact: coverage
+      #       displayName: download coverage artifact
+      #     - download: current
+      #       artifact: package
+      #       displayName: download package.json artifact
+      #     - task: NodeTool@0
+      #       inputs:
+      #         versionSpec: '12.x'
+      #       displayName: setup node and npm
+      #     - script: |
+      #         mv $(Pipeline.Workspace)/package/package.json $(Pipeline.Workspace)/package.json
+      #         rm -rf $(Pipeline.Workspace)/package
+      #       displayName: mv package.json
+      #     - task: Npm@1
+      #       inputs:
+      #         command: publish
+      #         publishRegistry: useFeed
+      #         publishFeed: resume/packages
+      #         workingDir: $(Pipeline.Workspace)
+      #       displayName: publish package to azure artifacts
       - job: release
         displayName: Release
         timeoutInMinutes: 5
-        dependsOn: [npm]
+      #  dependsOn: [npm]
         variables:
           - name: version
             value: null
@@ -101,6 +101,15 @@ stages:
               VERSION=$(cat "$(Pipeline.Workspace)/version/VERSION.md")
               echo "##vso[task.setvariable variable=version]$VERSION"
             displayName: add version variable
+          - task: Npm@1
+              inputs:
+              command: custom
+              customCommand: npm install @tdesaules/resume@$VERSION
+              customRegistries: useFeed
+              customFeed: resume/packages
+              workingDir: $(Pipeline.Workspace)
+              displayName: install @tdesaules/resume
+            env:
+              VERSION: $(version)
           - script: |
-              echo $(version)
-            displayName: print version var
+              ls -l $(Pipeline.Workspace)
