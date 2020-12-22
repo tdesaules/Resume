@@ -107,11 +107,9 @@ stages:
             displayName: add version variable
           - script: |
               npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
-              npm install @tdesaules/resume@$(version)
-              pwd
+              npm install @tdesaules/resume@$(version) --prefix $(System.DefaultWorkingDirectory)
               ls -l
-              ls -l $(Build.SourcesDirectory)
-            workingDirectory: $(Build.SourcesDirectory)
+              ls -l $(System.DefaultWorkingDirectory)
           # - task: Npm@1
           #   inputs:
           #     command: custom
@@ -120,7 +118,3 @@ stages:
           #     customFeed: resume/packages
           #     workingDir: $(Pipeline.Workspace)
           #   displayName: install @tdesaules/resume
-          - script: |
-              ls -l
-              ls -l $(System.DefaultWorkingDirectory)
-              ls -l $(Pipeline.Workspace)
