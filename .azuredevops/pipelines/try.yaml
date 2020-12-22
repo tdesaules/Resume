@@ -104,12 +104,10 @@ stages:
           - task: Npm@1
             inputs:
               command: custom
-              customCommand: install @tdesaules/resume@$VERSION
+              customCommand: install @tdesaules/resume@$(version)
               customRegistries: useFeed
               customFeed: resume/packages
               workingDir: $(Pipeline.Workspace)
-            env:
-              VERSION: $(version)
             displayName: install @tdesaules/resume
           - script: |
               ls -l $(Pipeline.Workspace)
