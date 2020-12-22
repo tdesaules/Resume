@@ -108,8 +108,8 @@ stages:
                 customRegistries: useFeed
                 customFeed: resume/packages
                 workingDir: $(Pipeline.Workspace)
-                displayName: install @tdesaules/resume
             env:
               VERSION: $(version)
+            displayName: install @tdesaules/resume
           - script: |
               ls -l $(Pipeline.Workspace)
