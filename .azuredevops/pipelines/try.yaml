@@ -102,12 +102,12 @@ stages:
               echo "##vso[task.setvariable variable=version]$VERSION"
             displayName: add version variable
           - task: Npm@1
-              inputs:
-                command: custom
-                customCommand: npm install @tdesaules/resume@$VERSION
-                customRegistries: useFeed
-                customFeed: resume/packages
-                workingDir: $(Pipeline.Workspace)
+            inputs:
+              command: custom
+              customCommand: npm install @tdesaules/resume@$VERSION
+              customRegistries: useFeed
+              customFeed: resume/packages
+              workingDir: $(Pipeline.Workspace)
             env:
               VERSION: $(version)
             displayName: install @tdesaules/resume
