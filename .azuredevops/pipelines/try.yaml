@@ -105,14 +105,17 @@ stages:
               VERSION=$(cat "$(Pipeline.Workspace)/version/VERSION.md")
               echo "##vso[task.setvariable variable=version]$VERSION"
             displayName: add version variable
-          - task: Npm@1
-            inputs:
-              command: custom
-              customCommand: install @tdesaules/resume@$(version) -registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
-              customRegistries: useFeed
-              customFeed: resume/packages
-              workingDir: $(Pipeline.Workspace)
-            displayName: install @tdesaules/resume
+          script: |
+            npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
+            npm install @tdesaules/resume@$(version)
+          # - task: Npm@1
+          #   inputs:
+          #     command: custom
+          #     customCommand: install @tdesaules/resume@$(version) -registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
+          #     customRegistries: useFeed
+          #     customFeed: resume/packages
+          #     workingDir: $(Pipeline.Workspace)
+          #   displayName: install @tdesaules/resume
           - script: |
               ls -l
               ls -l $(System.DefaultWorkingDirectory)
