@@ -105,9 +105,9 @@ stages:
               VERSION=$(cat "$(Pipeline.Workspace)/version/VERSION.md")
               echo "##vso[task.setvariable variable=version]$VERSION"
             displayName: add version variable
-          script: |
-            npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
-            npm install @tdesaules/resume@$(version)
+          - script: |
+              npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
+              npm install @tdesaules/resume@$(version)
           # - task: Npm@1
           #   inputs:
           #     command: custom
