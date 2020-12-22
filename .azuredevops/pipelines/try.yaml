@@ -88,7 +88,7 @@ stages:
       - job: release
         displayName: Release
         timeoutInMinutes: 5
-        dependsOn: [npm]
+      #  dependsOn: [npm]
         variables:
           - name: version
             value: null
