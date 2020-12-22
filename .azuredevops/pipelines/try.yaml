@@ -56,35 +56,35 @@ stages:
     displayName: Publish
     dependsOn: [build]
     jobs:
-      - job: npm
-        displayName: Npm
-        timeoutInMinutes: 5
-        steps:
-          - checkout: none
-          - download: current
-            artifact: dist
-            displayName: download dist artifact
-          - download: current
-            artifact: coverage
-            displayName: download coverage artifact
-          - download: current
-            artifact: package
-            displayName: download package.json artifact
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '12.x'
-            displayName: setup node and npm
-          - script: |
-              mv $(Pipeline.Workspace)/package/package.json $(Pipeline.Workspace)/package.json
-              rm -rf $(Pipeline.Workspace)/package
-            displayName: mv package.json
-          - task: Npm@1
-            inputs:
-              command: publish
-              publishRegistry: useFeed
-              publishFeed: resume/packages
-              workingDir: $(Pipeline.Workspace)
-            displayName: publish package to azure artifacts
+      # - job: npm
+      #   displayName: Npm
+      #   timeoutInMinutes: 5
+      #   steps:
+      #     - checkout: none
+      #     - download: current
+      #       artifact: dist
+      #       displayName: download dist artifact
+      #     - download: current
+      #       artifact: coverage
+      #       displayName: download coverage artifact
+      #     - download: current
+      #       artifact: package
+      #       displayName: download package.json artifact
+      #     - task: NodeTool@0
+      #       inputs:
+      #         versionSpec: '12.x'
+      #       displayName: setup node and npm
+      #     - script: |
+      #         mv $(Pipeline.Workspace)/package/package.json $(Pipeline.Workspace)/package.json
+      #         rm -rf $(Pipeline.Workspace)/package
+      #       displayName: mv package.json
+      #     - task: Npm@1
+      #       inputs:
+      #         command: publish
+      #         publishRegistry: useFeed
+      #         publishFeed: resume/packages
+      #         workingDir: $(Pipeline.Workspace)
+      #       displayName: publish package to azure artifacts
       - job: release
         displayName: Release
         timeoutInMinutes: 5
@@ -114,4 +114,6 @@ stages:
               workingDir: $(Pipeline.Workspace)
             displayName: install @tdesaules/resume
           - script: |
+              ls -l
+              ls -l $(System.DefaultWorkingDirectory)
               ls -l $(Pipeline.Workspace)
