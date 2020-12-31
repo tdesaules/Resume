@@ -1,9 +1,10 @@
 name: try $(Date:yyyyMMdd)$(Rev:.rr)
 
-trigger:
-  tags:
-    include:
-    - azuredevops_*
+trigger: none
+#  tags:
+#    include:
+#    - azuredevops_*
+pr: none
 
 pool:
   vmImage: 'ubuntu-latest'
