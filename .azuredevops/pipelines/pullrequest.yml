@@ -125,9 +125,6 @@ stages:
               $(Pipeline.Workspace)/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io/
             displayName: run sonar-scanner
             env:
-              SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
-              SONAR_PROJECT_ORG: $(SONAR_PROJECT_ORG)
-              SONAR_SCANNER_OPTS: -server
               SONAR_SCANNER_VERSION: 4.5.0.2216
       - job: codecov
         displayName: CodeCov

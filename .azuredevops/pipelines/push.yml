@@ -133,7 +133,7 @@ stages:
               NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
               sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
               sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=master/g" sonar-project.properties
-              sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
+              sed -i "s/sonar.branch.target=need-to-be-replaced//g" sonar-project.properties
             displayName: configure sonar scanner
             env:
               SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
