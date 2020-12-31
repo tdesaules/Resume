@@ -20,12 +20,24 @@ stages:
       - job: release
         displayName: Release
         timeoutInMinutes: 5
+        variables:
+          - name: version
+            value: null
         steps:
-          - checkout: none
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - script: |
+              grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > $(System.DefaultWorkingDirectory)/VERSION.md
+              VERSION=$(cat "$(System.DefaultWorkingDirectory)/version/VERSION.md")
+              echo "##vso[task.setvariable variable=version]$VERSION"
+            displayName: create version variable
           - task: DownloadGitHubRelease@0
             inputs:
               connection: github.com_tdesaules
               userRepository: tdesaules/resume
+              defaultVersionType: specificTag
+              version: azuredevops_$(version)
               downloadPath: $(System.DefaultWorkingDirectory)
             displayName: download lasted release
           - script: |
