@@ -133,7 +133,10 @@ stages:
               NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
               sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
               sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=master/g" sonar-project.properties
-              sed -i "s/sonar.branch.target=need-to-be-replaced//g" sonar-project.properties
+              sed -i "s/sonar.branch.target/#sonar.branch.target/g" sonar-project.properties
+              sed -i "s/sonar.eslint.reportPaths/#sonar.eslint.reportPaths/g" sonar-project.properties
+              sed -i "s/sonar.javascript.lcov.reportPaths/#sonar.javascript.lcov.reportPaths/g" sonar-project.properties
+              sed -i "s/sonar.testExecutionReportPaths/#sonar.testExecutionReportPaths/g" sonar-project.properties
             displayName: configure sonar scanner
             env:
               SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
@@ -171,7 +174,9 @@ stages:
               NETLIFY_SITE_ID: $(NETLIFY_SITE_ID_DEV)
   - stage: publish
     displayName: Publish
-    dependsOn: [security,quality]
+    dependsOn: 
+      - security
+      - quality
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: npm
