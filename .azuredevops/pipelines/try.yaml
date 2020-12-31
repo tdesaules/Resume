@@ -108,13 +108,4 @@ stages:
           - script: |
               npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
               npm install @tdesaules/resume@$(version) --prefix $(System.DefaultWorkingDirectory)
-              ls -l
-              ls -l $(System.DefaultWorkingDirectory)
-          # - task: Npm@1
-          #   inputs:
-          #     command: custom
-          #     customCommand: install @tdesaules/resume@$(version) -registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
-          #     customRegistries: useFeed
-          #     customFeed: resume/packages
-          #     workingDir: $(Pipeline.Workspace)
-          #   displayName: install @tdesaules/resume
+            displayName: download @tdesaules/resume package
