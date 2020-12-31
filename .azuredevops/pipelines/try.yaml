@@ -81,7 +81,7 @@ stages:
             displayName: download @tdesaules/resume package
           - task: GitHubRelease@0
             inputs:
-              gitHubConnection: 'tdesaules (1)'
+              gitHubConnection: github.com_tdesaules
               repositoryName: tdesaules/resume
               action: create
               tagSource: manual
