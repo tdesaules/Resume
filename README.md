@@ -20,6 +20,8 @@
 
 ![Azure Devops Push](https://img.shields.io/azure-devops/build/tdesaules/1de24ddb-bfb8-43cb-827d-d5673364bbd4/23?label=push&logo=azure-pipelines&logoColor=white)
 ![Azure Devops Pull Request](https://img.shields.io/azure-devops/build/tdesaules/1de24ddb-bfb8-43cb-827d-d5673364bbd4/24?label=pull%20request&logo=azure-pipelines&logoColor=white)
+![Azure Devops Tags](https://img.shields.io/azure-devops/build/tdesaules/1de24ddb-bfb8-43cb-827d-d5673364bbd4/26?label=tags&logo=azure-pipelines&logoColor=white)
+![Azure Devops Scheduled](https://img.shields.io/azure-devops/build/tdesaules/1de24ddb-bfb8-43cb-827d-d5673364bbd4/25?label=scheduled&logo=azure-pipelines&logoColor=white)
 
 ## Introduction
 
