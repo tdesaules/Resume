@@ -25,7 +25,7 @@ stages:
               userRepository: tdesaules/resume
               downloadPath: $(System.DefaultWorkingDirectory)
             displayName: download lasted release
-          - shell: |
+          - script: |
               mkdir dist
               tar -zxvf dist.tar.gz -C dist
           - publish: $(System.DefaultWorkingDirectory)/dist
