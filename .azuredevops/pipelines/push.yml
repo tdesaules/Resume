@@ -235,5 +235,5 @@ stages:
               tagSource: manual
               tag: $(version)
               title: AzureDevops/$(version)
-              assets: $(System.DefaultWorkingDirectory)/*
+              assets: $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/*
             displayName: create github release
