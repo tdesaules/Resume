@@ -157,7 +157,7 @@ stages:
           - checkout: none
           - download: current
             artifact: dist
-            displayName: download dist artifact
+            displayName: download dist
           - task: NodeTool@0
             inputs:
               versionSpec: '12.x'
