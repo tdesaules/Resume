@@ -1,9 +1,6 @@
 name: try $(Date:yyyyMMdd)$(Rev:.rr)
 
-trigger:
-  tags:
-    include:
-      - azuredevops_*
+trigger: none
 pr: none
 
 pool:
@@ -22,4 +19,9 @@ stages:
         timeoutInMinutes: 5
         steps:
           - checkout: none
-          
+          - task: DownloadGitHubRelease@0
+            inputs:
+              connection: github.com_tdesaules
+              userRepository: tdesaules/resume
+              downloadPath: $(System.DefaultWorkingDirectory)
+            displayName: download lasted release

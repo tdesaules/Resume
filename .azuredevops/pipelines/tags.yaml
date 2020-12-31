@@ -1,0 +1,24 @@
+name: tags $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger:
+  tags:
+    include:
+      - azuredevops_*
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: resume
+
+stages:
+  - stage: download
+    displayName: Download
+    dependsOn: []
+    jobs:
+      - job: release
+        displayName: Release
+        timeoutInMinutes: 5
+        steps:
+          - checkout: none
