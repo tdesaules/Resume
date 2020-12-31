@@ -1,0 +1,21 @@
+name: try $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: resume
+
+stages:
+  - stage: try
+    displayName: Try
+    dependsOn: []
+    jobs:
+      - job: try
+        displayName: Try
+        timeoutInMinutes: 5
+        steps:
+          - checkout: none

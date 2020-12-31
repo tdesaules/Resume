@@ -1,0 +1,144 @@
+name: pull request $(Date:yyyyMMdd)$(Rev:.rr)
+
+trigger: none
+pr:
+  autoCancel: false
+  branches:
+    include: ['*']
+  drafts: false
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: test
+    displayName: Tests
+    dependsOn: []
+    condition: and( eq(variables['System.PullRequest.SourceBranch'], 'develop'), eq(variables['System.PullRequest.TargetBranch'], 'master'))
+    jobs:
+      - job: jest
+        displayName: Jest
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: |
+              npm install
+              npm run test
+            displayName: run unit tests
+          - script: |
+              COMMIT=$(git show --oneline | cut -d ' ' -f 3)
+              sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+            displayName: change path in test report
+          - script: |
+              npx eslint "src/**/*.{js,vue}" --format stylish
+              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+            displayName: eslint scan
+          - script: |
+              npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
+              npm view @tdesaules/resume
+              CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              tools/compare --current_version $CURRENT_VERSION --next_version $NEXT_VERSION
+            displayName: check if version correct
+          - publish: $(System.DefaultWorkingDirectory)/coverage
+            artifact: coverage
+            displayName: publish coverage artifact
+  - stage: security
+    displayName: Security
+    dependsOn: [test]
+    variables:
+      - group: resume
+    jobs:
+      - job: snyk
+        displayName: Snyk
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: | 
+              npm install --global snyk
+              snyk auth $SNYK_TOKEN
+              snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+              snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+            displayName: install and run snyk
+            env:
+              SNYK_TOKEN: $(SNYK_TOKEN)
+      - job: deepcode
+        displayName: DeepCode
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.8' 
+              addToPath: true 
+          - script: |
+              python -m pip install deepcode
+              deepcode analyze --path $(System.DefaultWorkingDirectory) --with-linters
+            displayName: install and run deepcode
+            env:
+              DEEPCODE_API_KEY: $(DEEPCODE_TOKEN)
+  - stage: quality
+    displayName: Quality
+    dependsOn: [test]
+    variables:
+      - group: resume
+    jobs:
+      - job: sonarcloud
+        displayName: SonarCloud
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - download: current
+            artifact: coverage
+            displayName: download artifact
+          - script: |
+              sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=$SONAR_PROJECT_KEY/g" sonar-project.properties
+              sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=$SONAR_PROJECT_ORG/g" sonar-project.properties
+              NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
+              sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
+              sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
+              mv $(Pipeline.Workspace)/coverage ./coverage
+            displayName: configure sonar scanner
+            env:
+              SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
+              SONAR_PROJECT_ORG: $(SONAR_PROJECT_ORG)
+          - script: |
+              curl --create-dirs -sSLo $(Pipeline.Workspace)/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+              unzip -o $(Pipeline.Workspace)/.sonar/sonar-scanner.zip -d $(Pipeline.Workspace)/.sonar/
+              $(Pipeline.Workspace)/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io/
+            displayName: run sonar-scanner
+            env:
+              SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
+              SONAR_PROJECT_ORG: $(SONAR_PROJECT_ORG)
+              SONAR_SCANNER_OPTS: -server
+              SONAR_SCANNER_VERSION: 4.5.0.2216
+      - job: codecov
+        displayName: CodeCov
+        timeoutInMinutes: 5
+        steps:
+          - checkout: none
+          - download: current
+            artifact: coverage
+            displayName: download coverage artifact
+          - script: |
+              bash <(curl -s https://codecov.io/bash) -s $(Pipeline.Workspace)/coverage/lcov.info
+            displayName: download and run codecov
+            env:
+              CODECOV_TOKEN: $(CODECOV_TOKEN)
