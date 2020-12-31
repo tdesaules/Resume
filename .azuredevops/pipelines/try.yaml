@@ -10,47 +10,12 @@ variables:
   - group: resume
 
 stages:
-  - stage: download
-    displayName: Download
+  - stage: try
+    displayName: Try
     dependsOn: []
     jobs:
-      - job: release
-        displayName: Release
+      - job: try
+        displayName: Try
         timeoutInMinutes: 5
         steps:
           - checkout: none
-          - task: DownloadGitHubRelease@0
-            inputs:
-              connection: github.com_tdesaules
-              userRepository: tdesaules/resume
-              downloadPath: $(System.DefaultWorkingDirectory)
-            displayName: download lasted release
-          - script: |
-              mkdir dist
-              tar -zxvf dist.tar.gz -C dist
-          - publish: $(System.DefaultWorkingDirectory)/dist
-            artifact: dist
-            displayName: publish dist
-  - stage: deploy
-    displayName: Deploy
-    dependsOn: [download]
-    jobs:
-      - job: netlify
-        displayName: Netlify
-        timeoutInMinutes: 5
-        steps:
-          - checkout: none
-          - download: current
-            artifact: dist
-            displayName: download dist
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '12.x'
-            displayName: setup node and npm
-          - script: |
-              npm install --global netlify-cli
-              netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir $(Pipeline.Workspace)/dist --prod
-            displayName: install netlify cli and deploy
-            env:
-              NETLIFY_AUTH_TOKEN: $(NETLIFY_AUTH_TOKEN)
-              NETLIFY_SITE_ID: $(NETLIFY_SITE_ID_PROD)
