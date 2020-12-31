@@ -171,7 +171,9 @@ stages:
               NETLIFY_SITE_ID: $(NETLIFY_SITE_ID_DEV)
   - stage: publish
     displayName: Publish
-    dependsOn: [security,quality]
+    dependsOn: 
+      - security
+      - quality
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: npm
