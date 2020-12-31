@@ -18,8 +18,8 @@
 ![Github Release](https://img.shields.io/github/workflow/status/tdesaules/resume/Release?label=release&logo=github-actions&logoColor=white)
 ![Github Deploy](https://img.shields.io/github/workflow/status/tdesaules/resume/Deploy?label=deploy&logo=github-actions&logoColor=white)
 
-![Azure Devops Development](https://img.shields.io/azure-devops/build/tdesaules/resume/13?label=development&logo=azure-pipelines&logoColor=white)
-![Azure Devops Release](https://img.shields.io/azure-devops/build/tdesaules/1de24ddb-bfb8-43cb-827d-d5673364bbd4/14?label=release&logo=azure-pipelines&logoColor=white)
+![Azure Devops Push](https://img.shields.io/azure-devops/build/tdesaules/1de24ddb-bfb8-43cb-827d-d5673364bbd4/23?label=push&logo=azure-pipelines&logoColor=white)
+![Azure Devops Pull Request](https://img.shields.io/azure-devops/build/tdesaules/1de24ddb-bfb8-43cb-827d-d5673364bbd4/24?label=pull%20request&logo=azure-pipelines&logoColor=white)
 
 ## Introduction
 

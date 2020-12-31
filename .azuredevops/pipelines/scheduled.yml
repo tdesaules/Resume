@@ -1,4 +1,4 @@
-name: pull request $(Date:yyyyMMdd)$(Rev:.rr)
+name: scheduled $(Date:yyyyMMdd)$(Rev:.rr)
 
 trigger: none
 pr: none
