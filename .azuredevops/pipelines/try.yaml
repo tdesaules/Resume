@@ -83,7 +83,8 @@ stages:
               npm install @tdesaules/resume@$(version) --prefix $(System.DefaultWorkingDirectory)
             displayName: download @tdesaules/resume package
           - script: |
-              tar -cvzf $(System.DefaultWorkingDirectory)/dist.tar.gz $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/*
+              cd $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/
+              tar -cvzf $(System.DefaultWorkingDirectory)/dist.tar.gz *
             displayName: create dist archive
           - task: GitHubRelease@0
             inputs:

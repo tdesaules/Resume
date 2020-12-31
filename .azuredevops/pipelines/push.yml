@@ -228,7 +228,8 @@ stages:
               npm install @tdesaules/resume@$(version) --prefix $(System.DefaultWorkingDirectory)
             displayName: download @tdesaules/resume package
           - script: |
-              tar -cvzf $(System.DefaultWorkingDirectory)/dist.tar.gz $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/*
+              cd $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/
+              tar -cvzf $(System.DefaultWorkingDirectory)/dist.tar.gz *
             displayName: create dist archive
           - task: GitHubRelease@0
             inputs:
@@ -236,7 +237,7 @@ stages:
               repositoryName: tdesaules/resume
               action: create
               tagSource: manual
-              tag: $(version)
+              tag: azuredevops_$(version)
               title: AzureDevops/$(version)
               assets: $(System.DefaultWorkingDirectory)/dist.tar.gz
             displayName: create github release
