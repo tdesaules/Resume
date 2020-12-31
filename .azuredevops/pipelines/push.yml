@@ -227,6 +227,9 @@ stages:
               npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
               npm install @tdesaules/resume@$(version) --prefix $(System.DefaultWorkingDirectory)
             displayName: download @tdesaules/resume package
+          - script: |
+              tar -cvzf $(System.DefaultWorkingDirectory)/dist.tar.gz $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/*
+            displayName: create dist archive
           - task: GitHubRelease@0
             inputs:
               gitHubConnection: github.com_tdesaules
@@ -235,5 +238,5 @@ stages:
               tagSource: manual
               tag: $(version)
               title: AzureDevops/$(version)
-              assets: $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/*
+              assets: $(System.DefaultWorkingDirectory)/dist.tar.gz
             displayName: create github release
