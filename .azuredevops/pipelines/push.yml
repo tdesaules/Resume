@@ -34,7 +34,7 @@ stages:
             displayName: build with npm for dev
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
-            displayName: publish dist artifact
+            displayName: publish dist
       - job: prod
         displayName: Prod
         timeoutInMinutes: 5
@@ -73,7 +73,7 @@ stages:
             displayName: publish package.json
           - publish: $(System.DefaultWorkingDirectory)/VERSION.md
             artifact: version
-            displayName: publish VERSION.md
+            displayName: publish version
   - stage: security
     displayName: Security
     dependsOn: [build]

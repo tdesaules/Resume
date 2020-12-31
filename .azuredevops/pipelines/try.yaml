@@ -48,10 +48,10 @@ stages:
             displayName: publish coverage
           - publish: $(System.DefaultWorkingDirectory)/package.json
             artifact: package
-            displayName: publish version
+            displayName: publish package
           - publish: $(System.DefaultWorkingDirectory)/VERSION.md
             artifact: version
-            displayName: publish VERSION.md
+            displayName: publish version
   - stage: publish
     displayName: Publish
     dependsOn: [build]
@@ -78,8 +78,7 @@ stages:
           - script: |
               npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
               npm install @tdesaules/resume@$(version) --prefix $(System.DefaultWorkingDirectory)
-              ls -l $(System.DefaultWorkingDirectory)/
-              ls -l $(System.DefaultWorkingDirectory)/node_modules/
+              ls -l $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/*
             displayName: download @tdesaules/resume package
           - task: GitHubRelease@0
             inputs:
@@ -89,5 +88,5 @@ stages:
               tagSource: manual
               tag: $(version)
               title: AzureDevops/$(version)
-              assets: $(System.DefaultWorkingDirectory)/*
+              assets: $(System.DefaultWorkingDirectory)/node_modules/@tdesaules/resume/dist/*
             displayName: create github release
