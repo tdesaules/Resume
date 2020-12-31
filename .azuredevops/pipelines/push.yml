@@ -93,8 +93,8 @@ stages:
           - script: | 
               npm install --global snyk
               snyk auth $SNYK_TOKEN
-              snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume
-              snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume
+              snyk monitor --fail-on=patchable --project-name=@azure-pipeline/resume
+              snyk test --fail-on=patchable --project-name=@azure-pipeline/resume
             displayName: install and run snyk
             env:
               SNYK_TOKEN: $(SNYK_TOKEN)
