@@ -48,29 +48,28 @@ npm run test
 
 ## CI / CD
 
-### Github Actions Pipeline
+### security:
 
-security:
 -   Snyk: <https://snyk.io/>
+-   Deepcode: <https://www.deepcode.ai/>
 
-code quality:
+### test:
+
+-   Jest: <https://jestjs.io/>
+-   ESLint: <https://eslint.org/>
+
+### code quality:
+
 -   SonarQube: <https://www.sonarqube.org/>
 
-deploy:
+### code coverage:
+
+-   CodeCov: <https://codecov.io/>
+
+### deploy:
+
 -   Vercel: <https://vercel.com/>
-
-### Azure DevOps Pipeline
-
-security:
--   Snyk: <https://snyk.io/>
-
-code quality:
--   tbd
-
-deploy:
 -   Netlify: <https://netlify.com/>
-
-### Scheduled
 
 ## Contribute
 
