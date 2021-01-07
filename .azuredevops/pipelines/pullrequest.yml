@@ -69,6 +69,7 @@ stages:
               versionSpec: '12.x'
             displayName: setup node and npm
           - script: |
+              npm install
               npx eslint "src/**/*.{js,vue}" --format stylish
               npx eslint "src/**/*.{js,vue}" --format json --output-file tests/eslint.json
             displayName: eslint scan
