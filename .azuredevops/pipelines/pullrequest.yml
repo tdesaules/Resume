@@ -24,6 +24,7 @@ stages:
             fetchDepth: 0
             displayName: checkout repository
           - script: |
+              npm install yargs compare-versions
               npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
               npm view @tdesaules/resume
               CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
@@ -47,7 +48,6 @@ stages:
               npm run test
             displayName: run unit tests
           - script: |
-              COMMIT=$(git show --oneline | cut -d ' ' -f 3)
               sed -i "s/\/home\/runner\/work\/resume\/resume\///g" tests/tests-report.xml
             displayName: change path in test report
           - publish: $(System.DefaultWorkingDirectory)/tests/lcov.info
