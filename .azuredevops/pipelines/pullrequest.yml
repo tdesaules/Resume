@@ -147,10 +147,8 @@ stages:
               sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
               sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
               sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
-              mkdir tests coverage
-              mv $(Pipeline.Workspace)/lcov.info ./coverage/lcov.info
-              mv $(Pipeline.Workspace)/tests-report.xml ./tests/tests-report.xml
-              mv $(Pipeline.Workspace)/eslint.json ./tests/eslint.json
+              mv $(Pipeline.Workspace)/coverage ./coverage
+              mv $(Pipeline.Workspace)/tests ./tests
             displayName: configure sonar scanner
             env:
               SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
@@ -171,7 +169,7 @@ stages:
             artifact: coverage
             displayName: download coverage artifact
           - script: |
-              bash <(curl -s https://codecov.io/bash) -s $(Pipeline.Workspace)/lcov.info
+              bash <(curl -s https://codecov.io/bash) -s $(Pipeline.Workspace)/coverage/lcov.info
             displayName: download and run codecov
             env:
               CODECOV_TOKEN: $(CODECOV_TOKEN)
