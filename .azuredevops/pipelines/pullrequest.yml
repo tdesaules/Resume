@@ -50,7 +50,7 @@ stages:
           - script: |
               sed -i "s/\/home\/runner\/work\/resume\/resume\///g" tests/tests-report.xml
             displayName: change path in test report
-          - publish: $(System.DefaultWorkingDirectory)/tests/lcov.info
+          - publish: $(System.DefaultWorkingDirectory)/coverage/lcov.info
             artifact: coverage
             displayName: publish coverage artifact
           - publish: $(System.DefaultWorkingDirectory)/tests/tests-report.xml
@@ -147,7 +147,8 @@ stages:
               sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
               sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
               sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
-              mv $(Pipeline.Workspace)/lcov.info ./tests/lcov.info
+              mkdir tests coverage
+              mv $(Pipeline.Workspace)/lcov.info ./coverage/lcov.info
               mv $(Pipeline.Workspace)/tests-report.xml ./tests/tests-report.xml
               mv $(Pipeline.Workspace)/eslint.json ./tests/eslint.json
             displayName: configure sonar scanner
