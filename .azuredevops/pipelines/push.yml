@@ -12,14 +12,46 @@ variables:
   - group: resume
 
 stages:
-  - stage: build
-    displayName: Build
+  - stage: prod
+    displayName: Prod
     dependsOn: []
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
-      - job: dev
-        displayName: Dev
+      - job: build
+        displayName: Build
         timeoutInMinutes: 5
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: |
+              npm install
+              npm run build:prod
+            displayName: build with npm for prod
+          - script: |
+              grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
+            displayName: create VERSION.md
+          - publish: $(System.DefaultWorkingDirectory)/dist
+            artifact: dist
+            displayName: publish dist
+          - publish: $(System.DefaultWorkingDirectory)/package.json
+            artifact: package
+            displayName: publish package.json
+          - publish: $(System.DefaultWorkingDirectory)/VERSION.md
+            artifact: version
+            displayName: publish version
+  - stage: dev
+    displayName: Dev
+    dependsOn: []
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+    jobs:
+      - job: build
+        displayName: Build
+        timeoutInMinutes: 5  
         steps:
           - checkout: self
             fetchDepth: 0
@@ -35,48 +67,9 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/dist
             artifact: dist
             displayName: publish dist
-      - job: prod
-        displayName: Prod
-        timeoutInMinutes: 5
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-        steps:
-          - checkout: self
-            fetchDepth: 0
-            displayName: checkout repository
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '12.x'
-            displayName: setup node and npm
-          - script: |
-              npm install
-              npm run build:prod
-            displayName: build with npm for prod
-          - script: npm run test
-            displayName: run unit tests
-          - script: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
-            displayName: change path in test report
-          - script: |
-              npx eslint "src/**/*.{js,vue}" --format stylish
-              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
-            displayName: eslint scan
-          - script: |
-              grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
-            displayName: create VERSION.md
-          - publish: $(System.DefaultWorkingDirectory)/dist
-            artifact: dist
-            displayName: publish dist
-          - publish: $(System.DefaultWorkingDirectory)/coverage
-            artifact: coverage
-            displayName: publish coverage
-          - publish: $(System.DefaultWorkingDirectory)/package.json
-            artifact: package
-            displayName: publish package.json
-          - publish: $(System.DefaultWorkingDirectory)/VERSION.md
-            artifact: version
-            displayName: publish version
   - stage: security
     displayName: Security
-    dependsOn: [build]
+    dependsOn: [prod]
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: snyk
@@ -117,7 +110,7 @@ stages:
               DEEPCODE_API_KEY: $(DEEPCODE_TOKEN)
   - stage: quality
     displayName: Quality
-    dependsOn: [build]
+    dependsOn: [prod]
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: sonarcloud
@@ -150,7 +143,7 @@ stages:
               SONAR_SCANNER_VERSION: 4.5.0.2216
   - stage: deploy
     displayName: Deploy
-    dependsOn: [build]
+    dependsOn: [dev]
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
     jobs:
       - job: netlify
@@ -187,9 +180,6 @@ stages:
           - download: current
             artifact: dist
             displayName: download dist artifact
-          - download: current
-            artifact: coverage
-            displayName: download coverage artifact
           - download: current
             artifact: package
             displayName: download package.json artifact
