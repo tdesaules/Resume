@@ -16,8 +16,24 @@ stages:
     dependsOn: []
     condition: and( eq(variables['System.PullRequest.SourceBranch'], 'develop'), eq(variables['System.PullRequest.TargetBranch'], 'master'))
     jobs:
+      - job: check_version
+        displayName: Check Version
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - script: |
+              npm install yargs compare-versions
+              npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
+              npm view @tdesaules/resume
+              CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+              tools/compare --current_version $CURRENT_VERSION --next_version $NEXT_VERSION
+            displayName: check if version correct
       - job: jest
         displayName: Jest
+        dependsOn: [check_version]
         timeoutInMinutes: 5
         steps:
           - checkout: self
@@ -32,23 +48,34 @@ stages:
               npm run test
             displayName: run unit tests
           - script: |
-              COMMIT=$(git show --oneline | cut -d ' ' -f 3)
-              sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+              sed -i "s/\/home\/runner\/work\/resume\/resume\///g" tests/tests-report.xml
             displayName: change path in test report
-          - script: |
-              npx eslint "src/**/*.{js,vue}" --format stylish
-              npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
-            displayName: eslint scan
-          - script: |
-              npm config set registry https://pkgs.dev.azure.com/tdesaules/resume/_packaging/packages/npm/registry/
-              npm view @tdesaules/resume
-              CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
-              NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
-              tools/compare --current_version $CURRENT_VERSION --next_version $NEXT_VERSION
-            displayName: check if version correct
-          - publish: $(System.DefaultWorkingDirectory)/coverage
+          - publish: $(System.DefaultWorkingDirectory)/coverage/lcov.info
             artifact: coverage
             displayName: publish coverage artifact
+          - publish: $(System.DefaultWorkingDirectory)/tests/tests-report.xml
+            artifact: tests
+            displayName: publish tests artifact
+      - job: eslint
+        displayName: ESLint
+        dependsOn: [check_version]
+        timeoutInMinutes: 5
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            displayName: checkout repository
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: setup node and npm
+          - script: |
+              npm install
+              npx eslint "src/**/*.{js,vue}" --format stylish
+              npx eslint "src/**/*.{js,vue}" --format json --output-file tests/eslint.json
+            displayName: eslint scan
+          - publish: $(System.DefaultWorkingDirectory)/tests/eslint.json
+            artifact: eslint
+            displayName: publish eslint artifact
   - stage: security
     displayName: Security
     dependsOn: [test]
@@ -106,7 +133,13 @@ stages:
             displayName: checkout repository
           - download: current
             artifact: coverage
-            displayName: download artifact
+            displayName: download coverage artifact
+          - download: current
+            artifact: tests
+            displayName: download tests artifact
+          - download: current
+            artifact: eslint
+            displayName: download eslint artifact
           - script: |
               sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=$SONAR_PROJECT_KEY/g" sonar-project.properties
               sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=$SONAR_PROJECT_ORG/g" sonar-project.properties
@@ -115,6 +148,7 @@ stages:
               sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
               sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
               mv $(Pipeline.Workspace)/coverage ./coverage
+              mv $(Pipeline.Workspace)/tests ./tests
             displayName: configure sonar scanner
             env:
               SONAR_PROJECT_KEY: $(SONAR_PROJECT_KEY)
