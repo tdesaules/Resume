@@ -37,8 +37,7 @@ jobs:
           npm run test
       - name: change path in test report
         run: |
-          ls -l
-          sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+          sed -i "s/\/home\/runner\/work\/resume\/resume\///g" tests/tests-report.xml
       - name: publish coverage artifact
         uses: actions/upload-artifact@v2
         with:
