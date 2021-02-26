@@ -30,7 +30,7 @@ jobs:
   deploy:
     name: Deploy
     if: ${{ github.ref == 'refs/heads/develop' }}
-    needs: dev
+    needs: [dev]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
