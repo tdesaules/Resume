@@ -89,7 +89,7 @@ jobs:
       - name: install and run deepcode
         run: |
           python -m pip install deepcode
-          deepcode analyze --with-linters
+          deepcode analyze --path . --with-linters
         env:
           DEEPCODE_API_KEY: ${{ secrets.DEEPCODE_TOKEN }}
   quality:
