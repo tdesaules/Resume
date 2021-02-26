@@ -48,7 +48,7 @@ npm run test
 
 ## CI / CD
 
-Same pipeline are difined over github action and azure pipeline for testing purpose
+Same pipeline are difined over github action and azure pipeline for testing purpose 
 
 ### security:
 
