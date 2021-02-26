@@ -78,10 +78,14 @@ jobs:
         run: |
           npm install --global snyk
           snyk auth $SNYK_TOKEN
-          snyk monitor --dev --fail-on=patchable --project-name=@github-action/resume-dev
-          snyk test --dev --fail-on=patchable --project-name=@github-action/resume-dev
+          snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+          snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
       - name: install and run deepcode
         run: |
           python -m pip install deepcode
@@ -121,6 +125,7 @@ jobs:
           sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
           sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
           sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
+          cat sonar-project.properties
         env:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_PROJECT_ORG: ${{ secrets.SONAR_PROJECT_ORG }}
