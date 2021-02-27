@@ -375,6 +375,15 @@
       },
       "items" : [
         {
+          "title" : "Github Universe 2020",
+          "hosted" : "Github",
+          "content" : "Future of software development",
+          "image" : "https://i.ytimg.com/vi/2m9nUP-e8Co/maxresdefault.jpg",
+          "link" : "https://githubuniverse.com/",
+          "date" : "2020-12-08",
+          "icon" : "fab fa-2x fa-github"
+        },
+        {
           "title" : "Multi-cluster & multi-cloud service mesh",
           "hosted" : "Marco Palladino, CTO & Co-Founder @Kong",
           "content" : "With CNCF’s Kuma and Envoy",
