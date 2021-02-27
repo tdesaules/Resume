@@ -129,7 +129,6 @@ jobs:
         env:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_PROJECT_ORG: ${{ secrets.SONAR_PROJECT_ORG }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: run sonar-scanner
         run: |
           curl --create-dirs -sSLo .sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip

@@ -39,8 +39,18 @@
       "text" : "What the gears cannot do, the computer might. The computer is the Proteus of machines. Its essence is its universality, its power to simulate. Because it can take on a thousand forms and can serve a thousand functions, it can appeal to a thousand tastes." 
     },
     "hashtag" : [
-      { "tag" : "SysAdmin" },
-      { "tag" : "DevOps" }
+      { "tag": "SysAdmin" },
+      { "tag": "SysOps" },
+      { "tag": "DevOps" },
+      { "tag": "Geek" },
+      { "tag": "Optimist" },
+      { "tag": "Curious" },
+      { "tag": "Patient" },
+      { "tag": "Creative" },
+      { "tag": "Sociable" },
+      { "tag": "Teamwork" },
+      { "tag": "honest" },
+      { "tag": "Open-Minded" }
     ]
   },
   "cv" : {
@@ -65,35 +75,39 @@
           "fr" : {
             "startdate" : "mars 2019",
             "enddate" : "maintenant",
-            "summary" : "Ingénieur Système et DevOps Microsoft au sein de la DSI en environnement agile, j'accompagne les équipes Scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure. J'ai comme mission principale : la gestion de l'infrastructure \"as code\", la réalisation des pipelines d'intégration et de déploiement continue, la supervision et la mise en place d'applications web.",
+            "summary" : "Ingénieur Système et DevOps Microsoft au sein de la DSI en environnement agile, j'accompagne les équipes Scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure. J'ai comme mission principale : la gestion de l'infrastructure \"as code\", la réalisation des pipelines d'intégration et de déploiement continu, la supervision et la mise en place d'applications web.",
             "certifications" : [ "Azure AZ-900" ],
             "details" : [
+              {
+                "p" : "mise en place d'un cluster \"load-balancer\" avec une supervision nouvelle génération et livraison continue",
+                "hashtag" : [ "haproxy" , "corosync" , "pacemaker" , "prometheus" , "grafana" , "gitlab-ci" ]
+              },
               { 
-                "p" : "création des pipelines d'intégration et de déploiement continue",
+                "p" : "création des pipelines d'intégration et de déploiement continu",
                 "hashtag" : [ "jenkins" , "gitlab" , "sonarqube" ]
               },
               { 
                 "p" : "supervision des systèmes et des applications",
-                "hashtag" : [ "centreon" , "graylog" , "beats" ]
+                "hashtag" : [ "centreon" , "graylog" , "beats" , "prometheus" , "grafana" ]
               },
               { 
-                "p" : "gestion de l'infrastructure as code",
+                "p" : "gestion de l'infrastructure \"as code\", refonte des déploiements Windows et exploitation Linux",
                 "hashtag" : [ "puppet" , "puppet-bolt" , "foreman" ]
               },
               { 
-                "p" : "mise en place du laod-balancing pour les sites internes",
-                "hashtag" : [ "haproxy" ]
+                "p" : "mise en place du \"laod-balancing\" pour les sites internes",
+                "hashtag" : [ "haproxy" , "aloha" ]
               },
               { 
-                "p" : "réalisation de scripts pour l'automatisation",
-                "hashtag" : [ "powershell" ]
+                "p" : "réalisation de scripts d'automatisation, d'exploitation et de déploiement",
+                "hashtag" : [ "powershell" , "shell" ]
               },
               { 
-                "p" : "suivi des projets et des tickets",
+                "p" : "suivi des projets et des tickets en environnement mixte Agile et ITIL",
                 "hashtag" : [ "redmine" , "jira", "azure devops" ]
               },
               { 
-                "p" : "documentation et procédures",
+                "p" : "travail de fond sur la documentation, les procédures et les diagrammes hld et lld",
                 "hashtag" : [ "confluence" ]
               },
               { 
@@ -175,7 +189,7 @@
           "fr" : {
             "startdate" : "septembre 2012",
             "enddate" : "mars 2014",
-            "summary" : "",
+            "summary" : "Ingénieur système sur la plateforme d'inforgérence, avec quatre collaborateurs, nous nous occupions d'une dizaine de clients en environnement mixte Linux et Windows. J'ai également collaboré avec avec les équipes de la filiale \"security\" (spésialiste de la sécurité physique) et les équipes de développement interne.",
             "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
             "details" : [
               { 
@@ -404,6 +418,10 @@
         },
         {
           "fr" : { "value" : "Bricolage (DIY, Hacking, Renovation, Vélo)" },
+          "en" : { "value" : "" }
+        },
+        {
+          "fr" : { "value" : "Audio (Musique, Vinyl, Haute Fidélité, Home Cinéma)" },
           "en" : { "value" : "" }
         },
         {
