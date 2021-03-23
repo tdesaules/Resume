@@ -6,3 +6,4 @@ tests
 .netlify
 bin
 codacy-analysis-cli-master
+.dccache

@@ -111,7 +111,8 @@ stages:
           - task: UsePythonVersion@0
             inputs:
               versionSpec: '3.8' 
-              addToPath: true 
+              addToPath: true
+            displayName: set up python
           - script: |
               python -m pip install deepcode
               deepcode analyze --path $(System.DefaultWorkingDirectory) --with-linters
