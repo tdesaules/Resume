@@ -1,525 +1,553 @@
 {
-  "categories" : [
-    { "name" : "RESUME" },
-    { "name" : "CV" },
-    { "name" : "PROJECTS" }
-  ],
-  "languages" : [
-    { "name" : "FR" },
-    { "name" : "EN" }
-  ],
-  "resume" : {
-    "name" : "Thibault Desaules",
-    "fr" : {
-      "title" : "Salut, moi c'est Thibault,",
-      "subtitle" : "Comment ça va ?",
-      "job" : "ingénieur système & devops",
-      "summary" : [
-        { "p" : "J'aime l'informatique depuis que je suis petit (merci Windows 95). <i class='far fa-grin-hearts'></i>" },
-        { "p" : "Assembler son ordinateur, écouter le son gracieux d'un échec suite à une mise jour de bios, défragmentation son disque dur, ruiner son premier processeur avec un delid, mais surtout réussir la compilation de son kernel, illumer une led sur un Arduino, lancer son premier conteneur... <i class='far fa-grin-squint-tears'></i>"},
-        { "p" : "Entre nous... je suis un geek." },
-        { "p" : "Ma filmographie, Star Wars, Jurassic Park, Matrix, Retour vers le futur, Star Trek, Alien. Ma bibliothèque, 1984, Autre-Monde, Harry Potter, Esperanza 64. La Mega Drive, une vraie console ! Une maison qui ne repond pas au son de ma voix (#jarvis) n'est pas ma maison." },
-        { "p" : "Bon, et l'aspect pro dans tout ça ?" },
-        { "p" : "Après un passage éclair dans le monde du développement au début de mes études (Assembleur, C, C++, HTML, CSS, JavaScript, PHP, Java C#), je me suis réorienté sur l'infrastructure." },
-        { "p" : "J'ai travaillé dans plusieurs sociétés, débutant sur des systèmes Linux et des applicatifs libres, pour finalement me diriger vers des technologies Microsoft, sans pour autant m'écarter de l'Open Source et des technologies Web." },
-        { "p" : "Mon mantra pour le futur ?" },
-        { "p" : "Accompagner les développeurs dans leurs problématiques infra et leurs donner les outils pour faire évoluer leurs applications efficacement. Combattre cette idée reçu \"Microsoft vs Open Source\". Promouvoir le Cloud car il ouvre des possibilités incroyables." }
-      ]
-    },
-    "en" : {
-      "title" : "Hi, I'm Thibault,",
-      "subtitle" : "How are you ?",
-      "job" : "system & devops engineer ",
-      "summary" : [
-        { "p" : "" }
-      ]
-    },
-    "citation" : {
-      "author" : "Seymour Papert",
-      "text" : "What the gears cannot do, the computer might. The computer is the Proteus of machines. Its essence is its universality, its power to simulate. Because it can take on a thousand forms and can serve a thousand functions, it can appeal to a thousand tastes." 
-    },
-    "hashtag" : [
-      { "tag": "SysAdmin" },
-      { "tag": "SysOps" },
-      { "tag": "DevOps" },
-      { "tag": "Geek" },
-      { "tag": "Optimist" },
-      { "tag": "Curious" },
-      { "tag": "Patient" },
-      { "tag": "Creative" },
-      { "tag": "Sociable" },
-      { "tag": "Teamwork" },
-      { "tag": "honest" },
-      { "tag": "Open-Minded" }
-    ]
-  },
-  "cv" : {
-    "card" : {
+    "categories" : [
+      { "name" : "RESUME" },
+      { "name" : "CV" },
+      { "name" : "PROJECTS" }
+    ],
+    "languages" : [
+      { "name" : "FR" },
+      { "name" : "EN" }
+    ],
+    "resume" : {
       "name" : "Thibault Desaules",
-      "mail" : "tdesaules@outlook.com",
-      "phone" : "+33 6 99 38 40 55",
-      "address" : "3 rue Baudin, Levallois-Perret, France"
-    },
-    "experience" : {
-      "title" : {
-        "fr" : {
-          "value" : "Expérience"
-        },
-        "en" : {
-          "value" : "Experience"
-        }
-      },
-      "jobs" : [
-        {
-          "name" : "Devoteam",
-          "fr" : {
-            "startdate" : "septembre 2021",
-            "enddate" : "maintenant",
-            "summary" : "Consultant au sein de la practive DevOps, j'accompagne les clients dans toutes leurs problématiques Devops (automatisation, infrastructure as code, monitoring, pipelines d'intégration et de déploiement continu).",
-            "certifications" : [ "" ],
-            "details" : [
-              {
-                "p" : "création des environnements hors production automatisée",
-                "hashtag" : [ "github" , "powershell" , "jenkins" , "windows" , "linux" ]
-              },
-              { 
-                "p" : "création des pipelines d'intégration et de déploiement continu",
-                "hashtag" : [ "jenkins" , "xl deploy" ]
-              },
-              { 
-                "p" : "supervision des systèmes et des applications",
-                "hashtag" : [ "elastic stack" , "grafana" ]
-              },
-              { 
-                "p" : "suivi des projets et des tickets en environnement mixte Agile",
-                "hashtag" : [ "jira" ]
-              },
-              { 
-                "p" : "travail de fond sur la documentation, les procédures et les diagrammes hld et lld",
-                "hashtag" : [ "confluence" ]
-              },
-              { 
-                "p" : "administration des systèmes",
-                "hashtag" : [ "windows" , "linux" ]
-              }
-            ]
-          },
-          "en" : {
-            "startdate" : "september 2021",
-            "enddate" : "now",
-            "summary" : "",
-            "certifications" : [ "" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [  ]
-              }
-            ]
-          }
-        },
-        {
-          "name" : "Sodexo Pass France",
-          "fr" : {
-            "startdate" : "mars 2019",
-            "enddate" : "septembre 2021",
-            "summary" : "Ingénieur Système et DevOps Microsoft au sein de la DSI en environnement agile, j'accompagne les équipes Scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure. J'ai comme mission principale : la gestion de l'infrastructure \"as code\", la réalisation des pipelines d'intégration et de déploiement continu, la supervision et la mise en place d'applications web.",
-            "certifications" : [ "Azure AZ-900" ],
-            "details" : [
-              {
-                "p" : "mise en place d'un cluster \"load-balancer\" avec une supervision nouvelle génération et livraison continue",
-                "hashtag" : [ "haproxy" , "corosync" , "pacemaker" , "prometheus" , "grafana" , "gitlab-ci" ]
-              },
-              { 
-                "p" : "création des pipelines d'intégration et de déploiement continu",
-                "hashtag" : [ "jenkins" , "gitlab" , "sonarqube" ]
-              },
-              { 
-                "p" : "supervision des systèmes et des applications",
-                "hashtag" : [ "centreon" , "graylog" , "beats" , "prometheus" , "grafana" ]
-              },
-              { 
-                "p" : "gestion de l'infrastructure \"as code\", refonte des déploiements Windows et exploitation Linux",
-                "hashtag" : [ "puppet" , "puppet-bolt" , "foreman" ]
-              },
-              { 
-                "p" : "mise en place du \"laod-balancing\" pour les sites internes",
-                "hashtag" : [ "haproxy" , "aloha" ]
-              },
-              { 
-                "p" : "réalisation de scripts d'automatisation, d'exploitation et de déploiement",
-                "hashtag" : [ "powershell" , "shell" ]
-              },
-              { 
-                "p" : "suivi des projets et des tickets en environnement mixte Agile et ITIL",
-                "hashtag" : [ "redmine" , "jira", "azure devops" ]
-              },
-              { 
-                "p" : "travail de fond sur la documentation, les procédures et les diagrammes hld et lld",
-                "hashtag" : [ "confluence" ]
-              },
-              { 
-                "p" : "administration des systèmes",
-                "hashtag" : [ "windows" , "linux" ]
-              }
-            ]
-          },
-          "en" : {
-            "startdate" : "march 2019",
-            "enddate" : "september 2021",
-            "summary" : "",
-            "certifications" : [ "Azure AZ-900" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [  ]
-              }
-            ]
-          }
-        },
-        {
-          "name" : "Engie Ineo",
-          "fr" : {
-            "startdate" : "mars 2014",
-            "enddate" : "mars 2019",
-            "summary" : "Ingénieur système et chef de projet infrastructure auprès de la direction des systèmes d'information en environnement ITIL, j'ai étroitement travaille avec le département études (principalement avec les développeurs) et avec la direction métier afin de les accompagner dans la mise en place de nouvelles applications.",
-            "certifications" : [ "ITIL V4 Foundation" , "Agile Scrum Foundation" ],
-            "details" : [
-              { 
-                "p" : "chef de projet sur la mise en place d'un outils de récupération des statistiques d'utilisation dans un datalake pour obtenir des indicateurs BI",
-                "hashtag" : [ "interact-software" , "azure-data-factory" , "sqlserver" , "tableau" , "sqlserver-polybase" ]
-              },
-              { 
-                "p" : "livraison des applications web en production",
-                "hashtag" : [ "dotnet" , "javascript" , "php" ]
-              },
-              { 
-                "p" : "réalisation d'applications web pour la gestion des infrastructures (génération certificats, génération configurations réseaux...)",
-                "hashtag" : [ "static" , "vuejs" , "bulma" , "nodejs" , "expressjs" , "koajs" ]
-              },
-              { 
-                "p" : "gestion et mise en place du laod-balancing, reverse-proxy et terminaison ssl pour 300 sites",
-                "hashtag" : [ "citrix-adc" , "netscaler" ]
-              },
-              { 
-                "p" : "création de scripts d'automatisation pour l'infrastructure",
-                "hashtag" : [ "powershell" , "python" ]
-              },
-              { 
-                "p" : "gestion et mise en place des serveurs web",
-                "hashtag" : [ "iis" , "apache" , "nginx" ]
-              },
-              { 
-                "p" : "chef de projet infrastructure et gestion de la mobilité (EMM)",
-                "hashtag" : [ "xenmobile" , "intune" ]
-              },
-              { 
-                "p" : "administration des systèmes",
-                "hashtag" : [ "windows" , "linux" ]
-              }
-            ]
-          },
-          "en" : {
-            "startdate" : "march 2014",
-            "enddate" : "march 2019",
-            "summary" : "",
-            "certifications" : [ "ITIL V4 Foundation" , "Agile Scrum Foundation" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [  ]
-              }
-            ]
-          }
-        },
-        {
-          "name" : "Omnitech SA",
-          "fr" : {
-            "startdate" : "septembre 2012",
-            "enddate" : "mars 2014",
-            "summary" : "Ingénieur système sur la plateforme d'inforgérence, avec quatre collaborateurs, nous nous occupions d'une dizaine de clients en environnement mixte Linux et Windows. J'ai également collaboré avec avec les équipes de la filiale \"security\" (spésialiste de la sécurité physique) et les équipes de développement interne.",
-            "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [ "" ]
-              }
-            ]
-          },
-          "en" : {
-            "startdate" : "september 2012",
-            "enddate" : "march 2014",
-            "summary" : "",
-            "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [ "" ]
-              }
-            ]
-          }
-        },
-        {
-          "name" : "Promovacances",
-          "fr" : {
-            "startdate" : "septembre 2010",
-            "enddate" : "septembre 2012",
-            "summary" : "",
-            "certifications" : [ "" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [ "" ]
-              }
-            ]
-          },
-          "en" : {
-            "startdate" : "september 2010",
-            "enddate" : "september 2014",
-            "summary" : "",
-            "certifications" : [ "" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [ "" ]
-              }
-            ]
-          }
-        },
-        {
-          "name" : "HomeAway",
-          "fr" : {
-            "startdate" : "septembre 2009",
-            "enddate" : "septembre 2010",
-            "summary" : "",
-            "certifications" : [ "" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [ "" ]
-              }
-            ]
-          },
-          "en" : {
-            "startdate" : "september 2009",
-            "enddate" : "september 2010",
-            "summary" : "",
-            "certifications" : [ "" ],
-            "details" : [
-              { 
-                "p" : "",
-                "hashtag" : [ "" ]
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "study" : {
-      "title" : {
-        "fr" : {
-          "value" : "Etudes"
-        },
-        "en" : {
-          "value" : "Studies"
-        }
-      },
-      "studies" : [
-        {
-          "fr" : {
-            "name" : "Ingénieur système IRS (Ingénierie Réseaux et Systèmes)",
-            "degree" : "Master, DEA, DESS, diplôme d'ingénieur",
-            "school" : "Université Paris-Saclay"
-          },
-          "en" : {
-            "name" : "",
-            "degree" : "",
-            "school" : "University of Paris-Saclay"
-          },
-          "year" : "2013"
-        },
-        {
-          "fr" : {
-            "name" : "Administrateur ERE (Réseaux, Systèmes et Sécurité)",
-            "degree" : "RNCP II",
-            "school" : "Centre Formation AFTI"
-          },
-          "en" : {
-            "name" : "",
-            "degree" : "",
-            "school" : "AFTI Formation Center"
-          },
-          "year" : "2012"
-        },
-        {
-          "fr" : {
-            "name" : "Administrateur ASR (Réseaux, Systèmes et Sécurité)",
-            "degree" : "Licence, Licence LMD, licence professionnelle",
-            "school" : "Université Paris-Est Créteil"
-          },
-          "en" : {
-            "name" : "",
-            "degree" : "",
-            "school" : "Paris Val de Marne University"
-          },
-          "year" : "2010"
-        },
-        {
-          "fr" : {
-            "name" : "Technicien Supérieur SNIR (Systèmes Numériques Informatique Réseaux)",
-            "degree" : "DEUG, BTS, DUT, DEUST",
-            "school" : "Lycée Robert Doisneau"
-          },
-          "en" : {
-            "name" : "",
-            "degree" : "",
-            "school" : ""
-          },
-          "year" : "2008"
-        },
-        {
-          "fr" : {
-            "name" : "Baccalauréat STI (sciences et technologies industrielles)",
-            "degree" : "Baccalauréat",
-            "school" : "Lycée Notre Dame de Sion"
-          },
-          "en" : {
-            "name" : "",
-            "degree" : "",
-            "school" : "Notre Dame de Sion high school"
-          },
-          "year" : "2006"
-        }
-      ]
-    },
-    "tongue" : {
-      "title" : {
-        "fr" : {
-          "value" : "Langues"
-        },
-        "en" : {
-          "value" : "Languages"
-        }
-      },
-      "tongues" : [
-        {
-          "fr" : { "value" : "Français (langue maternelle)" },
-          "en" : { "value" : "French (mother tongue)" }
-        },
-        {
-          "fr" : { "value" : "Anglais (professionnel)" },
-          "en" : { "value" : "English (professional)" }
-        }
-      ]
-    },
-    "conference" : {
-      "title" : {
-        "fr" : {
-          "value" : "Conférences"
-        },
-        "en" : {
-          "value" : "Conférences"
-        }
-      },
-      "items" : [
-        {
-          "title" : "Github Universe 2020",
-          "hosted" : "Github",
-          "content" : "Future of software development",
-          "image" : "https://i.ytimg.com/vi/2m9nUP-e8Co/maxresdefault.jpg",
-          "link" : "https://githubuniverse.com/",
-          "date" : "2020-12-08",
-          "icon" : "fab fa-2x fa-github"
-        },
-        {
-          "title" : "Multi-cluster & multi-cloud service mesh",
-          "hosted" : "Marco Palladino, CTO & Co-Founder @Kong",
-          "content" : "With CNCF’s Kuma and Envoy",
-          "image" : "https://kuma.io/images/diagrams/v3/diagram-platform-agnostic@2x.png",
-          "link" : "https://www.cncf.io/webinars/multi-cluster-multi-cloud-service-mesh-with-cncfs-kuma-and-envoy/",
-          "date" : "2020-10-06",
-          "icon" : "fas fa-2x fa-video"
-        },
-        {
-          "title" : "#7 Site Reliability Engineering",
-          "hosted" : "Pablo Seminario",
-          "content" : "News and Infrastructure as code",
-          "image" : "https://secure.meetupstatic.com/photos/event/5/e/5/2/highres_471564146.jpeg",
-          "link" : "https://www.meetup.com/fr-FR/Site-Reliability-Engineering-Paris/events/273364359/",
-          "date" : "2020-09-30",
-          "icon" : "fab fa-2x fa-meetup"
-        }
-      ]
-    },
-    "hobbie" : {
-      "title" : {
-        "fr" : {
-          "value" : "Intérêts"
-        },
-        "en" : {
-          "value" : "Hobbies"
-        }
-      },
-      "hobbies" : [
-        {
-          "fr" : { "value" : "Sport (Volley, Tennis, Yoga)" },
-          "en" : { "value" : "" }
-        },
-        {
-          "fr" : { "value" : "Jeux video (League of Legend)" },
-          "en" : { "value" : "" }
-        },
-        {
-          "fr" : { "value" : "Domotique (RaspberryPi, Arduino, Electronique)" },
-          "en" : { "value" : "" }
-        },
-        {
-          "fr" : { "value" : "Bricolage (DIY, Hacking, Renovation, Vélo)" },
-          "en" : { "value" : "" }
-        },
-        {
-          "fr" : { "value" : "Audio (Musique, Vinyl, Haute Fidélité, Home Cinéma)" },
-          "en" : { "value" : "" }
-        },
-        {
-          "fr" : { "value" : "Science fiction (films, séries, livres et livres audio)" },
-          "en" : { "value" : "" }
-        }
-      ]
-    }
-  },
-  "projects" : [
-    {
       "fr" : {
-        "title" : "testfr",
+        "title" : "Salut, moi c'est Thibault,",
+        "subtitle" : "Comment ça va ?",
+        "job" : "ingénieur devops / sre",
         "summary" : [
-          { "p" : "mdewkofneowfnoew fenwiofnewoifneow fenwiofnewoifnewofndweqjid fniewonfeowifnwe fnewofneowifnoewfwe fneiwofnewoifnoew fjeiowfnoew" },
-          { "p" : "fngreiuwgbtniiutr gtrniugnrt gtriugtnr" },
-          { "p" : "frenfjirneidenwiuer denwiubvrtgjiotrbor dnewiufbewiudoqwppver vntuibntriobvper cewovnreiufnewiq cwiufvberiw cewoiuncbiuewvnore vreovbreb vreo" }
+          { "p" : "J'aime l'informatique depuis que je suis petit (merci Windows 95). <i class='far fa-grin-hearts'></i>" },
+          { "p" : "Assembler son ordinateur, écouter le son gracieux d'un échec suite à une mise jour de bios, défragmentation son disque dur, ruiner son premier processeur avec un delid, mais surtout réussir la compilation de son kernel, illumer une led sur un Arduino, lancer son premier conteneur... <i class='far fa-grin-squint-tears'></i>"},
+          { "p" : "Entre nous... je suis un geek." },
+          { "p" : "Ma filmographie, Star Wars, Jurassic Park, Matrix, Retour vers le futur, Star Trek, Alien. Ma bibliothèque, 1984, Autre-Monde, Harry Potter, Esperanza 64. La Mega Drive, une vraie console ! Une maison qui ne repond pas au son de ma voix (#jarvis) n'est pas ma maison." },
+          { "p" : "Bon, et l'aspect pro dans tout ça ?" },
+          { "p" : "Après un passage éclair dans le monde du développement au début de mes études (Assembleur, C, C++, HTML, CSS, JavaScript, PHP, Java C#), je me suis réorienté sur l'infrastructure." },
+          { "p" : "J'ai travaillé dans plusieurs sociétés, débutant sur des systèmes Linux et des applicatifs libres, pour finalement me diriger vers des technologies Microsoft, sans pour autant m'écarter de l'Open Source et des technologies Web." },
+          { "p" : "Mon mantra pour le futur ?" },
+          { "p" : "Accompagner les développeurs dans leurs problématiques infra et leurs donner les outils pour faire évoluer leurs applications efficacement. Promouvoir le Cloud car il ouvre des possibilités incroyables." }
         ]
       },
       "en" : {
-        "title" : "testen",
+        "title" : "Hi, I'm Thibault,",
+        "subtitle" : "How are you ?",
+        "job" : "devops / sre engineer ",
         "summary" : [
-          { "p" : "mdewkofneowfnoew fenwiofnewoifneow fenwiofnewoifnewofndweqjid fniewonfeowifnwe fnewofneowifnoewfwe fneiwofnewoifnoew fjeiowfnoew" },
-          { "p" : "fngreiuwgbtniiutr gtrniugnrt gtriugtnr" },
-          { "p" : "frenfjirneidenwiuer denwiubvrtgjiotrbor dnewiufbewiudoqwppver vntuibntriobvper cewovnreiufnewiq cwiufvberiw cewoiuncbiuewvnore vreovbreb vreo" }
+          { "p" : "" }
         ]
       },
-      "icon" : "fab fa-2x fa-meetup",
-      "images" : [
-        { "url" : "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" },
-        { "url" : "https://cdn.pixabay.com/photo/2013/10/02/23/03/dawn-190055_1280.jpg" },
-        { "url" : "https://cdn.pixabay.com/photo/2015/11/04/20/59/milky-way-1023340_1280.jpg" }
-      ],
-      "author" : "Thibault DESAULES",
-      "github" : {
-        "name" : "tdesaules/resume",
-        "url" : "https://github.com/tdesaules/resume"
+      "citation" : {
+        "author" : "Seymour Papert",
+        "text" : "What the gears cannot do, the computer might. The computer is the Proteus of machines. Its essence is its universality, its power to simulate. Because it can take on a thousand forms and can serve a thousand functions, it can appeal to a thousand tastes." 
       },
-      "sources" : [
-        { "url" : "https://bulma.io/" },
-        { "url" : "https://vuejs.org/"}
+      "hashtag" : [
+        { "tag": "SysAdmin" },
+        { "tag": "SysOps" },
+        { "tag": "DevOps" },
+        { "tag": "Geek" },
+        { "tag": "Optimist" },
+        { "tag": "Curious" },
+        { "tag": "Patient" },
+        { "tag": "Creative" },
+        { "tag": "Sociable" },
+        { "tag": "Teamwork" },
+        { "tag": "honest" },
+        { "tag": "Open-Minded" }
       ]
-    }
-  ]
-}
+    },
+    "cv" : {
+      "card" : {
+        "name" : "Thibault Desaules",
+        "mail" : "tdesaules@outlook.com",
+        "phone" : "+33 6 993 840 55",
+        "address" : "3 rue Baudin, Levallois-Perret, France"
+      },
+      "experience" : {
+        "title" : {
+          "fr" : {
+            "value" : "Expérience"
+          },
+          "en" : {
+            "value" : "Experience"
+          }
+        },
+        "jobs" : [
+          {
+            "name" : "Devoteam",
+            "fr" : {
+              "startdate" : "septembre 2021",
+              "enddate" : "maintenant",
+              "summary" : "Consultant au sein de la practive devops, j'accompagne nos clients dans toutes leurs problématiques Devops (automatisation, infrastructure as code, monitoring, pipelines d'intégration et de déploiement continu, cloud).",
+              "certifications" : [ "Gitlab 101" , "Gitlab 201" ],
+              "details" : [
+                {
+                  "p" : "création des environnements hors production automatisée",
+                  "hashtag" : [ "github" , "powershell" , "jenkins" , "windows" , "linux" ]
+                },
+                { 
+                  "p" : "création des pipelines d'intégration et de déploiement continu",
+                  "hashtag" : [ "jenkins" , "xl deploy" ]
+                },
+                { 
+                  "p" : "supervision des systèmes et des applications",
+                  "hashtag" : [ "elastic stack" , "grafana" ]
+                },
+                { 
+                    "p" : "déploiement et configuration de composants d'infrastructure sur cloud privé",
+                    "hashtag" : [ "api" ]
+                },
+                { 
+                  "p" : "suivi des projets et des tickets en environnement mixte Agile",
+                  "hashtag" : [ "jira" ]
+                },
+                { 
+                  "p" : "travail de fond sur la documentation, les procédures et les diagrammes hld et lld",
+                  "hashtag" : [ "confluence" ]
+                },
+                { 
+                  "p" : "administration des systèmes",
+                  "hashtag" : [ "windows" , "linux" ]
+                }
+              ]
+            },
+            "en" : {
+              "startdate" : "september 2021",
+              "enddate" : "now",
+              "summary" : "",
+              "certifications" : [ "" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [  ]
+                }
+              ]
+            }
+          },
+          {
+            "name" : "Sodexo Pass France",
+            "fr" : {
+              "startdate" : "mars 2019",
+              "enddate" : "septembre 2021",
+              "summary" : "Ingénieur système et devops Microsoft au sein de la dsi en environnement agile, j'accompagne les équipes scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure. J'ai comme mission principale : la gestion de l'infrastructure \"as code\", la réalisation des pipelines d'intégration et de déploiement continu, la supervision et la mise en place d'applications web.",
+              "certifications" : [ "Azure AZ-900" ],
+              "details" : [
+                {
+                  "p" : "mise en place d'un cluster \"load-balancer\" avec une supervision nouvelle génération et livraison continue",
+                  "hashtag" : [ "haproxy" , "corosync" , "pacemaker" , "prometheus" , "grafana" , "gitlab-ci" ]
+                },
+                { 
+                  "p" : "création des pipelines d'intégration et de déploiement continu",
+                  "hashtag" : [ "jenkins" , "gitlab" , "sonarqube" ]
+                },
+                { 
+                  "p" : "supervision des systèmes et des applications",
+                  "hashtag" : [ "centreon" , "graylog" , "beats" , "prometheus" , "grafana" ]
+                },
+                { 
+                  "p" : "gestion de l'infrastructure \"as code\", refonte des déploiements Windows et exploitation Linux",
+                  "hashtag" : [ "puppet" , "puppet-bolt" , "foreman" ]
+                },
+                { 
+                  "p" : "mise en place du \"laod-balancing\" pour les sites internes",
+                  "hashtag" : [ "haproxy" , "aloha" ]
+                },
+                { 
+                  "p" : "réalisation de scripts d'automatisation, d'exploitation et de déploiement",
+                  "hashtag" : [ "powershell" , "shell" ]
+                },
+                { 
+                  "p" : "suivi des projets et des tickets en environnement mixte Agile et ITIL",
+                  "hashtag" : [ "redmine" , "jira", "azure devops" ]
+                },
+                { 
+                  "p" : "travail de fond sur la documentation, les procédures et les diagrammes hld et lld",
+                  "hashtag" : [ "confluence" ]
+                },
+                { 
+                  "p" : "administration des systèmes",
+                  "hashtag" : [ "windows" , "linux" ]
+                }
+              ]
+            },
+            "en" : {
+              "startdate" : "march 2019",
+              "enddate" : "september 2021",
+              "summary" : "",
+              "certifications" : [ "Azure AZ-900" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [  ]
+                }
+              ]
+            }
+          },
+          {
+            "name" : "Engie Ineo",
+            "fr" : {
+              "startdate" : "mars 2014",
+              "enddate" : "mars 2019",
+              "summary" : "Ingénieur système et chef de projet infrastructure auprès de la direction des systèmes d'information en environnement ITIL, j'ai étroitement travaille avec le département études (principalement avec les développeurs) et avec la direction métier afin de les accompagner dans la mise en place de nouvelles applications.",
+              "certifications" : [ "ITIL V4 Foundation" , "Agile Scrum Foundation" ],
+              "details" : [
+                { 
+                  "p" : "chef de projet sur la mise en place d'un outils de récupération des statistiques d'utilisation dans un datalake pour obtenir des indicateurs BI",
+                  "hashtag" : [ "interact-software" , "azure-data-factory" , "sqlserver" , "tableau" , "sqlserver-polybase" ]
+                },
+                { 
+                  "p" : "livraison des applications web en production",
+                  "hashtag" : [ "dotnet" , "javascript" , "php" ]
+                },
+                { 
+                  "p" : "réalisation d'applications web pour la gestion des infrastructures (génération certificats, génération configurations réseaux...)",
+                  "hashtag" : [ "static" , "vuejs" , "bulma" , "nodejs" , "expressjs" , "koajs" ]
+                },
+                { 
+                  "p" : "gestion et mise en place du laod-balancing, reverse-proxy et terminaison ssl pour 300 sites",
+                  "hashtag" : [ "citrix-adc" , "netscaler" ]
+                },
+                { 
+                  "p" : "création de scripts d'automatisation pour l'infrastructure",
+                  "hashtag" : [ "powershell" , "python" ]
+                },
+                { 
+                  "p" : "gestion et mise en place des serveurs web",
+                  "hashtag" : [ "iis" , "apache" , "nginx" ]
+                },
+                { 
+                  "p" : "chef de projet infrastructure et gestion de la mobilité (EMM)",
+                  "hashtag" : [ "xenmobile" , "intune" ]
+                },
+                { 
+                  "p" : "administration des systèmes",
+                  "hashtag" : [ "windows" , "linux" ]
+                }
+              ]
+            },
+            "en" : {
+              "startdate" : "march 2014",
+              "enddate" : "march 2019",
+              "summary" : "",
+              "certifications" : [ "ITIL V4 Foundation" , "Agile Scrum Foundation" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [  ]
+                }
+              ]
+            }
+          },
+          {
+            "name" : "Omnitech SA",
+            "fr" : {
+              "startdate" : "septembre 2012",
+              "enddate" : "mars 2014",
+              "summary" : "Ingénieur système sur la plateforme d'inforgérence, avec quatre collaborateurs, nous nous occupions d'une dizaine de clients en environnement mixte Linux et Windows. J'ai également collaboré avec avec les équipes de la filiale \"security\" (spésialiste de la sécurité physique) et les équipes de développement interne.",
+              "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [ "" ]
+                }
+              ]
+            },
+            "en" : {
+              "startdate" : "september 2012",
+              "enddate" : "march 2014",
+              "summary" : "",
+              "certifications" : [ "ITIL V3 Foundation" , "VMware VCP" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [ "" ]
+                }
+              ]
+            }
+          },
+          {
+            "name" : "Promovacances",
+            "fr" : {
+              "startdate" : "septembre 2010",
+              "enddate" : "septembre 2012",
+              "summary" : "Administrateur systèmes, ma mission principale visait à maintenir fonctionnelle et performante l'infrastructure informatique et les sites des différentes marques blanches.",
+              "certifications" : [ "" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [ "" ]
+                }
+              ]
+            },
+            "en" : {
+              "startdate" : "september 2010",
+              "enddate" : "september 2014",
+              "summary" : "",
+              "certifications" : [ "" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [ "" ]
+                }
+              ]
+            }
+          },
+          {
+            "name" : "HomeAway",
+            "fr" : {
+              "startdate" : "septembre 2009",
+              "enddate" : "septembre 2010",
+              "summary" : "Technicien informatique, j'étais en charge du support utilisateur.",
+              "certifications" : [ "" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [ "" ]
+                }
+              ]
+            },
+            "en" : {
+              "startdate" : "september 2009",
+              "enddate" : "september 2010",
+              "summary" : "",
+              "certifications" : [ "" ],
+              "details" : [
+                { 
+                  "p" : "",
+                  "hashtag" : [ "" ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "study" : {
+        "title" : {
+          "fr" : {
+            "value" : "Etudes"
+          },
+          "en" : {
+            "value" : "Studies"
+          }
+        },
+        "studies" : [
+          {
+            "fr" : {
+              "name" : "Ingénieur système IRS (Ingénierie Réseaux et Systèmes)",
+              "degree" : "Master, DEA, DESS, diplôme d'ingénieur",
+              "school" : "Université Paris-Saclay"
+            },
+            "en" : {
+              "name" : "",
+              "degree" : "",
+              "school" : "University of Paris-Saclay"
+            },
+            "year" : "2013"
+          },
+          {
+            "fr" : {
+              "name" : "Administrateur ERE (Réseaux, Systèmes et Sécurité)",
+              "degree" : "RNCP II",
+              "school" : "Centre Formation AFTI"
+            },
+            "en" : {
+              "name" : "",
+              "degree" : "",
+              "school" : "AFTI Formation Center"
+            },
+            "year" : "2012"
+          },
+          {
+            "fr" : {
+              "name" : "Administrateur ASR (Réseaux, Systèmes et Sécurité)",
+              "degree" : "Licence, Licence LMD, licence professionnelle",
+              "school" : "Université Paris-Est Créteil"
+            },
+            "en" : {
+              "name" : "",
+              "degree" : "",
+              "school" : "Paris Val de Marne University"
+            },
+            "year" : "2010"
+          },
+          {
+            "fr" : {
+              "name" : "Technicien Supérieur SNIR (Systèmes Numériques Informatique Réseaux)",
+              "degree" : "DEUG, BTS, DUT, DEUST",
+              "school" : "Lycée Robert Doisneau"
+            },
+            "en" : {
+              "name" : "",
+              "degree" : "",
+              "school" : ""
+            },
+            "year" : "2008"
+          },
+          {
+            "fr" : {
+              "name" : "Baccalauréat STI (sciences et technologies industrielles)",
+              "degree" : "Baccalauréat",
+              "school" : "Lycée Notre Dame de Sion"
+            },
+            "en" : {
+              "name" : "",
+              "degree" : "",
+              "school" : "Notre Dame de Sion high school"
+            },
+            "year" : "2006"
+          }
+        ]
+      },
+      "tongue" : {
+        "title" : {
+          "fr" : {
+            "value" : "Langues"
+          },
+          "en" : {
+            "value" : "Languages"
+          }
+        },
+        "tongues" : [
+          {
+            "fr" : { "value" : "Français (langue maternelle)" },
+            "en" : { "value" : "French (mother tongue)" }
+          },
+          {
+            "fr" : { "value" : "Anglais (professionnel)" },
+            "en" : { "value" : "English (professional)" }
+          }
+        ]
+      },
+      "conference" : {
+        "title" : {
+          "fr" : {
+            "value" : "Conférences"
+          },
+          "en" : {
+            "value" : "Conférences"
+          }
+        },
+        "items" : [
+          {
+            "title" : "Github Universe 2020",
+            "hosted" : "Github",
+            "content" : "Future of software development",
+            "image" : "https://i.ytimg.com/vi/2m9nUP-e8Co/maxresdefault.jpg",
+            "link" : "https://githubuniverse.com/",
+            "date" : "2020-12-08",
+            "icon" : "fab fa-2x fa-github"
+          },
+          {
+            "title" : "Multi-cluster & multi-cloud service mesh",
+            "hosted" : "Marco Palladino, CTO & Co-Founder @Kong",
+            "content" : "With CNCF’s Kuma and Envoy",
+            "image" : "https://kuma.io/images/diagrams/v3/diagram-platform-agnostic@2x.png",
+            "link" : "https://www.cncf.io/webinars/multi-cluster-multi-cloud-service-mesh-with-cncfs-kuma-and-envoy/",
+            "date" : "2020-10-06",
+            "icon" : "fas fa-2x fa-video"
+          },
+          {
+            "title" : "#7 Site Reliability Engineering",
+            "hosted" : "Pablo Seminario",
+            "content" : "News and Infrastructure as code",
+            "image" : "https://secure.meetupstatic.com/photos/event/5/e/5/2/highres_471564146.jpeg",
+            "link" : "https://www.meetup.com/fr-FR/Site-Reliability-Engineering-Paris/events/273364359/",
+            "date" : "2020-09-30",
+            "icon" : "fab fa-2x fa-meetup"
+          }
+        ]
+      },
+      "hobbie" : {
+        "title" : {
+          "fr" : {
+            "value" : "Intérêts"
+          },
+          "en" : {
+            "value" : "Hobbies"
+          }
+        },
+        "hobbies" : [
+          {
+            "fr" : { "value" : "Sport (Volley, Tennis, Yoga)" },
+            "en" : { "value" : "" }
+          },
+          {
+            "fr" : { "value" : "Jeux video (League of Legend)" },
+            "en" : { "value" : "" }
+          },
+          {
+            "fr" : { "value" : "Domotique (RaspberryPi, Arduino, Electronique)" },
+            "en" : { "value" : "" }
+          },
+          {
+            "fr" : { "value" : "Bricolage (DIY, Hacking, Renovation, Vélo)" },
+            "en" : { "value" : "" }
+          },
+          {
+            "fr" : { "value" : "Audio (Musique, Vinyl, Haute Fidélité, Home Cinéma)" },
+            "en" : { "value" : "" }
+          },
+          {
+            "fr" : { "value" : "Science fiction (films, séries, livres et livres audio)" },
+            "en" : { "value" : "" }
+          }
+        ]
+      }
+    },
+    "projects" : [
+      {
+        "fr" : {
+        "title" : "A devops journey",
+          "summary" : [
+            { "p" : "L'objectif est de partir à la découverte des technos devops (très cool) que je n'ai pas l'occasion de voir en millieu professionnel." },
+            { "p" : "Pour ce projet je vise une application orienté microservice, une infrastructure conteinerisée, du déploiement continue et du monitoring applicatif" },
+            { "p" : "Application : 4 composantes afin de créer un cloud word, une application web cliente avec un back en crytal et un front en svelte qui communique de façon asynchrone via NATS avec un listener en go. Ce listener integrera la data dans une base mongo qui sera ensuite utilisé par une api en dotnetcore afin d'exposer des endpoints graphql via le framework hotchocolate. Enfin une application dashboard s'occupera de générer le cloudword avec un back en node et koajs et un front en svelte." },
+            { "p" : "Plateform : Pour héberger l'application, à défaut de jouer avec Kubernetes, j'ai choisi d'utiliser Nomad avec Consul et Vault. Un service mesh via consul pour faire communiquer toute les application et un proxy traefik pour exposer les applications front." },
+            { "p" : "Monitoring : Fluentd, Prometheus, Consul et Grafana (to be defined)" },
+            { "p" : "Déploiement : Github Action, Waypoint, Snyk, Codecov, Sonarqube" }
+          ]
+        },
+        "en" : {
+          "title" : "testen",
+          "summary" : [
+            { "p" : "" },
+            { "p" : "" },
+            { "p" : "" }
+          ]
+        },
+        "icon" : "fab fa-2x fa-dev",
+        "images" : [
+          { "url" : "" },
+          { "url" : "" },
+          { "url" : "" }
+        ],
+        "author" : "Thibault DESAULES",
+        "github" : {
+          "name" : "tdesaules/devops-journey",
+          "url" : "https://github.com/tdesaules/devops-journey"
+        },
+        "sources" : [
+          { "url" : "https://www.nomadproject.io/" },
+          { "url" : "https://www.consul.io/" },
+          { "url" : "https://www.ansible.com/" },
+          { "url" : "https://www.vaultproject.io/" },
+          { "url" : "https://svelte.dev/" },
+          { "url" : "https://crystal-lang.org/" },
+          { "url" : "https://kemalcr.com/" },
+          { "url" : "https://rollupjs.org/" },
+          { "url" : "https://bulma.io/" },
+          { "url" : "https://nats.io/" },
+          { "url" : "https://www.mongodb.com/" },
+          { "url" : "https://go.dev/" },
+          { "url" : "https://traefik.io/"},
+          { "url" : "https://dotnet.microsoft.com/"},
+          { "url" : "https://chillicream.com/"},
+          { "url" : "https://graphql.org/"},
+          { "url" : "https://nodejs.org/"},
+          { "url" : "https://koajs.com/"},
+          { "url" : "https://socket.io/"},
+          { "url" : "https://konghq.com/"},
+          { "url" : "https://www.terraform.io/"},
+          { "url" : "https://www.waypointproject.io//"},
+          { "url" : "https://github.com/"}
+        ]
+      }
+    ]
+  }
