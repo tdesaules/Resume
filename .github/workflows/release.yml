@@ -26,12 +26,12 @@ jobs:
           npm run build:prod
       - name: Run tests
         run: npm run test
-      - name: Change path in test report
-        run: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
-      - name: ESLint Analysis
-        run: |
-          npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
-          npx eslint "src/**/*.{js,vue}" --format stylish
+#     - name: Change path in test report
+#       run: sed -i "s/\/home\/runner\/work\/resume\/resume\///g" coverage/tests-report.xml
+#     - name: ESLint Analysis
+#       run: |
+#         npx eslint "src/**/*.{js,vue}" --format json --output-file coverage/eslint.json
+#         npx eslint "src/**/*.{js,vue}" --format stylish
       - name: Retrieve package version
         run: grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g' > VERSION.md
       - name: Publish package to Github
