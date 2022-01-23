@@ -1,0 +1,144 @@
+name: pull request
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    name: Tests
+    if: ${{ github.event_name == 'pull_request' && github.head_ref == 'develop' && github.base_ref == 'master' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup node and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@tdesaules'
+      - name: check if version correct
+        run: |
+          npm install yargs compare-versions
+          npm view @tdesaules/resume
+          CURRENT_VERSION=$(npm view @tdesaules/resume | grep latest | sed 's/\x1b\[[0-9;]*m//g' | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+          NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+          tools/compare --current_version $CURRENT_VERSION --next_version $NEXT_VERSION
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: run unit tests
+        run: |
+          npm install
+          npm run test
+      - name: change path in test report
+        run: |
+          sed -i "s/\/home\/runner\/work\/resume\/resume\///g" tests/tests-report.xml
+      - name: publish coverage artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage/lcov.info
+          if-no-files-found: error
+      - name: publish tests artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tests
+          path: tests/tests-report.xml
+          if-no-files-found: error
+      - name: eslint scan
+        run: |
+          npx eslint "src/**/*.{js,vue}" --format stylish
+          npx eslint "src/**/*.{js,vue}" --format json --output-file tests/eslint.json
+      - name: publish eslint artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: eslint
+          path: tests/eslint.json
+          if-no-files-found: error
+  security:
+    name: Security
+    needs: [test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: setup node and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: install and run snyk
+        run: |
+          npm install --global snyk
+          snyk auth $SNYK_TOKEN
+          snyk monitor --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+          snyk test --dev --fail-on=patchable --project-name=@azure-pipeline/resume-dev
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: install and run deepcode
+        run: |
+          python -m pip install deepcode
+          deepcode analyze --path . --with-linters
+        env:
+          DEEPCODE_API_KEY: ${{ secrets.DEEPCODE_TOKEN }}
+  quality:
+    name: Quality
+    needs: [test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: download coverage artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+          path: coverage
+      - name: download tests artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: tests
+          path: tests
+      - name: download eslint artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: eslint
+          path: coveslinterage
+      - name: configure sonar scanner
+        run: |
+          sed -i "s/sonar.projectKey=need-to-be-replaced/sonar.projectKey=$SONAR_PROJECT_KEY/g" sonar-project.properties
+          sed -i "s/sonar.organization=need-to-be-replaced/sonar.organization=$SONAR_PROJECT_ORG/g" sonar-project.properties
+          NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
+          sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
+          sed -i "s/sonar.branch.name=need-to-be-replaced/sonar.branch.name=develop/g" sonar-project.properties
+          sed -i "s/sonar.branch.target=need-to-be-replaced/sonar.branch.target=master/g" sonar-project.properties
+          cat sonar-project.properties
+        env:
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_PROJECT_ORG: ${{ secrets.SONAR_PROJECT_ORG }}
+      - name: run sonar-scanner
+        run: |
+          curl --create-dirs -sSLo .sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+          unzip -o .sonar/sonar-scanner.zip -d .sonar/
+          .sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io/
+        env:
+          SONAR_SCANNER_VERSION: 4.5.0.2216
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: download and run codecov
+        run: |
+          bash <(curl -s https://codecov.io/bash) -s coverage/lcov.info
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

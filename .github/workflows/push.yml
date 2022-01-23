@@ -1,0 +1,55 @@
+name: push
+
+on: push
+
+jobs:
+  dev:
+    name: Dev
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: setup node and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: build with npm for dev
+        run: |
+          npm install
+          npm run build:dev
+      - name: publish dist
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist/*
+          if-no-files-found: error
+  deploy:
+    name: Deploy
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    needs: [dev]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: download dist
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
+      - name: setup node and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: install vercel cli and deploy
+        run: |
+          npm install --global vercel
+          mkdir .vercel
+          echo "{\"orgId\":\"$VERCEL_ORGID\",\"projectId\":\"$VERCEL_PROJECTID_DEV\"}" > .vercel/project.json
+          vercel --token $VERCEL_TOKEN --prod --confirm
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORGID: ${{ secrets.VERCEL_ORGID }}
+          VERCEL_PROJECTID_DEV: ${{ secrets.VERCEL_PROJECTID_DEV }}
