@@ -65,11 +65,11 @@ jobs:
         run: |
           NEXT_VERSION=$(grep '"version":' package.json | grep '"version":' package.json | sed 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/g')
           sed -i "s/sonar.projectVersion=need-to-be-replaced/sonar.projectVersion=$NEXT_VERSION/g" sonar-project.properties
-      - name: SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#       - name: SonarCloud scan
+#         uses: SonarSource/sonarcloud-github-action@master
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   release:
     name: Create Release
     if: ${{ github.ref == 'refs/heads/master' }}
