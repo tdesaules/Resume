@@ -71,10 +71,57 @@
       },
       "jobs" : [
         {
+          "name" : "Devoteam",
+          "fr" : {
+            "startdate" : "septembre 2021",
+            "enddate" : "maintenant",
+            "summary" : "Consultant au sein de la practive DevOps, j'accompagne les clients dans toutes leurs problématiques Devops (automatisation, infrastructure as code, monitoring, pipelines d'intégration et de déploiement continu).",
+            "certifications" : [ "" ],
+            "details" : [
+              {
+                "p" : "création des environnements hors production automatisée",
+                "hashtag" : [ "github" , "powershell" , "jenkins" , "windows" , "linux" ]
+              },
+              { 
+                "p" : "création des pipelines d'intégration et de déploiement continu",
+                "hashtag" : [ "jenkins" , "xl deploy" ]
+              },
+              { 
+                "p" : "supervision des systèmes et des applications",
+                "hashtag" : [ "elastic stack" , "grafana" ]
+              },
+              { 
+                "p" : "suivi des projets et des tickets en environnement mixte Agile",
+                "hashtag" : [ "jira" ]
+              },
+              { 
+                "p" : "travail de fond sur la documentation, les procédures et les diagrammes hld et lld",
+                "hashtag" : [ "confluence" ]
+              },
+              { 
+                "p" : "administration des systèmes",
+                "hashtag" : [ "windows" , "linux" ]
+              }
+            ]
+          },
+          "en" : {
+            "startdate" : "september 2021",
+            "enddate" : "now",
+            "summary" : "",
+            "certifications" : [ "" ],
+            "details" : [
+              { 
+                "p" : "",
+                "hashtag" : [  ]
+              }
+            ]
+          }
+        },
+        {
           "name" : "Sodexo Pass France",
           "fr" : {
             "startdate" : "mars 2019",
-            "enddate" : "maintenant",
+            "enddate" : "septembre 2021",
             "summary" : "Ingénieur Système et DevOps Microsoft au sein de la DSI en environnement agile, j'accompagne les équipes Scrum dans leurs problématiques de déploiement, d'architecture et d'infrastructure. J'ai comme mission principale : la gestion de l'infrastructure \"as code\", la réalisation des pipelines d'intégration et de déploiement continu, la supervision et la mise en place d'applications web.",
             "certifications" : [ "Azure AZ-900" ],
             "details" : [
@@ -118,7 +165,7 @@
           },
           "en" : {
             "startdate" : "march 2019",
-            "enddate" : "now",
+            "enddate" : "september 2021",
             "summary" : "",
             "certifications" : [ "Azure AZ-900" ],
             "details" : [
